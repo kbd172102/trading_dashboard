@@ -1,0 +1,207 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Q Investment</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --sidebar-bg: #1a1d29; /* Dark Slate */
+      --sidebar-hover: #2d3142; /* Slightly lighter slate */
+      --accent-color: #00d4ff; /* Bright Cyan */
+      --text-primary: #e4e6eb; /* Light gray for text */
+      --text-secondary: #b0b3b8; /* Muted gray */
+      --body-bg: #f0f2f5; /* Very light gray */
+      --card-bg: #ffffff;
+    }
+
+    /* General body and font styling */
+    body {
+      background-color: var(--body-bg);
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+    }
+
+    /* Styling for the sidebar links */
+    .sidebar-link {
+      color: var(--text-primary);
+      padding: 14px 25px;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      margin-bottom: 8px;
+    }
+    .sidebar-link i {
+      margin-right: 12px;
+      font-size: 1.2rem;
+    }
+    .sidebar-link:hover {
+      background-color: var(--sidebar-hover);
+      color: var(--accent-color);
+      transform: translateX(5px);
+    }
+    .sidebar-link.active {
+      background-color: var(--accent-color);
+      color: var(--sidebar-bg);
+      font-weight: 600;
+      box-shadow: 0 4px 8px rgba(0, 212, 255, 0.3);
+    }
+
+    /*
+      RESPONSIVE BEHAVIOR FOR SIDEBAR
+    */
+    @media (min-width: 768px) {
+      #sidebarMenu {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1045;
+        transform: translateX(0%) !important;
+        visibility: visible !important;
+        width: 260px; /* Increased width for a more spacious feel */
+        background: var(--sidebar-bg) !important;
+        border-right: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+      }
+
+      .content {
+        margin-left: 260px;
+        padding: 40px;
+      }
+
+      .mobile-nav-toggler {
+        display: none !important;
+      }
+    }
+
+    /* On small screens, add top padding to content */
+    @media (max-width: 767.98px) {
+      .content {
+        padding-top: 80px;
+      }
+    }
+
+    /* Offcanvas and Navbar Styling */
+    .offcanvas {
+      background: var(--sidebar-bg);
+    }
+    .offcanvas-header {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--accent-color) !important;
+    }
+    .navbar {
+      background: var(--sidebar-bg) !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* General Card Styling for child templates */
+    .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+
+    /* Alert Styling */
+    .alert {
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Mobile-Only Navbar (Hamburger Menu) ===== -->
+  <nav class="navbar navbar-dark fixed-top d-md-none mobile-nav-toggler">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'dashboard:home' %}">
+        <i class="bi bi-graph-up-arrow me-2"></i>Q Investment
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== Sidebar (Offcanvas on Mobile, Fixed on Desktop) ===== -->
+  <div class="offcanvas offcanvas-start text-white" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+    <div class="offcanvas-header p-4">
+      <h5 class="offcanvas-title fw-bold" id="sidebarMenuLabel">
+        <i class="bi bi-graph-up-arrow me-2"></i>Q Investment
+      </h5>
+      <button type="button" class="btn-close btn-close-white d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body px-3">
+      <a href="{% url 'dashboard:home' %}" class="sidebar-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+        <i class="bi bi-speedometer2"></i> Dashboard
+      </a>
+      <a href="{% url 'dashboard:live_backtest' %}"
+   class="sidebar-link {% if request.resolver_match.url_name == 'live_backtest' %}active{% endif %}">
+   <i class="bi bi-lightning-charge"></i> Live Backtest
+</a>
+
+      <a href="{% url 'dashboard:api_integration' %}" class="sidebar-link {% if request.resolver_match.url_name == 'api_integration' %}active{% endif %}">
+        <i class="bi bi-key"></i> API Integration
+      </a>
+      <a href="{% url 'dashboard:pnl_report' %}" class="sidebar-link {% if request.resolver_match.url_name == 'pnl_report' %}active{% endif %}">
+        <i class="bi bi-file-earmark-bar-graph"></i> Log Report (P&L)
+      </a>
+      {% if request.user.is_superuser %}
+        <a href="{% url 'adminpanel:admin_home' %}"
+           class="sidebar-link {% if request.resolver_match.url_name == 'admin_home' %}active{% endif %}">
+            <i class="bi bi-speedometer2"></i> Back to Admin Panel
+        </a>
+      {% endif %}
+
+      <a href="{% url 'accounts:logout' %}" class="sidebar-link">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== Main Content Area ===== -->
+  <main class="content container-fluid">
+    {% if messages %}
+      {% for m in messages %}
+        <div class="alert alert-{{ m.tags }} alert-dismissible fade show" role="alert">
+          {{ m }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- Content from child templates will be injected here -->
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

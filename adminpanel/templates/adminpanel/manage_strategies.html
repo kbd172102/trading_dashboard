@@ -1,0 +1,569 @@
+{% extends "adminpanel/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Page Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h3 class="fw-bold mb-1">Manage Strategies</h3>
+                <p class="text-muted mb-0">Create and manage trading strategies</p>
+            </div>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStrategyModal">
+                <i class="bi bi-plus-circle me-2"></i>Add Strategy
+            </button>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-3">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="searchInput" placeholder="Search strategies...">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="exchangeFilter">
+                            <option value="">All Exchanges</option>
+                            <option value="NSE">NSE</option>
+                            <option value="BSE">BSE</option>
+                            <option value="MCX">MCX</option>
+                            <option value="NFO">NFO</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="sortBy">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="name">Name (A-Z)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-outline-secondary w-100" id="resetFilters">
+                            <i class="bi bi-arrow-clockwise me-1"></i>Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategy Table -->
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white border-0 pt-4 pb-0">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold mb-0">
+                        <i class="bi bi-list-check me-2 text-primary"></i>Existing Strategies
+                    </h5>
+                    <div class="d-flex align-items-center">
+                        <span class="text-muted me-2">Show:</span>
+                        <select class="form-select form-select-sm" id="entriesPerPage">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="selectAll">
+                                    </div>
+                                </th>
+                                <th>Name</th>
+                                <th>Symbol</th>
+                                <th>Exchange</th>
+                                <th>Status</th>
+                                <th class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for s in strategies %}
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input row-checkbox" type="checkbox" value="{{ s.id }}">
+                                    </div>
+                                </td>
+                                <td class="fw-semibold">{{ s.name }}</td>
+                                <td>{{ s.symbol }}</td>
+                                <td>{{ s.exchange }}</td>
+                                <td>
+                                    {% if s.is_active %}
+                                        <span class="badge bg-success rounded-pill">Active</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary rounded-pill">Inactive</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-end">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-sm btn-outline-warning rounded-start"
+                                                onclick="openEditModal({{ s.id }}, '{{ s.name }}', '{{ s.symbol }}',
+                                                                         '{{ s.exchange }}',
+                                                                         '{{ s.point_value }}',
+                                                                         '{{ s.ema_short }}',
+                                                                         '{{ s.ema_long }}',
+                                                                         '{{ s.fixed_sl_pct }}',
+                                                                         '{{ s.trail_sl_pct }}',
+                                                                         '{{ s.breakout_buffer }}',
+                                                                         '{{ s.margin_factor }}')">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <a href="{% url 'adminpanel:delete_strategy' s.id %}"
+                                           class="btn btn-sm btn-outline-danger rounded-end"
+                                           onclick="return confirm('Delete this strategy?')">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center py-4">
+                                    <i class="bi bi-inbox fs-1 text-muted"></i>
+                                    <h5 class="mt-3 text-muted">No strategies added yet</h5>
+                                    <p class="text-muted mb-4">Create your first strategy to get started</p>
+                                    <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#addStrategyModal">
+                                        <i class="bi bi-plus-circle me-2"></i>Add Strategy
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table Footer with Pagination -->
+            <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+                <div class="text-muted">
+                    Showing <span id="showingStart">1</span> to <span id="showingEnd">10</span> of <span id="totalEntries">{{ strategies|length }}</span> entries
+                </div>
+                <nav>
+                    <ul class="pagination pagination-sm mb-0">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: ADD Strategy -->
+<div class="modal fade" id="addStrategyModal" tabindex="-1" aria-labelledby="addStrategyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold" id="addStrategyModalLabel">
+                    <i class="bi bi-plus-circle me-2 text-primary"></i>Add New Strategy
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{% url 'adminpanel:manage_strategies' %}" id="addStrategyForm">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="add-name" class="form-label fw-semibold">Name</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                                <input type="text" class="form-control" id="add-name" name="name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="add-symbol" class="form-label fw-semibold">Symbol</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-currency-exchange"></i></span>
+                                <input type="text" class="form-control" id="add-symbol" name="symbol" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="add-exchange" class="form-label fw-semibold">Exchange</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-building"></i></span>
+                                <select class="form-select" id="add-exchange" name="exchange" required>
+                                    <option value="">Select Exchange</option>
+                                    <option value="NSE">NSE</option>
+                                    <option value="BSE">BSE</option>
+                                    <option value="MCX">MCX</option>
+                                    <option value="NFO">NFO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="add-point-value" class="form-label fw-semibold">Point Value</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-hash"></i></span>
+                                <input type="number" step="0.01" class="form-control" id="add-point-value" name="point_value" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="add-ema-short" class="form-label fw-semibold">EMA Short</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-graph-down"></i></span>
+                                <input type="number" class="form-control" id="add-ema-short" name="ema_short" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="add-ema-long" class="form-label fw-semibold">EMA Long</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-graph-up"></i></span>
+                                <input type="number" class="form-control" id="add-ema-long" name="ema_long" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="add-fixed-sl-pct" class="form-label fw-semibold">Fixed SL %</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-percent"></i></span>
+                                <input type="number" step="0.0001" class="form-control" id="add-fixed-sl-pct" name="fixed_sl_pct" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="add-trail-sl-pct" class="form-label fw-semibold">Trail SL %</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-percent"></i></span>
+                                <input type="number" step="0.0001" class="form-control" id="add-trail-sl-pct" name="trail_sl_pct" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="add-breakout-buffer" class="form-label fw-semibold">Breakout Buffer</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-arrows-expand"></i></span>
+                                <input type="number" step="0.0001" class="form-control" id="add-breakout-buffer" name="breakout_buffer" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="add-margin-factor" class="form-label fw-semibold">Margin Factor</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-calculator"></i></span>
+                                <input type="number" step="0.0001" class="form-control" id="add-margin-factor" name="margin_factor" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check form-switch">
+                                <input type="checkbox" class="form-check-input" id="add-is-active" name="is_active" checked>
+                                <label class="form-check-label" for="add-is-active">
+                                    Active Strategy
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Strategy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: EDIT Strategy -->
+<div class="modal fade" id="editStrategyModal" tabindex="-1" aria-labelledby="editStrategyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold" id="editStrategyModalLabel">
+                    <i class="bi bi-pencil me-2 text-primary"></i>Edit Strategy
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" id="editStrategyForm">
+                {% csrf_token %}
+                <input type="hidden" id="edit-id" name="id">
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="edit-name" class="form-label fw-semibold">Name</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                                <input type="text" class="form-control" id="edit-name" name="name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="edit-symbol" class="form-label fw-semibold">Symbol</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-currency-exchange"></i></span>
+                                <input type="text" class="form-control" id="edit-symbol" name="symbol" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="edit-exchange" class="form-label fw-semibold">Exchange</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-building"></i></span>
+                                <select class="form-select" id="edit-exchange" name="exchange" required>
+                                    <option value="">Select Exchange</option>
+                                    <option value="NSE">NSE</option>
+                                    <option value="BSE">BSE</option>
+                                    <option value="MCX">MCX</option>
+                                    <option value="NFO">NFO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="edit-point-value" class="form-label fw-semibold">Point Value</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-hash"></i></span>
+                                <input type="number" step="0.01" class="form-control" id="edit-point-value" name="point_value" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="edit-ema-short" class="form-label fw-semibold">EMA Short</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-graph-down"></i></span>
+                                <input type="number" class="form-control" id="edit-ema-short" name="ema_short" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="edit-ema-long" class="form-label fw-semibold">EMA Long</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-graph-up"></i></span>
+                                <input type="number" class="form-control" id="edit-ema-long" name="ema_long" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="edit-fixed-sl-pct" class="form-label fw-semibold">Fixed SL %</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-percent"></i></span>
+                                <input type="number" step="0.0001" class="form-control" id="edit-fixed-sl-pct" name="fixed_sl_pct" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="edit-trail-sl-pct" class="form-label fw-semibold">Trail SL %</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-percent"></i></span>
+                                <input type="number" step="0.0001" class="form-control" id="edit-trail-sl-pct" name="trail_sl_pct" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="edit-breakout-buffer" class="form-label fw-semibold">Breakout Buffer</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-arrows-expand"></i></span>
+                                <input type="number" step="0.0001" class="form-control" id="edit-breakout-buffer" name="breakout_buffer" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="edit-margin-factor" class="form-label fw-semibold">Margin Factor</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-calculator"></i></span>
+                                <input type="number" step="0.0001" class="form-control" id="edit-margin-factor" name="margin_factor" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check form-switch">
+                                <input type="checkbox" class="form-check-input" id="edit-is-active" name="is_active">
+                                <label class="form-check-label" for="edit-is-active">
+                                    Active Strategy
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+  .form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+  }
+
+  .form-control:focus, .form-select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 212, 255, 0.15);
+  }
+
+  .input-group-text {
+    background-color: #f8f9fa;
+    border-radius: 10px 0 0 10px;
+    border: 1px solid #e0e0e0;
+    border-right: none;
+  }
+
+  .input-group .form-control {
+    border-radius: 0 10px 10px 0;
+    border-left: none;
+  }
+
+  .input-group .form-select {
+    border-radius: 0 10px 10px 0;
+    border-left: none;
+  }
+
+  .btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--sidebar-bg);
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #00a8cc;
+    border-color: #00a8cc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 212, 255, 0.3);
+  }
+
+  .table th {
+    font-weight: 600;
+    color: var(--sidebar-bg);
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  .table td {
+    vertical-align: middle;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.5em 0.8em;
+  }
+
+  .modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  .modal-header {
+    border-radius: 15px 15px 0 0;
+  }
+
+  .form-check-input:checked {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+  }
+
+  .pagination .page-link {
+    border-radius: 0.375rem;
+    margin: 0 0.125rem;
+    color: var(--sidebar-bg);
+  }
+
+  .pagination .page-item.active .page-link {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      padding: 15px;
+    }
+
+    .btn-group {
+      flex-direction: column;
+    }
+
+    .table-responsive {
+      font-size: 0.875rem;
+    }
+
+    .modal-dialog {
+      margin: 0.5rem;
+    }
+
+    .row.g-3 > div {
+      margin-bottom: 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Edit Strategy Function
+  function openEditModal(id, name, symbol, exchange, point_value, ema_short, ema_long,
+                        fixed_sl_pct, trail_sl_pct, breakout_buffer, margin_factor) {
+    // Set form action
+    document.getElementById("editStrategyForm").action = `/adminpanel/strategies/edit/${id}/`;
+
+    // Populate form fields
+    document.getElementById("edit-id").value = id;
+    document.getElementById("edit-name").value = name;
+    document.getElementById("edit-symbol").value = symbol;
+    document.getElementById("edit-exchange").value = exchange;
+    document.getElementById("edit-point-value").value = point_value;
+    document.getElementById("edit-ema-short").value = ema_short;
+    document.getElementById("edit-ema-long").value = ema_long;
+    document.getElementById("edit-fixed-sl-pct").value = fixed_sl_pct;
+    document.getElementById("edit-trail-sl-pct").value = trail_sl_pct;
+    document.getElementById("edit-breakout-buffer").value = breakout_buffer;
+    document.getElementById("edit-margin-factor").value = margin_factor;
+
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById("editStrategyModal"));
+    modal.show();
+  }
+
+  // Handle form submissions
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set form action for add strategy
+    document.getElementById('addStrategyForm').action = '{% url "adminpanel:manage_strategies" %}';
+
+    // Select all functionality
+    const selectAll = document.getElementById('selectAll');
+    const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+
+    selectAll.addEventListener('change', function() {
+      rowCheckboxes.forEach(checkbox => {
+        checkbox.checked = this.checked;
+      });
+    });
+
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('keyup', function() {
+      // Implement search logic here
+      console.log('Searching for:', this.value);
+    });
+
+    // Filter functionality
+    const exchangeFilter = document.getElementById('exchangeFilter');
+    exchangeFilter.addEventListener('change', function() {
+      // Implement filter logic here
+      console.log('Filtering by exchange:', this.value);
+    });
+
+    // Sort functionality
+    const sortBy = document.getElementById('sortBy');
+    sortBy.addEventListener('change', function() {
+      // Implement sort logic here
+      console.log('Sorting by:', this.value);
+    });
+
+    // Reset filters
+    const resetFilters = document.getElementById('resetFilters');
+    resetFilters.addEventListener('click', function() {
+      searchInput.value = '';
+      exchangeFilter.value = '';
+      sortBy.value = 'newest';
+      // Reset table display here
+    });
+  });
+</script>
+
+{% endblock %}

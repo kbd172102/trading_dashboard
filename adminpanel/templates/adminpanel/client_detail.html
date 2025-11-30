@@ -1,0 +1,33 @@
+{% extends "adminpanel/base.html" %}
+{% block content %}
+<h2>Client: {{ client.username }}</h2>
+<p>Email: {{ client.email }}</p>
+
+<h5>API Key</h5>
+{% if api_key %}
+  <ul>
+    <li>Client code: {{ api_key.client_code }}</li>
+    <li>Created: {{ api_key.created_at }}</li>
+  </ul>
+{% else %}
+  <div class="alert alert-warning">No AngelOne API credentials connected.</div>
+{% endif %}
+
+<h5 class="mt-4">Recent Backtest Runs</h5>
+{% if runs %}
+  <table class="table">
+    <thead><tr><th>Run</th><th>Status</th><th>Created</th></tr></thead>
+    <tbody>
+      {% for r in runs %}
+        <tr>
+          <td>#{{ r.id }} — {{ r.strategy }}</td>
+          <td>{{ r.status }}</td>
+          <td>{{ r.created_at|date:"Y-m-d H:i" }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p class="text-muted">No runs found for this client.</p>
+{% endif %}
+{% endblock %}

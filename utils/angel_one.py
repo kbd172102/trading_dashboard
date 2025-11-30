@@ -1,0 +1,305 @@
+import json
+from datetime import datetime
+import requests, pyotp
+from django.utils import timezone
+from datetime import timedelta
+from SmartApi.smartConnect import SmartConnect
+from logzero import logger
+
+
+from django.utils import timezone
+from datetime import timedelta
+
+
+def ensure_fresh_token(key):
+    """Ensure JWT token is not older than 1 hour, else refresh via SmartAPI."""
+
+    if not key or not key.jwt_token:
+        return key
+
+    now = timezone.now()
+
+    # If updated less than 1 hour ago → don't refresh
+    if key.updated_at and (now - key.updated_at) < timedelta(hours=1):
+        return key
+
+    # Refresh via SmartAPI (more reliable)
+    success, resp = refresh_jwt(key)
+
+    if success:
+        print("TOKEN REFRESH SUCCESS USING SMARTAPI")
+        return key
+
+    print("SMARTAPI TOKEN REFRESH FAILED:", resp)
+    return key
+
+def angel_login(client_code, password, totp_secret, api_key):
+    otp = pyotp.TOTP(totp_secret).now()
+
+    url = "https://apiconnect.angelone.in/rest/auth/angelbroking/user/v1/loginByPassword"
+
+    payload = {
+        "clientcode": client_code,
+        "password": password,
+        "totp": otp,
+        "state": "live"
+    }
+
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "X-UserType": "USER",
+        "X-SourceID": "WEB",
+        "X-ClientLocalIP": "127.0.0.1",
+        "X-ClientPublicIP": "127.0.0.1",
+        "X-MACAddress": "00:00:00:00:00:00",
+        "X-PrivateKey": api_key
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
+    return response.json()
+
+
+def refresh(key):
+    """
+    Ensures token freshness without ever returning None.
+    """
+    if not key:
+        return key
+
+    # If token was updated less than 1 hour ago → return as is
+    if key.updated_at and key.updated_at > timezone.now() - timedelta(hours=1):
+        return key
+
+    # Token is old → refresh using SmartAPI login method (most stable)
+    try:
+        username = key.client_code
+        pwd = key.password
+        totp = pyotp.TOTP(key.totp_secret).now()
+
+        smart_api = SmartConnect(key.api_key)
+
+        # Login session
+        session = smart_api.generateSession(username, pwd, totp)
+
+        if "data" not in session:
+            logger.error(f"SMARTAPI LOGIN FAILED: {session}")
+            return key  # DO NOT BREAK SYSTEM
+
+        # Get fresh JWT + Refresh token
+        token_data = smart_api.generateToken(session["data"]["refreshToken"])
+
+        if "data" not in token_data:
+            logger.error(f"SMARTAPI TOKEN FAILED: {token_data}")
+            return key
+
+        # Save to DB
+        key.jwt_token = token_data["data"]["jwtToken"]
+        key.refresh_token = token_data["data"]["refreshToken"]
+        key.updated_at = timezone.now()
+        key.save()
+
+        return key
+
+    except Exception as e:
+        logger.error(f"SMARTAPI REFRESH ERROR: {e}")
+        return key  # VERY IMPORTANT
+
+
+def refresh_jwt(key):
+    """
+    Refresh AngelOne JWT token using SmartAPI's correct renewAccessToken() format.
+    """
+
+    try:
+        smart = SmartConnect(api_key=key.api_key)
+
+        # CORRECT CALL — must pass dict, not keyword arg
+        data = smart.renewAccessToken({
+            "refreshToken": key.refresh_token
+        })
+
+        if data and "data" in data:
+            new_data = data["data"]
+
+            key.jwt_token = new_data.get("jwtToken", key.jwt_token)
+            key.refresh_token = new_data.get("refreshToken", key.refresh_token)
+            key.feed_token = new_data.get("feedToken", key.feed_token)
+            key.save()
+
+            return True, key
+
+        return False, data
+
+    except Exception as e:
+        return False, {"status": False, "message": str(e)}
+
+
+def safe_json(response):
+    try:
+        return response.json()
+    except Exception:
+        return {"status": False, "message": "Invalid JSON response", "raw": response.text}
+
+
+import requests
+
+def get_angelone_candles(jwt_token, api_key, exchange, symbol_token, interval, fromdate, todate):
+    import pandas as pd
+    import requests, json
+
+    url = "https://apiconnect.angelone.in/rest/secure/angelbroking/historical/v1/getCandleData"
+    payload = {
+        "exchange": exchange,
+        "symboltoken": symbol_token,
+        "interval": interval,
+        "fromdate": fromdate,
+        "todate": todate
+    }
+
+    headers = {
+        "X-PrivateKey": api_key,
+        "X-UserType": "USER",
+        "X-SourceID": "WEB",
+        "X-ClientLocalIP": "127.0.0.1",
+        "X-ClientPublicIP": "127.0.0.1",
+        "X-MACAddress": "AA:BB:CC:DD:EE:FF",
+        "Authorization": f"Bearer {jwt_token}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    }
+
+    try:
+        # response = requests.post(url, headers=headers, data=json.dumps(payload))
+        response = requests.post(url, json=payload, headers=headers)
+        data = response.json()
+    except Exception as e:
+        return None, f"Invalid JSON response: {e}"
+
+    if not data.get("status"):
+        return None, data.get("message", "API failed.")
+
+    rows = data.get("data", [])
+
+    if not rows:
+        return None, "No data available."
+
+    # Convert to DataFrame
+    df = pd.DataFrame(rows, columns=["datetime","open","high","low","close","volume"])
+    df["datetime"] = pd.to_datetime(df["datetime"], utc=True).dt.tz_convert("Asia/Kolkata")
+    df.sort_values("datetime", inplace=True)
+    df.reset_index(drop=True, inplace=True)
+
+    return df, None
+
+
+def get_rms_balance(user):
+    """
+    Fetch RMS balance (net, available cash, M2M etc.)
+    """
+    if not user.api_key:
+        return None, "API credentials missing"
+
+    access_token = user.api_key.access_token
+    api_key = user.api_key.api_key
+
+    url = "https://apiconnect.angelone.in/rest/secure/angelbroking/user/v1/getRMS"
+
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "X-UserType": "USER",
+        "X-SourceID": "WEB",
+        "X-ClientLocalIP": "127.0.0.1",
+        "X-ClientPublicIP": "127.0.0.1",
+        "X-MACAddress": "00:00:00:00:00",
+        "X-PrivateKey": api_key,
+    }
+
+    try:
+        response = requests.get(url, headers=headers)
+        data = response.json()
+
+        if data.get("status") is True:
+            return data["data"], None
+        else:
+            return None, data.get("message", "Unknown RMS API error")
+
+    except Exception as e:
+        return None, str(e)
+
+
+def get_daily_pnl(user):
+    """Get daily P&L (Live)"""
+    # client wants graph → use AngelOne PNL API
+    return [], None
+
+def get_monthly_pnl(user):
+    return [], None
+
+def get_yearly_pnl(user):
+    return [], None
+
+from SmartApi import SmartConnect
+import pandas as pd
+import logzero
+import websocket
+
+def get_position_book(api_key, client_code, jwt_token):
+    try:
+        obj = SmartConnect(api_key=api_key)
+        obj.setAccessToken(jwt_token)
+
+        pos = obj.position()  # AngelOne API
+        if "data" in pos and len(pos["data"]) > 0:
+            df = pd.DataFrame(pos["data"])
+            return df
+        return pd.DataFrame()
+    except Exception as e:
+        print("Position book fetch error:", e)
+        return pd.DataFrame()
+
+
+def get_real_time_pnl(api_key, client_code, jwt_token):
+    df = get_position_book(api_key, client_code, jwt_token)
+    if df.empty:
+        return 0, []
+
+    # AngelOne already gives exact P&L:
+    # netpnl = pnl (AngelOne computes it automatically)
+    df['pnl'] = pd.to_numeric(df['pnl'], errors='coerce').fillna(0)
+
+    total_pnl = df['pnl'].sum()
+
+    # Convert for template
+    positions = df.to_dict(orient="records")
+
+    return total_pnl, positions
+
+
+# def get_angelone_candles(jwt_token, api_key, exchange, symbol_token, interval, fromdate, todate):
+#     url = "https://apiconnect.angelone.in/rest/secure/angelbroking/historical/v1/getCandleData"
+#
+#     payload = {
+#         "exchange": exchange,
+#         "symboltoken": symbol_token,
+#         "interval": interval,
+#         "fromdate": fromdate,
+#         "todate": todate
+#     }
+#
+#     headers = {
+#         "X-PrivateKey": api_key,
+#         "X-UserType": "USER",
+#         "X-SourceID": "WEB",
+#         "X-ClientLocalIP": "127.0.0.1",
+#         "X-ClientPublicIP": "127.0.0.1",
+#         "X-MACAddress": "AA:BB:CC:DD:EE:FF",
+#         "Authorization": f"Bearer {jwt_token}",
+#         "Content-Type": "application/json",
+#         "Accept": "application/json",
+#     }
+#
+#     response = requests.post(url, headers=headers, data=json.dumps(payload))
+#     return safe_json(response)

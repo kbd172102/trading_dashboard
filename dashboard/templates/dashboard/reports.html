@@ -1,0 +1,130 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h3 class="fw-bold mb-1">Log Report (P&L)</h3>
+        <p class="text-muted mb-0">History of all your backtest runs and performance reports.</p>
+      </div>
+      <div class="d-none d-md-block">
+        <a href="{% url 'dashboard:upload' %}" class="btn btn-primary rounded-pill">
+          <i class="bi bi-plus-circle me-2"></i>Run New Backtest
+        </a>
+      </div>
+    </div>
+
+    <!-- Reports Table Card -->
+    <div class="card border-0 shadow-sm">
+      <div class="card-body p-0">
+        {% if runs %}
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th scope="col" class="ps-4">#</th>
+                  <th scope="col">Strategy</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Created</th>
+                  <th scope="col" class="text-center">Available Reports</th>
+                  <th scope="col" class="text-end pe-4">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for r in runs %}
+                <tr>
+                  <td class="ps-4 fw-semibold">{{ forloop.counter }}</td>
+                  <td>{{ r.strategy.name|default:r.strategy }}</td>
+                  <td>
+                    {% if r.status == 'completed' %}
+                      <span class="badge bg-success rounded-pill">{{ r.status|title }}</span>
+                    {% elif r.status == 'failed' %}
+                      <span class="badge bg-danger rounded-pill">{{ r.status|title }}</span>
+                    {% elif r.status == 'running' %}
+                      <span class="badge bg-info rounded-pill">{{ r.status|title }}</span>
+                    {% else %}
+                      <span class="badge bg-warning rounded-pill">{{ r.status|title }}</span>
+                    {% endif %}
+                  </td>
+                  <td>{{ r.created_at|date:"M d, Y, g:i A" }}</td>
+                  <td class="text-center">
+                    <div class="d-flex justify-content-center gap-1">
+                      {% if r.trades_csv %}
+                        <a href="{{ r.trades_csv.url }}" class="btn btn-sm btn-outline-dark rounded-pill" title="Download Trades CSV">
+                          <i class="bi bi-file-earmark-text"></i>
+                        </a>
+                      {% endif %}
+                      {% if r.pnl_csv %}
+                        <a href="{{ r.pnl_csv.url }}" class="btn btn-sm btn-outline-success rounded-pill" title="Download P&L CSV">
+                          <i class="bi bi-currency-dollar"></i>
+                        </a>
+                      {% endif %}
+                      {% if r.balance_png %}
+                        <a href="{{ r.balance_png.url }}" class="btn btn-sm btn-outline-primary rounded-pill" title="View Balance Chart">
+                          <i class="bi bi-bar-chart-line"></i>
+                        </a>
+                      {% endif %}
+                    </div>
+                  </td>
+                  <td class="text-end pe-4">
+                    <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">
+                      <i class="bi bi-eye me-1"></i>View
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <!-- Empty State -->
+          <div class="text-center py-5">
+            <i class="bi bi-file-earmark-x fs-1 text-muted"></i>
+            <h5 class="mt-3 text-muted">No backtest reports found</h5>
+            <p class="text-muted mb-4">Your completed backtest reports will appear here.</p>
+            <a href="{% url 'dashboard:upload' %}" class="btn btn-primary rounded-pill">
+              <i class="bi bi-plus-circle me-2"></i>Run Your First Backtest
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Custom styles for this page */
+  .table th {
+    font-weight: 600;
+    color: var(--sidebar-bg);
+    border-bottom: 2px solid #f0f0f0;
+    white-space: nowrap; /* Prevents header text from wrapping */
+  }
+
+  .table td {
+    vertical-align: middle;
+  }
+
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.775rem;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      padding: 15px;
+    }
+
+    /* Hide less important columns on very small screens if needed */
+    /* For example, you could hide the 'Created' date column */
+    /*
+    .table th:nth-child(4),
+    .table td:nth-child(4) {
+      display: none;
+    }
+    */
+  }
+</style>
+{% endblock %}

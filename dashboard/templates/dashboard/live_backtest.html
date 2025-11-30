@@ -1,0 +1,196 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h3 class="fw-bold mb-4">Live Backtest</h3>
+
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+{% if raw %}
+<pre class="bg-dark text-white p-3">{{ raw }}</pre>
+{% endif %}
+
+<div class="card shadow-sm p-4">
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary btn-lg mt-3">Fetch & Run Backtest</button>
+  </form>
+</div>
+
+{% if chart_base64 %}
+<div class="mt-4 card p-3">
+  <h5>Balance Chart</h5>
+  <img src="{{ chart_base64 }}" class="img-fluid border rounded" alt="Balance chart">
+</div>
+{% elif chart %}
+<div class="mt-4 card p-3">
+  <h5>Balance Chart</h5>
+  <img src="{{ chart }}" class="img-fluid border rounded" alt="Balance chart">
+</div>
+{% endif %}
+
+{% if events %}
+<div class="mt-4 card p-3">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+      <h5>Events</h5>
+      <a href="{{ events_csv }}" download class="btn btn-success btn-sm">
+          Download Events CSV
+      </a>
+  </div>
+  <div class="table-container">
+    <div class="table-wrapper">
+      <div class="table-responsive">
+        {{ events|safe }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+{% if trades %}
+<div class="mt-4 card p-3">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+      <h5>Trades</h5>
+      <a href="{{ trades_csv }}" download class="btn btn-success btn-sm">
+          Download Trades CSV
+      </a>
+  </div>
+  <div class="table-container">
+    <div class="table-wrapper">
+      <div class="table-responsive">
+        {{ trades|safe }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if pnl %}
+<div class="mt-4 card p-3">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+      <h5>PnL</h5>
+      <a href="{{ pnl_csv }}" download class="btn btn-success btn-sm">
+          Download PnL CSV
+      </a>
+  </div>
+
+  <div class="table-container">
+    <div class="table-wrapper">
+      <div class="table-responsive">
+        {{ pnl|safe }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+<style>
+.table-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(0,0,0,0.05) 0 4px 12px;
+    margin-bottom: 25px;
+}
+
+.table-wrapper {
+    max-height: 420px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+/* Add horizontal scrolling capability */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+}
+
+/* Main table */
+.table-wrapper table {
+    width: 100%;
+    min-width: 800px; /* Ensure table maintains its structure */
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+/* Center ALL cells */
+.table-wrapper table th,
+.table-wrapper table td {
+    text-align: left !important;
+    vertical-align: middle !important;
+}
+
+/* Header sticky */
+.table-wrapper th {
+    background: #f7f7f7;
+    font-weight: bold;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+/* Body rows */
+.table-wrapper td {
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+.table-wrapper tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.table-wrapper tr:hover {
+    background: #eef6ff;
+}
+
+/* Custom scrollbar styling for better UX */
+.table-wrapper::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .table-container {
+        padding: 10px;
+    }
+
+    .table-wrapper {
+        max-height: 300px;
+    }
+
+    .table-wrapper table {
+        min-width: 600px;
+        font-size: 12px;
+    }
+
+    .table-wrapper th,
+    .table-wrapper td {
+        padding: 8px 5px;
+    }
+}
+</style>
+
+{% endblock %}

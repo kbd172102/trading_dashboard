@@ -1,0 +1,224 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h3 class="fw-bold mb-1">Angel One API Integration</h3>
+        <p class="text-muted mb-0">Manage your API credentials and connection status.</p>
+      </div>
+    </div>
+
+    <!-- Django Messages -->
+    {% if messages %}
+      {% for msg in messages %}
+      <div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+        {{ msg }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- API Connection Form -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-white border-0 pt-4 pb-0">
+        <h5 class="fw-bold mb-0">
+          <i class="bi bi-link-45deg me-2 text-primary"></i>Connect to Angel One
+        </h5>
+      </div>
+      <div class="card-body p-4">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="row g-4">
+
+            <div class="col-md-6 col-12">
+              <label for="id_client_code" class="form-label fw-semibold">
+                <i class="bi bi-person-badge me-1"></i>Client Code
+              </label>
+              {{ form.client_code }}
+            </div>
+
+            <div class="col-md-6 col-12">
+              <label for="id_password" class="form-label fw-semibold">
+                <i class="bi bi-shield-lock me-1"></i>Password
+              </label>
+              <div class="input-group">
+                {{ form.password }}
+                <button type="button" class="btn btn-outline-secondary border-0" id="togglePassword">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-12">
+              <label for="id_totp_secret" class="form-label fw-semibold">
+                <i class="bi bi-key me-1"></i>TOTP Secret
+              </label>
+              <div class="input-group">
+                {{ form.totp_secret }}
+                <button type="button" class="btn btn-outline-secondary border-0" id="toggleTotp">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+              <div class="form-text">Used to auto-generate the OTP.</div>
+            </div>
+
+            <div class="col-md-6 col-12">
+              <label for="id_api_key" class="form-label fw-semibold">
+                <i class="bi bi-key-fill me-1"></i>API Key
+              </label>
+              <div class="input-group">
+                {{ form.api_key }}
+                <button type="button" class="btn btn-outline-secondary border-0" id="toggleApiKey">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-lg btn-primary rounded-pill px-5">
+              <i class="bi bi-link-45deg me-2"></i>Connect API
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Form Styling */
+  .form-control {
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+    min-height: 48px;
+  }
+
+  .form-control:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 212, 255, 0.15);
+  }
+
+  .input-group {
+    position: relative;
+  }
+
+  .input-group .form-control {
+    border-right: none;
+  }
+
+  .input-group .btn {
+    border-radius: 0 10px 10px 0;
+    border-left: none;
+    z-index: 10;
+  }
+
+  .btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--sidebar-bg);
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #00a8cc;
+    border-color: #00a8cc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 212, 255, 0.3);
+  }
+
+  .form-label {
+    color: var(--sidebar-bg);
+    margin-bottom: 8px;
+  }
+
+  /* Token Status Styling */
+  .token-item {
+    transition: background-color 0.3s ease;
+  }
+  .token-item:hover {
+    background-color: #e9ecef;
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Apply classes and placeholders to Django form fields
+  const clientCode = document.getElementById('id_client_code');
+  const password = document.getElementById('id_password');
+  const totpSecret = document.getElementById('id_totp_secret');
+  const apiKey = document.getElementById('id_api_key');
+
+  if (clientCode) {
+    clientCode.classList.add('form-control');
+    clientCode.placeholder = 'Enter your Client Code';
+  }
+  if (password) {
+    password.classList.add('form-control');
+    password.type = 'password';
+    password.placeholder = 'Enter your Password';
+  }
+  if (totpSecret) {
+    totpSecret.classList.add('form-control');
+    totpSecret.type = 'password';
+    totpSecret.placeholder = 'Enter your TOTP Secret';
+  }
+  if (apiKey) {
+    apiKey.classList.add('form-control');
+    apiKey.type = 'password';
+    apiKey.placeholder = 'Enter your API Key';
+  }
+
+  // Show/Hide Password Toggle
+  const togglePassword = document.querySelector('#togglePassword');
+  const toggleTotp = document.querySelector('#toggleTotp');
+  const toggleApiKey = document.querySelector('#toggleApiKey');
+
+  togglePassword.addEventListener('click', function () {
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    this.querySelector('i').classList.toggle('bi-eye');
+    this.querySelector('i').classList.toggle('bi-eye-slash');
+  });
+
+  toggleTotp.addEventListener('click', function () {
+    const type = totpSecret.getAttribute('type') === 'password' ? 'text' : 'password';
+    totpSecret.setAttribute('type', type);
+    this.querySelector('i').classList.toggle('bi-eye');
+    this.querySelector('i').classList.toggle('bi-eye-slash');
+  });
+
+  toggleApiKey.addEventListener('click', function () {
+    const type = apiKey.getAttribute('type') === 'password' ? 'text' : 'password';
+    apiKey.setAttribute('type', type);
+    this.querySelector('i').classList.toggle('bi-eye');
+    this.querySelector('i').classList.toggle('bi-eye-slash');
+  });
+});
+
+// Copy to Clipboard function
+function copyToClipboard(elementId) {
+  const textElement = document.getElementById(elementId);
+  const textToCopy = textElement.textContent;
+
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    // Optional: Show a success message
+    const originalHTML = textElement.innerHTML;
+    textElement.innerHTML = '<span class="text-success">Copied to clipboard!</span>';
+    setTimeout(() => {
+      textElement.innerHTML = originalHTML;
+    }, 2000);
+  }).catch(err => {
+    console.error('Failed to copy text: ', err);
+  });
+}
+</script>
+
+{% endblock %}

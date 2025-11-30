@@ -1,0 +1,422 @@
+{% extends "adminpanel/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="content-wrapper">
+  <div class="container-fluid">
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h3 class="fw-bold mb-1">Manage Clients</h3>
+        <p class="text-muted mb-0">View, edit and manage user accounts</p>
+      </div>
+      <div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClientModal">
+          <i class="bi bi-person-plus me-2"></i>Add Client
+        </button>
+      </div>
+    </div>
+
+    <!-- Clients Table -->
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white border-0 pt-4 pb-0">
+        <h5 class="fw-bold mb-0">
+          <i class="bi bi-people me-2 text-primary"></i>Registered Clients
+        </h5>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Full Name</th>
+<!--                <th>Joined</th>-->
+<!--                <th>Status</th>-->
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {% for u in users %}
+              <tr>
+                <td class="fw-semibold">{{ u.username }}</td>
+                <td>{{ u.email }}</td>
+                <td>{{ u.get_full_name|default:"-" }}</td>
+
+
+<!--                <td>-->
+<!--                  {% if u.is_active %}-->
+<!--                    <span class="badge bg-success rounded-pill">Active</span>-->
+<!--                  {% else %}-->
+<!--                    <span class="badge bg-secondary rounded-pill">Inactive</span>-->
+<!--                  {% endif %}-->
+<!--                </td>-->
+
+                <td class="text-end">
+                  <button type="button" class="btn btn-sm btn-outline-info rounded-pill me-1"
+                          onclick="openAPIForm({{ u.id }}, '{{ u.username }}')">
+                      <i class="bi bi-key me-1"></i>API
+                  </button>
+
+                  <!-- View Button -->
+                  <button type="button"
+                          class="btn btn-sm btn-outline-primary rounded-pill me-1"
+                          onclick="viewClient({{ u.id }}, '{{ u.username }}', '{{ u.email }}', '{{ u.get_full_name|default:'' }}', '{{ u.date_joined|date:'Y-m-d H:i' }}', {{ u.is_active|yesno:'true,false' }})">
+                    <i class="bi bi-eye me-1"></i>View
+                  </button>
+
+                  <!-- Edit Button -->
+                  <button type="button"
+                          class="btn btn-sm btn-outline-warning rounded-pill me-1"
+                          onclick="editClient({{ u.id }}, '{{ u.username }}', '{{ u.email }}', '{{ u.get_full_name|default:'' }}', {{ u.is_active|yesno:'true,false' }})">
+                    <i class="bi bi-pencil me-1"></i>Edit
+                  </button>
+
+                  <!-- Delete -->
+                  <button type="button"
+                          class="btn btn-sm btn-outline-danger rounded-pill"
+                          onclick="confirmDelete({{ u.id }}, '{{ u.username }}')">
+                    <i class="bi bi-trash me-1"></i>Delete
+                  </button>
+
+                </td>
+
+              </tr>
+
+              {% empty %}
+              <tr>
+                <td colspan="6" class="text-center py-4">
+                  <i class="bi bi-person-x fs-1 text-muted"></i>
+                  <h5 class="mt-3 text-muted">No clients found</h5>
+                  <p class="text-muted mb-4">Add your first client</p>
+                  <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#addClientModal">
+                    <i class="bi bi-person-plus me-2"></i>Add Client
+                  </button>
+                </td>
+              </tr>
+              {% endfor %}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Add API Credential Modal -->
+<div class="modal fade" id="addAPIKeyModal" tabindex="-1" aria-labelledby="addAPIKeyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold">
+          <i class="bi bi-key me-2 text-primary"></i>Add API Credentials
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form method="POST" id="addAPIKeyForm">
+        {% csrf_token %}
+        <input type="hidden" id="api-user-id" name="user_id">
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Client ID</label>
+            <input type="text" class="form-control" name="client_code" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="text" class="form-control" name="password" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">TOTP Secret</label>
+            <input type="text" class="form-control" name="totp_secret" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">API Key</label>
+            <input type="text" class="form-control" name="api_key" required>
+          </div>
+        </div>
+
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save API</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ADD CLIENT MODAL -->
+<div class="modal fade" id="addClientModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <form method="POST" action="{% url 'adminpanel:add_client' %}">
+        {% csrf_token %}
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold">
+            <i class="bi bi-person-plus me-2 text-primary"></i>Add New Client
+          </h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="fw-semibold">Username</label>
+              <input name="username" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="fw-semibold">Email</label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="fw-semibold">First Name</label>
+              <input name="first_name" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+              <label class="fw-semibold">Last Name</label>
+              <input name="last_name" class="form-control">
+            </div>
+
+            <div class="col-12">
+              <label class="fw-semibold">Password</label>
+              <input type="password" name="password" class="form-control" required>
+            </div>
+
+            <div class="col-12">
+              <div class="form-check">
+                <input type="checkbox" name="is_active" class="form-check-input" checked>
+                <label class="form-check-label">Active Account</label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-footer border-0">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary">Add Client</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- VIEW / EDIT CLIENT MODAL -->
+<div class="modal fade" id="viewEditClientModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <form method="POST" id="editClientForm">
+        {% csrf_token %}
+        <input type="hidden" name="id" id="edit-id">
+
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="viewEditClientModalLabel"></h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <label class="fw-semibold">Username</label>
+              <input id="edit-username" name="username" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="fw-semibold">Email</label>
+              <input id="edit-email" name="email" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="fw-semibold">First Name</label>
+              <input id="edit-first-name" name="first_name" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+              <label class="fw-semibold">Last Name</label>
+              <input id="edit-last-name" name="last_name" class="form-control">
+            </div>
+
+            <div class="col-12">
+              <div class="form-check">
+                <input type="checkbox" id="edit-is-active" name="is_active" class="form-check-input">
+                <label class="form-check-label">Active Account</label>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="saveChangesBtn" class="btn btn-primary">Save Changes</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal fade" id="deleteClientModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <form method="POST" id="deleteClientForm">
+        {% csrf_token %}
+        <input type="hidden" name="id" id="delete-id">
+
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold">
+            <i class="bi bi-exclamation-triangle me-2 text-danger"></i>Confirm Delete
+          </h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <p>Are you sure you want to delete <strong id="delete-username"></strong>?</p>
+          <p class="text-muted">This action cannot be undone.</p>
+        </div>
+
+        <div class="modal-footer border-0">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-danger">Delete</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+
+let isEditMode = false;
+
+// View Client
+function viewClient(id, username, email, fullName, joined, isActive) {
+    isEditMode = false;
+
+    document.getElementById("viewEditClientModalLabel").innerHTML =
+        '<i class="bi bi-eye me-2 text-primary"></i>View Client';
+
+    fillClientForm(id, username, email, fullName, joined, isActive);
+
+    toggleEdit(false);
+
+    new bootstrap.Modal(document.getElementById("viewEditClientModal")).show();
+}
+
+// Edit Client
+function editClient(id, username, email, fullName, isActive) {
+    isEditMode = true;
+
+    document.getElementById("viewEditClientModalLabel").innerHTML =
+        '<i class="bi bi-pencil me-2 text-primary"></i>Edit Client';
+
+    fillClientForm(id, username, email, fullName, "—", isActive);
+
+    toggleEdit(true);
+
+    // Set edit URL
+    document.getElementById("editClientForm").action =
+        "{% url 'adminpanel:edit_client' 0 %}".replace("0", id);
+
+    new bootstrap.Modal(document.getElementById("viewEditClientModal")).show();
+}
+
+// Fill modal form
+function fillClientForm(id, username, email, fullName, joined, isActive) {
+    const names = fullName.split(" ");
+    document.getElementById("edit-id").value = id;
+    document.getElementById("edit-username").value = username;
+    document.getElementById("edit-email").value = email;
+    document.getElementById("edit-first-name").value = names[0] || "";
+    document.getElementById("edit-last-name").value = names.slice(1).join(" ");
+    document.getElementById("edit-joined-date").value = joined;
+    document.getElementById("edit-is-active").checked = isActive;
+}
+
+// Enable/Disable fields based on mode
+function toggleEdit(editable) {
+    document.getElementById("edit-username").disabled = !editable;
+    document.getElementById("edit-email").disabled = !editable;
+    document.getElementById("edit-first-name").disabled = !editable;
+    document.getElementById("edit-last-name").disabled = !editable;
+    document.getElementById("edit-is-active").disabled = !editable;
+
+    document.getElementById("saveChangesBtn").style.display =
+        editable ? "inline-block" : "none";
+}
+
+// Delete confirmation
+function confirmDelete(id, username) {
+    document.getElementById("delete-id").value = id;
+    document.getElementById("delete-username").innerText = username;
+
+    document.getElementById("deleteClientForm").action =
+        "{% url 'adminpanel:delete_client' 0 %}".replace("0", id);
+
+    new bootstrap.Modal(document.getElementById("deleteClientModal")).show();
+}
+const apiData = {
+        {% for user_id, cred in api_credentials.items %}
+        "{{ user_id }}": {
+            client_code: "{{ cred.client_code }}",
+            password: "{{ cred.password }}",
+            totp_secret: "{{ cred.totp_secret }}",
+            api_key: "{{ cred.api_key }}"
+        },
+        {% endfor %}
+    };
+// API credential
+<!--function openAPIForm(id, username) {-->
+<!--    document.getElementById('api-user-id').value = id;-->
+<!--    document.getElementById('addAPIKeyForm').action =-->
+<!--        '{% url "adminpanel:add_client_api" %}';-->
+
+<!--    const modal = new bootstrap.Modal(document.getElementById('addAPIKeyModal'));-->
+<!--    modal.show();-->
+<!--}-->
+function openAPIForm(id, username) {
+    document.getElementById('api-user-id').value = id;
+
+    const form = document.getElementById('addAPIKeyForm');
+    form.action = '{% url "adminpanel:add_client_api" %}';
+
+    // Prefill values if exist
+    const cred = apiData[id];
+
+    document.querySelector("input[name='client_code']").value = cred ? cred.client_code : "";
+    document.querySelector("input[name='password']").value = cred ? cred.password : "";
+    document.querySelector("input[name='totp_secret']").value = cred ? cred.totp_secret : "";
+    document.querySelector("input[name='api_key']").value = cred ? cred.api_key : "";
+
+    new bootstrap.Modal(document.getElementById('addAPIKeyModal')).show();
+}
+
+
+</script>
+
+{% endblock %}

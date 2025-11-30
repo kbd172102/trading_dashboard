@@ -1,0 +1,49 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+
+<div class="card p-4">
+  <h3 class="fw-bold">Profit & Loss</h3>
+
+  <h2 class="mt-3">
+    Total P&L:
+    {% if total_pnl >= 0 %}
+      <span class="text-success">₹ {{ total_pnl }}</span>
+    {% else %}
+      <span class="text-danger">₹ {{ total_pnl }}</span>
+    {% endif %}
+  </h2>
+</div>
+
+<div class="card p-4 mt-4">
+  <h4>Detailed Positions</h4>
+
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Net Qty</th>
+        <th>Buy Avg</th>
+        <th>Sell Avg</th>
+        <th>P&L</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in positions %}
+      <tr>
+        <td>{{ p.tradingsymbol }}</td>
+        <td>{{ p.netqty }}</td>
+        <td>{{ p.buyavg }}</td>
+        <td>{{ p.sellavg }}</td>
+
+        {% if p.pnl >= 0 %}
+          <td class="text-success">{{ p.pnl }}</td>
+        {% else %}
+          <td class="text-danger">{{ p.pnl }}</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

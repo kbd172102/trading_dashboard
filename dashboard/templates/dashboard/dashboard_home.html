@@ -1,0 +1,254 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- No extra wrappers needed, content goes directly inside the main.content from base.html -->
+
+    {% if no_api %}
+        <div class="alert alert-warning text-center mt-4">
+            <div class="d-flex flex-column align-items-center">
+                <i class="bi bi-exclamation-triangle-fill display-4 text-warning mb-3"></i>
+                <h4>API Credentials Missing</h4>
+                <p>Please add your Angel One API key to view your dashboard.</p>
+                <a href="{% url 'dashboard:api_integration' %}" class="btn btn-primary mt-2">
+                    <i class="bi bi-key me-2"></i>Add API Credentials
+                </a>
+            </div>
+        </div>
+    {% else %}
+
+    <!-- Dashboard Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">
+            <i class="bi bi-graph-up-arrow me-2 text-primary"></i>Portfolio Dashboard
+        </h2>
+        <a href="{% url 'dashboard:api_integration' %}" class="btn btn-outline-secondary">
+            <i class="bi bi-gear me-2"></i>Update API Credentials
+        </a>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row g-4 mb-4">
+        <!-- Total Balance -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-sm h-100 border-0 rounded-3">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="rounded-circle bg-primary bg-opacity-10 p-3">
+                                <i class="bi bi-wallet2 text-primary fs-4"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6 class="text-muted mb-1">Total Balance</h6>
+                            <h3 class="fw-bold text-primary mb-0">₹ {{ total_balance|default:"0" }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Net Profit -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-sm h-100 border-0 rounded-3">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="rounded-circle {% if net_profit >= 0 %}bg-success bg-opacity-10{% else %}bg-danger bg-opacity-10{% endif %} p-3">
+                                <i class="bi {% if net_profit >= 0 %}text-success{% else %}text-danger{% endif %} fs-4 bi-graph-up"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6 class="text-muted mb-1">Net Profit / Loss</h6>
+                            {% if net_profit >= 0 %}
+                                <h3 class="fw-bold text-success mb-0">+₹ {{ net_profit }}</h3>
+                            {% else %}
+                                <h3 class="fw-bold text-danger mb-0">₹ {{ net_profit }}</h3>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Available Cash -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-sm h-100 border-0 rounded-3">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="rounded-circle bg-info bg-opacity-10 p-3">
+                                <i class="bi bi-cash-stack text-info fs-4"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6 class="text-muted mb-1">Available Cash</h6>
+                            <h3 class="fw-bold text-info mb-0">₹ {{ available_cash|default:"0" }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Graph Section -->
+    <div class="card shadow-sm border-0 rounded-3 mb-4">
+        <div class="card-header bg-white border-0 pt-4 pb-0">
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <h5 class="fw-bold mb-3 mb-md-0">
+                    <i class="bi bi-graph-up me-2 text-primary"></i>Performance Graph
+                </h5>
+                <div class="d-flex align-items-center">
+                    <label for="timeRange" class="me-2 text-nowrap">Time Range:</label>
+                    <select id="timeRange" class="form-select">
+                        <option value="daily" {% if range == 'daily' %}selected{% endif %}>Daily</option>
+                        <option value="monthly" {% if range == 'monthly' %}selected{% endif %}>Monthly</option>
+                        <option value="yearly" {% if range == 'yearly' %}selected{% endif %}>Yearly</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-4">
+            <div class="chart-container" style="position: relative; height:300px;">
+                <canvas id="profitChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Backtests -->
+    <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-white border-0 pt-4 pb-0">
+            <h5 class="fw-bold mb-3">
+                <i class="bi bi-clock-history me-2 text-primary"></i>Recent Backtests
+            </h5>
+        </div>
+        <div class="card-body p-4">
+            {% if backtests %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Strategy</th>
+                                <th>Status</th>
+                                <th>Net P&L</th>
+                                <th class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for b in backtests %}
+                            <tr>
+                                <td>{{ b.created_at|date:"Y-m-d H:i" }}</td>
+                                <td>{{ b.strategy }}</td>
+                                <td>
+                                    {% if b.status == 'completed' %}
+                                        <span class="badge bg-success rounded-pill">Completed</span>
+                                    {% elif b.status == 'running' %}
+                                        <span class="badge bg-warning rounded-pill">Running</span>
+                                    {% elif b.status == 'failed' %}
+                                        <span class="badge bg-danger rounded-pill">Failed</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary rounded-pill">{{ b.status }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if b.net_pnl >= 0 %}
+                                        <span class="text-success fw-bold">+₹{{ b.net_pnl }}</span>
+                                    {% else %}
+                                        <span class="text-danger fw-bold">₹{{ b.net_pnl }}</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-end">
+                                    {% if b.trades_csv %}
+                                        <a href="{{ b.trades_csv.url }}" class="btn btn-sm btn-outline-primary rounded-pill">
+                                            <i class="bi bi-download me-1"></i>CSV
+                                        </a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="text-center py-4">
+                    <i class="bi bi-inbox fs-1 text-muted"></i>
+                    <p class="text-muted mt-2">No backtest history available.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% endif %}
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set default font for Chart.js
+    Chart.defaults.font.family = "'Poppins', sans-serif";
+
+    const ctx = document.getElementById('profitChart');
+
+    if (ctx) {
+        let chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{ graph_labels|safe }},
+                datasets: [{
+                    label: 'Net Profit',
+                    data: {{ graph_data|safe }},
+                    fill: true,
+                    backgroundColor: 'rgba(0, 74, 173, 0.1)',
+                    borderColor: 'rgba(0, 74, 173, 0.8)',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    pointBackgroundColor: 'rgba(0, 74, 173, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(0, 74, 173, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: '#fff',
+                        bodyColor: '#fff',
+                        padding: 12,
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                return 'Net Profit: ₹' + context.raw;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '₹' + value;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    document.getElementById("timeRange").addEventListener("change", function () {
+        window.location.href = "?range=" + this.value;
+    });
+});
+</script>
+
+{% endblock %}
