@@ -24,7 +24,7 @@ load_dotenv(BASE_DIR / ".env")
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-j)$k)$zvmjojnguag5vqrts_%=(_7q^14(2@ky#p)k02moj9#3'
+
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
@@ -211,7 +211,9 @@ ALLOWED_HOSTS = [
     '.ngrok-free.app',
     '.ngrok-free.dev',
     'spineless-facetiously-jamal.ngrok-free.dev',
+    'q-investment.onrender.com'
 ]
+
 
 CSRF_TRUSTED_ORIGINS = [
     'https://spineless-facetiously-jamal.ngrok-free.dev',
