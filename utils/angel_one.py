@@ -5,8 +5,6 @@ from django.utils import timezone
 from datetime import timedelta
 from SmartApi.smartConnect import SmartConnect
 from logzero import logger
-
-
 from django.utils import timezone
 from datetime import timedelta
 
@@ -140,7 +138,6 @@ def safe_json(response):
         return response.json()
     except Exception:
         return {"status": False, "message": "Invalid JSON response", "raw": response.text}
-
 
 import requests
 
@@ -277,6 +274,16 @@ def get_real_time_pnl(api_key, client_code, jwt_token):
 
     return total_pnl, positions
 
+def get_smartapi_client(api_key, client_id, client_secret, totp=None):
+    """
+    Returns an authenticated SmartAPI client.
+    """
+    smart = SmartConnect(api_key=api_key)
+
+    data = smart.generateSession(client_id, client_secret, totp)
+    jwt_token = data['data']['jwtToken']
+
+    return smart, jwt_token
 
 # def get_angelone_candles(jwt_token, api_key, exchange, symbol_token, interval, fromdate, todate):
 #     url = "https://apiconnect.angelone.in/rest/secure/angelbroking/historical/v1/getCandleData"
@@ -303,3 +310,109 @@ def get_real_time_pnl(api_key, client_code, jwt_token):
 #
 #     response = requests.post(url, headers=headers, data=json.dumps(payload))
 #     return safe_json(response)
+
+# utils/angelone_account.py
+
+import requests
+from logzero import logger
+
+BASE_URL = "https://apiconnect.angelone.in/rest/secure/angelbroking"
+
+
+def _headers(api_key, jwt_token):
+    return {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {jwt_token}",
+        "X-PrivateKey": api_key,
+    }
+
+
+def get_account_balance(api_key, jwt_token):
+    """
+    Returns:
+    {
+        available_cash,
+        used_margin,
+        net_balance
+    }
+    """
+    try:
+        url = f"{BASE_URL}/user/v1/getRMS"
+        res = requests.get(url, headers=_headers(api_key, jwt_token), timeout=5)
+        data = res.json()["data"]
+
+        return {
+            "available_cash": float(data.get("availablecash", 0)),
+            "used_margin": float(data.get("utilisedmargin", 0)),
+            "net_balance": float(data.get("net", 0)),
+        }
+
+    except Exception as e:
+        logger.error("Balance fetch failed: %s", e)
+        return {
+            "available_cash": 0,
+            "used_margin": 0,
+            "net_balance": 0,
+        }
+
+
+def get_open_positions(api_key, jwt_token):
+    """
+    Returns list of broker open positions
+    """
+    try:
+        url = f"{BASE_URL}/portfolio/v1/getPositions"
+        res = requests.get(url, headers=_headers(api_key, jwt_token), timeout=5)
+        return res.json().get("data", [])
+
+    except Exception as e:
+        logger.error("Position fetch failed: %s", e)
+        return []
+
+
+def get_total_pnl(api_key, jwt_token):
+    pnl = 0.0
+    for pos in get_open_positions(api_key, jwt_token):
+        pnl += float(pos.get("pnl", 0))
+    return pnl
+
+# utils/angelone_auth.py
+
+import pyotp
+from logzero import logger
+from SmartApi import SmartConnect
+
+
+def login_and_get_tokens(angel_key):
+    """
+    Returns:
+    {
+        api_key,
+        jwt_token,
+        feed_token
+    }
+    """
+    try:
+        obj = SmartConnect(api_key=angel_key.api_key)
+        totp = pyotp.TOTP(angel_key.totp_secret).now()
+
+        session = obj.generateSession(
+            angel_key.client_code,
+            angel_key.password,
+            totp
+        )
+
+        jwt = session["data"]["jwtToken"]
+        feed_token = obj.getfeedToken()
+
+        logger.info("AngelOne re-login successful")
+
+        return {
+            "api_key": angel_key.api_key,
+            "jwt_token": jwt,
+            "feed_token": feed_token
+        }
+
+    except Exception as e:
+        logger.error("AngelOne login failed: %s", e)
+        return None

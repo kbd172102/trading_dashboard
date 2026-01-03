@@ -10,5 +10,7 @@ urlpatterns = [
     path("reports/", views.reports, name="reports"),
     path("api-integration/", views.api_integration, name="api_integration"),
     path("live-backtest/", views.live_backtest, name="live_backtest"),
+    path('start-trading/', views.start_trading, name='start_trading'),
+    path('stop-trading/', views.stop_trading, name='stop_trading'),
 
 ]

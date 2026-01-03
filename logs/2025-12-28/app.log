@@ -1,0 +1,6 @@
+[I 251228 00:21:48 angel_one:408] AngelOne re-login successful
+[I 251228 00:21:48 live_data_runner:451] JWT refreshed successfully
+[I 251228 00:21:49 live_data_runner:108] WebSocket connected : subscribing
+[I 251228 00:21:49 live_data_runner:123] Tick received: 240362.0
+[I 251228 00:21:49 live_data_runner:176] Tick received: 240362.0
+[I 251228 00:21:49 live_data_runner:162] LiveTick saved

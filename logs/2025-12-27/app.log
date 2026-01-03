@@ -1,0 +1,31 @@
+[I 251227 19:53:10 angel_one:408] AngelOne re-login successful
+[I 251227 19:53:10 live_data_runner:451] JWT refreshed successfully
+[I 251227 19:53:10 live_data_runner:108] WebSocket connected : subscribing
+[I 251227 19:53:10 live_data_runner:123] Tick received: 240362.0
+[I 251227 19:53:10 live_data_runner:176] Tick received: 240362.0
+[I 251227 19:53:10 live_data_runner:162] LiveTick saved
+[W 251227 21:31:41 smartWebSocketV2:319] Attempting to resubscribe/reconnect (Attempt 1)...
+[E 251227 21:31:51 live_data_runner:133] WebSocket error: Connection closed
+[W 251227 21:31:51 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251227 21:31:51 live_data_runner:133] WebSocket error: Connection closed
+[W 251227 21:31:51 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251227 21:31:51 live_data_runner:133] WebSocket error: Connection closed
+[W 251227 21:31:51 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[I 251227 22:45:57 angel_one:408] AngelOne re-login successful
+[I 251227 22:45:57 live_data_runner:451] JWT refreshed successfully
+[I 251227 22:45:57 live_data_runner:108] WebSocket connected : subscribing
+[I 251227 22:45:58 live_data_runner:123] Tick received: 240362.0
+[I 251227 22:45:58 live_data_runner:176] Tick received: 240362.0
+[I 251227 22:45:58 live_data_runner:162] LiveTick saved
+[I 251227 23:16:53 angel_one:408] AngelOne re-login successful
+[I 251227 23:16:53 live_data_runner:451] JWT refreshed successfully
+[I 251227 23:16:54 live_data_runner:108] WebSocket connected : subscribing
+[I 251227 23:16:54 live_data_runner:123] Tick received: 240362.0
+[I 251227 23:16:54 live_data_runner:176] Tick received: 240362.0
+[I 251227 23:16:54 live_data_runner:162] LiveTick saved
+[I 251227 23:18:27 angel_one:408] AngelOne re-login successful
+[I 251227 23:18:27 live_data_runner:451] JWT refreshed successfully
+[I 251227 23:18:29 live_data_runner:108] WebSocket connected : subscribing
+[I 251227 23:18:29 live_data_runner:123] Tick received: 240362.0
+[I 251227 23:18:29 live_data_runner:176] Tick received: 240362.0
+[I 251227 23:18:29 live_data_runner:162] LiveTick saved

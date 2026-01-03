@@ -1,0 +1,42 @@
+[I 251225 00:04:20 angel_one:408] AngelOne re-login successful
+[I 251225 00:04:20 live_data_runner:451] JWT refreshed successfully
+[I 251225 00:04:21 live_data_runner:108] WebSocket connected : subscribing
+[I 251225 00:04:21 live_data_runner:123] Tick received: 224310.0
+[I 251225 00:04:21 live_data_runner:176] Tick received: 224310.0
+[I 251225 00:04:21 live_data_runner:162] LiveTick saved
+[I 251225 00:04:24 live_data_runner:123] Tick received: 224310.0
+[I 251225 00:04:24 live_data_runner:176] Tick received: 224310.0
+[I 251225 00:04:24 live_data_runner:162] LiveTick saved
+[I 251225 00:04:55 live_data_runner:123] Tick received: 224310.0
+[I 251225 00:04:55 live_data_runner:176] Tick received: 224310.0
+[I 251225 00:04:55 live_data_runner:162] LiveTick saved
+[I 251225 21:29:51 angel_one:408] AngelOne re-login successful
+[I 251225 21:29:51 live_data_runner:451] JWT refreshed successfully
+[I 251225 21:29:52 live_data_runner:108] WebSocket connected : subscribing
+[I 251225 21:29:52 live_data_runner:123] Tick received: 224310.0
+[I 251225 21:29:52 live_data_runner:176] Tick received: 224310.0
+[I 251225 21:29:52 live_data_runner:162] LiveTick saved
+[I 251225 21:43:05 angel_one:408] AngelOne re-login successful
+[I 251225 21:43:05 live_data_runner:451] JWT refreshed successfully
+[I 251225 21:43:06 live_data_runner:108] WebSocket connected : subscribing
+[I 251225 21:43:06 live_data_runner:123] Tick received: 224310.0
+[I 251225 21:43:06 live_data_runner:176] Tick received: 224310.0
+[I 251225 21:43:06 live_data_runner:162] LiveTick saved
+[I 251225 21:44:12 angel_one:408] AngelOne re-login successful
+[I 251225 21:44:12 live_data_runner:451] JWT refreshed successfully
+[I 251225 21:44:14 live_data_runner:108] WebSocket connected : subscribing
+[I 251225 21:44:14 live_data_runner:123] Tick received: 224310.0
+[I 251225 21:44:14 live_data_runner:176] Tick received: 224310.0
+[I 251225 21:44:14 live_data_runner:162] LiveTick saved
+[I 251225 21:52:58 angel_one:408] AngelOne re-login successful
+[I 251225 21:52:58 live_data_runner:451] JWT refreshed successfully
+[I 251225 21:52:59 live_data_runner:108] WebSocket connected : subscribing
+[I 251225 21:52:59 live_data_runner:123] Tick received: 224310.0
+[I 251225 21:52:59 live_data_runner:176] Tick received: 224310.0
+[I 251225 21:52:59 live_data_runner:162] LiveTick saved
+[I 251225 23:09:24 angel_one:408] AngelOne re-login successful
+[I 251225 23:09:24 live_data_runner:451] JWT refreshed successfully
+[I 251225 23:09:26 live_data_runner:108] WebSocket connected : subscribing
+[I 251225 23:09:26 live_data_runner:123] Tick received: 224310.0
+[I 251225 23:09:26 live_data_runner:176] Tick received: 224310.0
+[I 251225 23:09:26 live_data_runner:162] LiveTick saved

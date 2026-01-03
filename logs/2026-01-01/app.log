@@ -1,0 +1,53 @@
+[I 260101 22:52:34 angel_one:408] AngelOne re-login successful
+[I 260101 22:52:34 live_data_runner:451] JWT refreshed successfully
+[I 260101 22:52:35 live_data_runner:108] WebSocket connected : subscribing
+[I 260101 22:52:35 live_data_runner:123] Tick received: 237792.0
+[I 260101 22:52:35 live_data_runner:176] Tick received: 237792.0
+[I 260101 22:52:35 live_data_runner:162] LiveTick saved
+[I 260101 23:21:54 angel_one:408] AngelOne re-login successful
+[I 260101 23:21:54 live_data_runner:451] JWT refreshed successfully
+[I 260101 23:21:55 live_data_runner:108] WebSocket connected : subscribing
+[I 260101 23:21:56 live_data_runner:123] Tick received: 237792.0
+[I 260101 23:21:56 live_data_runner:176] Tick received: 237792.0
+[I 260101 23:21:56 live_data_runner:162] LiveTick saved
+[I 260101 23:23:28 angel_one:408] AngelOne re-login successful
+[I 260101 23:23:28 live_data_runner:451] JWT refreshed successfully
+[I 260101 23:23:29 live_data_runner:108] WebSocket connected : subscribing
+[I 260101 23:23:29 live_data_runner:123] Tick received: 237792.0
+[I 260101 23:23:29 live_data_runner:176] Tick received: 237792.0
+[I 260101 23:23:29 live_data_runner:162] LiveTick saved
+[I 260101 23:24:59 angel_one:408] AngelOne re-login successful
+[I 260101 23:24:59 live_data_runner:451] JWT refreshed successfully
+[I 260101 23:24:59 live_data_runner:108] WebSocket connected : subscribing
+[I 260101 23:25:00 live_data_runner:123] Tick received: 237792.0
+[I 260101 23:25:00 live_data_runner:176] Tick received: 237792.0
+[I 260101 23:25:00 live_data_runner:162] LiveTick saved
+[I 260101 23:25:19 engine_manager:12] Engine already running for user 1
+[I 260101 23:27:33 angel_one:408] AngelOne re-login successful
+[I 260101 23:27:33 live_data_runner:451] JWT refreshed successfully
+[I 260101 23:27:34 live_data_runner:108] WebSocket connected : subscribing
+[I 260101 23:27:34 live_data_runner:123] Tick received: 237792.0
+[I 260101 23:27:34 live_data_runner:176] Tick received: 237792.0
+[I 260101 23:27:34 live_data_runner:162] LiveTick saved
+[I 260101 23:28:33 engine_manager:12] Engine already running for user 1
+[I 260101 23:33:49 angel_one:408] AngelOne re-login successful
+[I 260101 23:33:49 live_data_runner:451] JWT refreshed successfully
+[I 260101 23:33:50 live_data_runner:108] WebSocket connected : subscribing
+[I 260101 23:33:50 live_data_runner:123] Tick received: 237792.0
+[I 260101 23:33:50 live_data_runner:176] Tick received: 237792.0
+[I 260101 23:33:50 live_data_runner:162] LiveTick saved
+[I 260101 23:34:10 angel_one:408] AngelOne re-login successful
+[I 260101 23:34:10 live_data_runner:451] JWT refreshed successfully
+[I 260101 23:34:10 live_data_runner:108] WebSocket connected : subscribing
+[I 260101 23:34:11 live_data_runner:123] Tick received: 237792.0
+[I 260101 23:34:11 live_data_runner:176] Tick received: 237792.0
+[I 260101 23:34:11 live_data_runner:162] LiveTick saved
+[I 260101 23:59:33 angel_one:408] AngelOne re-login successful
+[I 260101 23:59:33 live_data_runner:451] JWT refreshed successfully
+[I 260101 23:59:34 live_data_runner:108] WebSocket connected : subscribing
+[I 260101 23:59:34 live_data_runner:123] Tick received: 237792.0
+[I 260101 23:59:34 live_data_runner:176] Tick received: 237792.0
+[I 260101 23:59:34 live_data_runner:162] LiveTick saved
+[I 260101 23:59:36 engine_manager:12] Engine already running for user 1
+[I 260102 00:05:37 engine_manager:12] Engine already running for user 1
+[I 260102 00:05:37 engine_manager:12] Engine already running for user 1

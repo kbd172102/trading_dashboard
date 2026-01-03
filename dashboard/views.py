@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 import pandas as pd
-from accounts.models import User
+from accounts.models import User  # Adjust if your user model is custom
 from dashboard.forms import AngelOneKeyForm, LiveBacktestForm
 from utils.angel_one import get_daily_pnl, get_monthly_pnl, get_yearly_pnl, angel_login, \
     get_rms_balance, get_angelone_candles, get_real_time_pnl, refresh
@@ -15,8 +15,9 @@ from utils.backtest import backtest, balance_chart_base64
 from django.contrib import messages
 import csv
 from backtest_runner.models import Strategy, AngelOneKey, RunRequest
-# from backtest_runner.Bro_gaurd_SILVERMINI import load_data, backtest, build_pnl_from_events, save_balance_chart, save_outputs
+from utils.engine_manager import start_live_engine, stop_live_engine
 from django.http import JsonResponse
+
 from .models import BacktestResult
 from django.utils import timezone
 from datetime import timedelta
@@ -148,6 +149,11 @@ def api_integration(request):
                 obj.refresh_token = data.get("refreshToken")
                 obj.feed_token = data.get("feedToken")
                 obj.save()
+
+                start_live_engine(
+                    user_id=request.user.id,
+                    token="451669"  # this should be dynamic later
+                )
 
                 messages.success(request, "API Key connected successfully!")
                 return redirect("dashboard:api_integration")
@@ -331,3 +337,34 @@ def pnl_report(request):
 def reports(request):
     runs = RunRequest.objects.filter(user=request.user).order_by('-created_at')
     return render(request, "dashboard/reports.html", {"runs": runs})
+
+
+@login_required
+def start_trading(request):
+    if request.method == "POST":
+        user = request.user
+        # Get user's API key and trading token (customize as needed)
+        creds = AngelOneKey.objects.filter(user=user).first()
+        if not creds:
+            return JsonResponse({"status": "error", "message": "Trading not enabled or API key missing."})
+
+        # You may want to get the token dynamically, here it's hardcoded
+        token = "451669"  # Replace with user's selected token if needed
+
+        start_live_engine(user.id, token)
+        user.trading_enabled = True
+        user.save()
+        return JsonResponse({"status": "success", "message": "Trading started."})
+    return JsonResponse({"status": "error", "message": "Invalid request method."})
+
+@login_required
+def stop_trading(request):
+    if request.method == "POST":
+        user = request.user
+        token = "451669"
+        # Stop trading logic
+        stop_live_engine(user.id, token)
+        user.trading_enabled = False
+        user.save()
+        return JsonResponse({"status": "success", "message": "Trading stopped."})
+    return JsonResponse({"status": "error", "message": "Invalid request method."})

@@ -1,0 +1,3137 @@
+[I 251222 21:45:22 angel_one:408] AngelOne re-login successful
+[I 251222 22:20:23 angel_one:408] AngelOne re-login successful
+[I 251222 22:20:24 live_data_runner:106] WebSocket connected for user 1
+[W 251222 22:20:24 smartWebSocketV2:319] Attempting to resubscribe/reconnect (Attempt 1)...
+[I 251222 22:20:35 live_data_runner:106] WebSocket connected for user 1
+[E 251222 22:20:35 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:20:35 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:20:35 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:20:35 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:20:35 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:20:35 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:20:35 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:20:35 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:20:35 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:20:35 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[I 251222 22:20:41 live_data_runner:106] WebSocket connected for user 1
+[W 251222 22:20:41 smartWebSocketV2:319] Attempting to resubscribe/reconnect (Attempt 1)...
+[I 251222 22:20:52 live_data_runner:106] WebSocket connected for user 1
+[E 251222 22:20:52 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:20:52 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:20:52 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:20:52 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:20:52 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:20:52 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:20:52 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:20:52 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:20:52 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:20:52 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[I 251222 22:20:57 live_data_runner:106] WebSocket connected for user 1
+[W 251222 22:20:57 smartWebSocketV2:319] Attempting to resubscribe/reconnect (Attempt 1)...
+[I 251222 22:21:08 live_data_runner:106] WebSocket connected for user 1
+[E 251222 22:21:08 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:08 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:08 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:08 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:08 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:08 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:08 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:08 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:08 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:08 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[I 251222 22:21:14 live_data_runner:106] WebSocket connected for user 1
+[W 251222 22:21:14 smartWebSocketV2:319] Attempting to resubscribe/reconnect (Attempt 1)...
+[I 251222 22:21:25 live_data_runner:106] WebSocket connected for user 1
+[E 251222 22:21:25 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:25 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:25 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:25 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:25 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:25 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:25 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:25 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:25 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:25 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[I 251222 22:21:31 live_data_runner:106] WebSocket connected for user 1
+[W 251222 22:21:31 smartWebSocketV2:319] Attempting to resubscribe/reconnect (Attempt 1)...
+[I 251222 22:21:42 live_data_runner:106] WebSocket connected for user 1
+[E 251222 22:21:42 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:42 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:42 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:42 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:42 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:42 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:42 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:42 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:42 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:42 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[I 251222 22:21:48 live_data_runner:106] WebSocket connected for user 1
+[W 251222 22:21:48 smartWebSocketV2:319] Attempting to resubscribe/reconnect (Attempt 1)...
+[I 251222 22:21:58 live_data_runner:106] WebSocket connected for user 1
+[E 251222 22:21:59 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:59 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:59 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:59 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:59 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:59 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:59 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:59 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:21:59 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:21:59 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[I 251222 22:22:04 live_data_runner:106] WebSocket connected for user 1
+[W 251222 22:22:04 smartWebSocketV2:319] Attempting to resubscribe/reconnect (Attempt 1)...
+[I 251222 22:22:15 live_data_runner:106] WebSocket connected for user 1
+[E 251222 22:22:15 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:22:15 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:22:15 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:22:15 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:22:15 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:22:15 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:22:15 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:22:15 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:22:15 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:22:15 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[I 251222 22:22:21 live_data_runner:106] WebSocket connected for user 1
+[W 251222 22:22:21 smartWebSocketV2:319] Attempting to resubscribe/reconnect (Attempt 1)...
+[I 251222 22:22:32 live_data_runner:106] WebSocket connected for user 1
+[E 251222 22:22:32 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:22:32 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:22:32 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:22:32 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:22:32 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:22:32 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:22:32 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:22:32 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:22:32 live_data_runner:128] WebSocket error: Connection closed
+[W 251222 22:22:32 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[I 251222 22:22:41 angel_one:408] AngelOne re-login successful
+[W 251222 22:22:42 smartWebSocketV2:319] Attempting to resubscribe/reconnect (Attempt 1)...
+[W 251222 22:22:53 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[W 251222 22:22:53 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[W 251222 22:22:53 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[W 251222 22:22:53 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[W 251222 22:22:53 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[I 251222 22:23:15 angel_one:408] AngelOne re-login successful
+[I 251222 22:23:15 live_data_runner:104] WebSocket connected for user 1
+[W 251222 22:23:15 smartWebSocketV2:319] Attempting to resubscribe/reconnect (Attempt 1)...
+[I 251222 22:23:26 live_data_runner:104] WebSocket connected for user 1
+[E 251222 22:23:26 live_data_runner:126] WebSocket error: Connection closed
+[W 251222 22:23:26 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:23:26 live_data_runner:126] WebSocket error: Connection closed
+[W 251222 22:23:26 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:23:26 live_data_runner:126] WebSocket error: Connection closed
+[W 251222 22:23:26 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:23:26 live_data_runner:126] WebSocket error: Connection closed
+[W 251222 22:23:26 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[E 251222 22:23:26 live_data_runner:126] WebSocket error: Connection closed
+[W 251222 22:23:26 smartWebSocketV2:343] Connection closed due to max retry attempts reached.
+[I 251222 22:32:15 angel_one:408] AngelOne re-login successful
+[I 251222 22:33:41 angel_one:408] AngelOne re-login successful
+[I 251222 22:39:25 angel_one:408] AngelOne re-login successful
+[I 251222 22:39:56 angel_one:408] AngelOne re-login successful
+[I 251222 22:40:39 angel_one:408] AngelOne re-login successful
+[I 251222 22:41:15 angel_one:408] AngelOne re-login successful
+[I 251222 22:41:56 angel_one:408] AngelOne re-login successful
+[I 251222 22:41:57 live_data_runner:116] WebSocket connected
+[I 251222 22:42:10 angel_one:408] AngelOne re-login successful
+[I 251222 22:42:10 live_data_runner:116] WebSocket connected
+[I 251222 22:42:46 angel_one:408] AngelOne re-login successful
+[I 251222 22:42:46 live_data_runner:116] WebSocket connected
+[I 251222 22:44:52 angel_one:408] AngelOne re-login successful
+[I 251222 22:44:53 live_data_runner:116] WebSocket connected
+[I 251222 22:46:04 angel_one:408] AngelOne re-login successful
+[I 251222 22:46:06 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:46:06 live_data_runner:159] LiveTick saved
+[I 251222 22:46:06 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:46:06 live_data_runner:159] LiveTick saved
+[I 251222 22:46:07 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:46:07 live_data_runner:159] LiveTick saved
+[I 251222 22:46:08 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:46:08 live_data_runner:159] LiveTick saved
+[I 251222 22:46:10 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:46:10 live_data_runner:159] LiveTick saved
+[I 251222 22:46:11 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:46:11 live_data_runner:159] LiveTick saved
+[I 251222 22:46:12 live_data_runner:121] Tick received: 213522.0
+[I 251222 22:46:12 live_data_runner:159] LiveTick saved
+[I 251222 22:46:13 live_data_runner:121] Tick received: 213522.0
+[I 251222 22:46:13 live_data_runner:159] LiveTick saved
+[I 251222 22:46:15 live_data_runner:121] Tick received: 213522.0
+[I 251222 22:46:15 live_data_runner:159] LiveTick saved
+[I 251222 22:46:15 live_data_runner:121] Tick received: 213522.0
+[I 251222 22:46:15 live_data_runner:159] LiveTick saved
+[I 251222 22:46:17 live_data_runner:121] Tick received: 213522.0
+[I 251222 22:46:17 live_data_runner:159] LiveTick saved
+[I 251222 22:46:19 live_data_runner:121] Tick received: 213543.0
+[I 251222 22:46:19 live_data_runner:159] LiveTick saved
+[I 251222 22:46:20 live_data_runner:121] Tick received: 213543.0
+[I 251222 22:46:20 live_data_runner:159] LiveTick saved
+[I 251222 22:46:22 live_data_runner:121] Tick received: 213542.0
+[I 251222 22:46:22 live_data_runner:159] LiveTick saved
+[I 251222 22:46:23 live_data_runner:121] Tick received: 213542.0
+[I 251222 22:46:23 live_data_runner:159] LiveTick saved
+[I 251222 22:46:25 live_data_runner:121] Tick received: 213542.0
+[I 251222 22:46:25 live_data_runner:159] LiveTick saved
+[I 251222 22:46:26 live_data_runner:121] Tick received: 213501.0
+[I 251222 22:46:26 live_data_runner:159] LiveTick saved
+[I 251222 22:46:27 live_data_runner:121] Tick received: 213489.0
+[I 251222 22:46:27 live_data_runner:159] LiveTick saved
+[I 251222 22:46:28 live_data_runner:121] Tick received: 213456.0
+[I 251222 22:46:28 live_data_runner:159] LiveTick saved
+[I 251222 22:46:28 live_data_runner:121] Tick received: 213492.0
+[I 251222 22:46:28 live_data_runner:159] LiveTick saved
+[I 251222 22:46:29 live_data_runner:121] Tick received: 213476.0
+[I 251222 22:46:29 live_data_runner:159] LiveTick saved
+[I 251222 22:46:31 live_data_runner:121] Tick received: 213476.0
+[I 251222 22:46:31 live_data_runner:159] LiveTick saved
+[I 251222 22:46:33 live_data_runner:121] Tick received: 213476.0
+[I 251222 22:46:33 live_data_runner:159] LiveTick saved
+[I 251222 22:46:34 live_data_runner:121] Tick received: 213476.0
+[I 251222 22:46:34 live_data_runner:159] LiveTick saved
+[I 251222 22:46:35 live_data_runner:121] Tick received: 213476.0
+[I 251222 22:46:35 live_data_runner:159] LiveTick saved
+[I 251222 22:46:37 live_data_runner:121] Tick received: 213476.0
+[I 251222 22:46:37 live_data_runner:159] LiveTick saved
+[I 251222 22:46:38 live_data_runner:121] Tick received: 213476.0
+[I 251222 22:46:38 live_data_runner:159] LiveTick saved
+[I 251222 22:46:39 live_data_runner:121] Tick received: 213476.0
+[I 251222 22:46:39 live_data_runner:159] LiveTick saved
+[I 251222 22:46:40 live_data_runner:121] Tick received: 213483.0
+[I 251222 22:46:40 live_data_runner:159] LiveTick saved
+[I 251222 22:46:42 live_data_runner:121] Tick received: 213492.0
+[I 251222 22:46:42 live_data_runner:159] LiveTick saved
+[I 251222 22:46:43 live_data_runner:121] Tick received: 213492.0
+[I 251222 22:46:43 live_data_runner:159] LiveTick saved
+[I 251222 22:46:44 live_data_runner:121] Tick received: 213492.0
+[I 251222 22:46:44 live_data_runner:159] LiveTick saved
+[I 251222 22:46:45 live_data_runner:121] Tick received: 213492.0
+[I 251222 22:46:45 live_data_runner:159] LiveTick saved
+[I 251222 22:46:46 live_data_runner:121] Tick received: 213507.0
+[I 251222 22:46:46 live_data_runner:159] LiveTick saved
+[I 251222 22:46:48 live_data_runner:121] Tick received: 213507.0
+[I 251222 22:46:48 live_data_runner:159] LiveTick saved
+[I 251222 22:46:48 live_data_runner:121] Tick received: 213546.0
+[I 251222 22:46:48 live_data_runner:159] LiveTick saved
+[I 251222 22:46:50 live_data_runner:121] Tick received: 213546.0
+[I 251222 22:46:50 live_data_runner:159] LiveTick saved
+[I 251222 22:46:52 live_data_runner:121] Tick received: 213507.0
+[I 251222 22:46:52 live_data_runner:159] LiveTick saved
+[I 251222 22:46:52 live_data_runner:121] Tick received: 213507.0
+[I 251222 22:46:52 live_data_runner:159] LiveTick saved
+[I 251222 22:46:54 live_data_runner:121] Tick received: 213507.0
+[I 251222 22:46:54 live_data_runner:159] LiveTick saved
+[I 251222 22:46:55 live_data_runner:121] Tick received: 213507.0
+[I 251222 22:46:55 live_data_runner:159] LiveTick saved
+[I 251222 22:46:57 live_data_runner:121] Tick received: 213507.0
+[I 251222 22:46:57 live_data_runner:159] LiveTick saved
+[I 251222 22:46:58 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:46:58 live_data_runner:159] LiveTick saved
+[I 251222 22:47:00 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:47:00 live_data_runner:159] LiveTick saved
+[I 251222 22:47:00 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:47:00 live_data_runner:159] LiveTick saved
+[I 251222 22:47:01 live_data_runner:121] Tick received: 213507.0
+[I 251222 22:47:01 live_data_runner:159] LiveTick saved
+[I 251222 22:47:03 live_data_runner:121] Tick received: 213503.0
+[I 251222 22:47:03 live_data_runner:159] LiveTick saved
+[I 251222 22:47:04 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:47:04 live_data_runner:159] LiveTick saved
+[I 251222 22:47:06 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:47:06 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:47:06 live_data_runner:159] LiveTick saved
+[I 251222 22:47:06 live_data_runner:159] LiveTick saved
+[I 251222 22:47:07 live_data_runner:121] Tick received: 213484.0
+[I 251222 22:47:07 live_data_runner:159] LiveTick saved
+[I 251222 22:47:08 live_data_runner:121] Tick received: 213484.0
+[I 251222 22:47:08 live_data_runner:159] LiveTick saved
+[I 251222 22:47:10 live_data_runner:121] Tick received: 213462.0
+[I 251222 22:47:10 live_data_runner:159] LiveTick saved
+[I 251222 22:47:11 live_data_runner:121] Tick received: 213462.0
+[I 251222 22:47:11 live_data_runner:159] LiveTick saved
+[I 251222 22:50:49 angel_one:408] AngelOne re-login successful
+[I 251222 22:50:50 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 22:50:50 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:50:50 live_data_runner:159] LiveTick saved
+[I 251222 22:50:51 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:50:51 live_data_runner:159] LiveTick saved
+[I 251222 22:50:51 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:50:51 live_data_runner:159] LiveTick saved
+[I 251222 22:50:53 live_data_runner:121] Tick received: 213520.0
+[I 251222 22:50:53 live_data_runner:159] LiveTick saved
+[I 251222 22:50:54 live_data_runner:121] Tick received: 213520.0
+[I 251222 22:50:54 live_data_runner:159] LiveTick saved
+[I 251222 22:50:55 live_data_runner:121] Tick received: 213534.0
+[I 251222 22:50:55 live_data_runner:159] LiveTick saved
+[I 251222 22:50:57 live_data_runner:121] Tick received: 213534.0
+[I 251222 22:50:57 live_data_runner:159] LiveTick saved
+[I 251222 22:50:58 live_data_runner:121] Tick received: 213534.0
+[I 251222 22:50:58 live_data_runner:159] LiveTick saved
+[I 251222 22:50:59 live_data_runner:121] Tick received: 213534.0
+[I 251222 22:50:59 live_data_runner:159] LiveTick saved
+[I 251222 22:51:00 live_data_runner:121] Tick received: 213534.0
+[I 251222 22:51:00 live_data_runner:159] LiveTick saved
+[I 251222 22:51:02 live_data_runner:121] Tick received: 213534.0
+[I 251222 22:51:02 live_data_runner:159] LiveTick saved
+[I 251222 22:51:03 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:51:03 live_data_runner:159] LiveTick saved
+[I 251222 22:51:04 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:51:04 live_data_runner:159] LiveTick saved
+[I 251222 22:51:06 live_data_runner:121] Tick received: 213549.0
+[I 251222 22:51:06 live_data_runner:159] LiveTick saved
+[I 251222 22:51:07 live_data_runner:121] Tick received: 213549.0
+[I 251222 22:51:07 live_data_runner:159] LiveTick saved
+[I 251222 22:51:10 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:51:10 live_data_runner:159] LiveTick saved
+[I 251222 22:51:11 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:51:11 live_data_runner:159] LiveTick saved
+[I 251222 22:51:14 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:51:14 live_data_runner:159] LiveTick saved
+[I 251222 22:51:16 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:51:16 live_data_runner:159] LiveTick saved
+[I 251222 22:51:17 live_data_runner:121] Tick received: 213549.0
+[I 251222 22:51:17 live_data_runner:159] LiveTick saved
+[I 251222 22:51:18 live_data_runner:121] Tick received: 213549.0
+[I 251222 22:51:18 live_data_runner:159] LiveTick saved
+[I 251222 22:51:19 live_data_runner:121] Tick received: 213549.0
+[I 251222 22:51:19 live_data_runner:159] LiveTick saved
+[I 251222 22:51:21 live_data_runner:121] Tick received: 213549.0
+[I 251222 22:51:21 live_data_runner:159] LiveTick saved
+[I 251222 22:51:24 live_data_runner:121] Tick received: 213550.0
+[I 251222 22:51:24 live_data_runner:159] LiveTick saved
+[I 251222 22:51:25 live_data_runner:121] Tick received: 213550.0
+[I 251222 22:51:25 live_data_runner:159] LiveTick saved
+[I 251222 22:51:27 live_data_runner:121] Tick received: 213550.0
+[I 251222 22:51:27 live_data_runner:159] LiveTick saved
+[I 251222 22:51:27 live_data_runner:121] Tick received: 213577.0
+[I 251222 22:51:28 live_data_runner:159] LiveTick saved
+[I 251222 22:51:28 live_data_runner:121] Tick received: 213577.0
+[I 251222 22:51:28 live_data_runner:159] LiveTick saved
+[I 251222 22:51:29 live_data_runner:121] Tick received: 213577.0
+[I 251222 22:51:29 live_data_runner:159] LiveTick saved
+[I 251222 22:51:30 live_data_runner:121] Tick received: 213577.0
+[I 251222 22:51:30 live_data_runner:159] LiveTick saved
+[I 251222 22:51:31 live_data_runner:121] Tick received: 213577.0
+[I 251222 22:51:31 live_data_runner:159] LiveTick saved
+[I 251222 22:51:32 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:51:32 live_data_runner:159] LiveTick saved
+[I 251222 22:51:33 live_data_runner:121] Tick received: 213589.0
+[I 251222 22:51:33 live_data_runner:159] LiveTick saved
+[I 251222 22:51:34 live_data_runner:121] Tick received: 213589.0
+[I 251222 22:51:34 live_data_runner:159] LiveTick saved
+[I 251222 22:51:35 live_data_runner:121] Tick received: 213597.0
+[I 251222 22:51:35 live_data_runner:159] LiveTick saved
+[I 251222 22:51:37 live_data_runner:121] Tick received: 213577.0
+[I 251222 22:51:37 live_data_runner:159] LiveTick saved
+[I 251222 22:51:38 live_data_runner:121] Tick received: 213577.0
+[I 251222 22:51:38 live_data_runner:159] LiveTick saved
+[I 251222 22:51:39 live_data_runner:121] Tick received: 213550.0
+[I 251222 22:51:39 live_data_runner:159] LiveTick saved
+[I 251222 22:51:39 live_data_runner:121] Tick received: 213550.0
+[I 251222 22:51:39 live_data_runner:159] LiveTick saved
+[I 251222 22:51:41 live_data_runner:121] Tick received: 213550.0
+[I 251222 22:51:41 live_data_runner:159] LiveTick saved
+[I 251222 22:51:42 live_data_runner:121] Tick received: 213549.0
+[I 251222 22:51:42 live_data_runner:159] LiveTick saved
+[I 251222 22:51:43 live_data_runner:121] Tick received: 213549.0
+[I 251222 22:51:43 live_data_runner:159] LiveTick saved
+[I 251222 22:51:44 live_data_runner:121] Tick received: 213549.0
+[I 251222 22:51:44 live_data_runner:159] LiveTick saved
+[I 251222 22:51:53 angel_one:408] AngelOne re-login successful
+[I 251222 22:51:53 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 22:51:54 live_data_runner:121] Tick received: 213519.0
+[I 251222 22:51:54 live_data_runner:159] LiveTick saved
+[I 251222 22:51:55 live_data_runner:121] Tick received: 213519.0
+[I 251222 22:51:55 live_data_runner:159] LiveTick saved
+[I 251222 22:51:55 live_data_runner:121] Tick received: 213519.0
+[I 251222 22:51:55 live_data_runner:159] LiveTick saved
+[I 251222 22:51:57 live_data_runner:121] Tick received: 213519.0
+[I 251222 22:51:57 live_data_runner:159] LiveTick saved
+[I 251222 22:51:59 live_data_runner:121] Tick received: 213540.0
+[I 251222 22:51:59 live_data_runner:159] LiveTick saved
+[I 251222 22:51:59 live_data_runner:121] Tick received: 213540.0
+[I 251222 22:51:59 live_data_runner:159] LiveTick saved
+[I 251222 22:52:01 live_data_runner:121] Tick received: 213540.0
+[I 251222 22:52:01 live_data_runner:159] LiveTick saved
+[I 251222 22:52:02 live_data_runner:121] Tick received: 213540.0
+[I 251222 22:52:02 live_data_runner:159] LiveTick saved
+[I 251222 22:52:02 live_data_runner:121] Tick received: 213540.0
+[I 251222 22:52:02 live_data_runner:159] LiveTick saved
+[I 251222 22:52:04 live_data_runner:121] Tick received: 213540.0
+[I 251222 22:52:04 live_data_runner:159] LiveTick saved
+[I 251222 22:52:06 live_data_runner:121] Tick received: 213540.0
+[I 251222 22:52:06 live_data_runner:159] LiveTick saved
+[I 251222 22:52:06 live_data_runner:121] Tick received: 213511.0
+[I 251222 22:52:06 live_data_runner:159] LiveTick saved
+[I 251222 22:52:07 live_data_runner:121] Tick received: 213511.0
+[I 251222 22:52:07 live_data_runner:159] LiveTick saved
+[I 251222 22:52:08 live_data_runner:121] Tick received: 213487.0
+[I 251222 22:52:08 live_data_runner:159] LiveTick saved
+[I 251222 22:52:11 live_data_runner:121] Tick received: 213487.0
+[I 251222 22:52:11 live_data_runner:159] LiveTick saved
+[I 251222 22:52:13 live_data_runner:121] Tick received: 213487.0
+[I 251222 22:52:13 live_data_runner:159] LiveTick saved
+[I 251222 22:52:14 live_data_runner:121] Tick received: 213487.0
+[I 251222 22:52:14 live_data_runner:159] LiveTick saved
+[I 251222 22:52:15 live_data_runner:121] Tick received: 213487.0
+[I 251222 22:52:15 live_data_runner:159] LiveTick saved
+[I 251222 22:52:16 live_data_runner:121] Tick received: 213487.0
+[I 251222 22:52:16 live_data_runner:159] LiveTick saved
+[I 251222 22:52:18 live_data_runner:121] Tick received: 213487.0
+[I 251222 22:52:18 live_data_runner:159] LiveTick saved
+[I 251222 22:52:19 live_data_runner:121] Tick received: 213487.0
+[I 251222 22:52:19 live_data_runner:159] LiveTick saved
+[I 251222 22:52:20 live_data_runner:121] Tick received: 213487.0
+[I 251222 22:52:20 live_data_runner:159] LiveTick saved
+[I 251222 22:52:22 live_data_runner:121] Tick received: 213487.0
+[I 251222 22:52:22 live_data_runner:159] LiveTick saved
+[I 251222 22:52:30 live_data_runner:121] Tick received: 213487.0
+[I 251222 22:52:30 live_data_runner:159] LiveTick saved
+[I 251222 22:52:32 live_data_runner:121] Tick received: 213498.0
+[I 251222 22:52:32 live_data_runner:159] LiveTick saved
+[I 251222 22:52:33 live_data_runner:121] Tick received: 213498.0
+[I 251222 22:52:33 live_data_runner:159] LiveTick saved
+[I 251222 22:52:35 live_data_runner:121] Tick received: 213498.0
+[I 251222 22:52:35 live_data_runner:159] LiveTick saved
+[I 251222 22:52:36 live_data_runner:121] Tick received: 213495.0
+[I 251222 22:52:36 live_data_runner:159] LiveTick saved
+[I 251222 22:52:36 live_data_runner:121] Tick received: 213495.0
+[I 251222 22:52:36 live_data_runner:159] LiveTick saved
+[I 251222 22:52:37 live_data_runner:121] Tick received: 213495.0
+[I 251222 22:52:37 live_data_runner:159] LiveTick saved
+[I 251222 22:52:39 live_data_runner:121] Tick received: 213495.0
+[I 251222 22:52:39 live_data_runner:159] LiveTick saved
+[I 251222 22:52:41 live_data_runner:121] Tick received: 213495.0
+[I 251222 22:52:41 live_data_runner:159] LiveTick saved
+[I 251222 22:52:42 live_data_runner:121] Tick received: 213523.0
+[I 251222 22:52:42 live_data_runner:159] LiveTick saved
+[I 251222 22:52:43 live_data_runner:121] Tick received: 213523.0
+[I 251222 22:52:43 live_data_runner:159] LiveTick saved
+[I 251222 22:52:44 live_data_runner:121] Tick received: 213523.0
+[I 251222 22:52:44 live_data_runner:159] LiveTick saved
+[I 251222 22:52:44 live_data_runner:121] Tick received: 213505.0
+[I 251222 22:52:44 live_data_runner:159] LiveTick saved
+[I 251222 22:52:46 live_data_runner:121] Tick received: 213487.0
+[I 251222 22:52:46 live_data_runner:159] LiveTick saved
+[I 251222 22:52:47 live_data_runner:121] Tick received: 213488.0
+[I 251222 22:52:47 live_data_runner:159] LiveTick saved
+[I 251222 22:52:49 live_data_runner:121] Tick received: 213488.0
+[I 251222 22:52:49 live_data_runner:159] LiveTick saved
+[I 251222 22:52:50 live_data_runner:121] Tick received: 213488.0
+[I 251222 22:52:50 live_data_runner:159] LiveTick saved
+[I 251222 22:52:52 live_data_runner:121] Tick received: 213488.0
+[I 251222 22:52:52 live_data_runner:159] LiveTick saved
+[I 251222 22:52:53 live_data_runner:121] Tick received: 213488.0
+[I 251222 22:52:53 live_data_runner:159] LiveTick saved
+[I 251222 22:52:54 live_data_runner:121] Tick received: 213472.0
+[I 251222 22:52:54 live_data_runner:159] LiveTick saved
+[I 251222 22:52:55 live_data_runner:121] Tick received: 213472.0
+[I 251222 22:52:55 live_data_runner:159] LiveTick saved
+[I 251222 22:52:56 live_data_runner:121] Tick received: 213472.0
+[I 251222 22:52:56 live_data_runner:159] LiveTick saved
+[I 251222 22:52:58 live_data_runner:121] Tick received: 213468.0
+[I 251222 22:52:58 live_data_runner:159] LiveTick saved
+[I 251222 22:52:58 live_data_runner:121] Tick received: 213468.0
+[I 251222 22:52:58 live_data_runner:159] LiveTick saved
+[I 251222 22:53:06 angel_one:408] AngelOne re-login successful
+[I 251222 22:53:07 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 22:53:07 live_data_runner:121] Tick received: 213467.0
+[I 251222 22:53:07 live_data_runner:159] LiveTick saved
+[I 251222 22:53:08 live_data_runner:121] Tick received: 213467.0
+[I 251222 22:53:08 live_data_runner:159] LiveTick saved
+[I 251222 22:53:09 live_data_runner:121] Tick received: 213483.0
+[I 251222 22:53:09 live_data_runner:159] LiveTick saved
+[I 251222 22:53:10 live_data_runner:121] Tick received: 213483.0
+[I 251222 22:53:10 live_data_runner:159] LiveTick saved
+[I 251222 22:53:11 live_data_runner:121] Tick received: 213495.0
+[I 251222 22:53:11 live_data_runner:159] LiveTick saved
+[I 251222 22:53:13 live_data_runner:121] Tick received: 213495.0
+[I 251222 22:53:13 live_data_runner:159] LiveTick saved
+[I 251222 22:53:13 live_data_runner:121] Tick received: 213495.0
+[I 251222 22:53:13 live_data_runner:159] LiveTick saved
+[I 251222 22:53:15 live_data_runner:121] Tick received: 213495.0
+[I 251222 22:53:15 live_data_runner:159] LiveTick saved
+[I 251222 22:53:17 live_data_runner:121] Tick received: 213495.0
+[I 251222 22:53:17 live_data_runner:159] LiveTick saved
+[I 251222 22:53:18 live_data_runner:121] Tick received: 213495.0
+[I 251222 22:53:18 live_data_runner:159] LiveTick saved
+[I 251222 22:53:19 live_data_runner:121] Tick received: 213495.0
+[I 251222 22:53:19 live_data_runner:159] LiveTick saved
+[I 251222 22:53:21 live_data_runner:121] Tick received: 213495.0
+[I 251222 22:53:21 live_data_runner:159] LiveTick saved
+[I 251222 22:53:22 live_data_runner:121] Tick received: 213452.0
+[I 251222 22:53:22 live_data_runner:159] LiveTick saved
+[I 251222 22:53:24 live_data_runner:121] Tick received: 213476.0
+[I 251222 22:53:24 live_data_runner:159] LiveTick saved
+[I 251222 22:53:24 live_data_runner:121] Tick received: 213448.0
+[I 251222 22:53:24 live_data_runner:159] LiveTick saved
+[I 251222 22:53:25 live_data_runner:121] Tick received: 213448.0
+[I 251222 22:53:25 live_data_runner:159] LiveTick saved
+[I 251222 22:53:26 live_data_runner:121] Tick received: 213448.0
+[I 251222 22:53:26 live_data_runner:159] LiveTick saved
+[I 251222 22:53:27 live_data_runner:121] Tick received: 213434.0
+[I 251222 22:53:27 live_data_runner:159] LiveTick saved
+[I 251222 22:53:28 live_data_runner:121] Tick received: 213450.0
+[I 251222 22:53:28 live_data_runner:159] LiveTick saved
+[I 251222 22:53:30 live_data_runner:121] Tick received: 213432.0
+[I 251222 22:53:30 live_data_runner:159] LiveTick saved
+[I 251222 22:53:31 live_data_runner:121] Tick received: 213432.0
+[I 251222 22:53:31 live_data_runner:159] LiveTick saved
+[I 251222 22:53:32 live_data_runner:121] Tick received: 213432.0
+[I 251222 22:53:32 live_data_runner:159] LiveTick saved
+[I 251222 22:53:33 live_data_runner:121] Tick received: 213432.0
+[I 251222 22:53:33 live_data_runner:159] LiveTick saved
+[I 251222 22:53:33 live_data_runner:121] Tick received: 213432.0
+[I 251222 22:53:33 live_data_runner:159] LiveTick saved
+[I 251222 22:53:35 live_data_runner:121] Tick received: 213435.0
+[I 251222 22:53:35 live_data_runner:159] LiveTick saved
+[I 251222 22:53:36 live_data_runner:121] Tick received: 213475.0
+[I 251222 22:53:36 live_data_runner:159] LiveTick saved
+[I 251222 22:53:36 live_data_runner:121] Tick received: 213475.0
+[I 251222 22:53:37 live_data_runner:159] LiveTick saved
+[I 251222 22:53:38 live_data_runner:121] Tick received: 213475.0
+[I 251222 22:53:38 live_data_runner:159] LiveTick saved
+[I 251222 22:53:39 live_data_runner:121] Tick received: 213475.0
+[I 251222 22:53:39 live_data_runner:159] LiveTick saved
+[I 251222 22:53:40 live_data_runner:121] Tick received: 213475.0
+[I 251222 22:53:40 live_data_runner:159] LiveTick saved
+[I 251222 22:53:40 live_data_runner:121] Tick received: 213475.0
+[I 251222 22:53:40 live_data_runner:159] LiveTick saved
+[I 251222 22:53:42 live_data_runner:121] Tick received: 213433.0
+[I 251222 22:53:42 live_data_runner:159] LiveTick saved
+[I 251222 22:53:44 live_data_runner:121] Tick received: 213433.0
+[I 251222 22:53:44 live_data_runner:159] LiveTick saved
+[I 251222 22:53:44 live_data_runner:121] Tick received: 213433.0
+[I 251222 22:53:44 live_data_runner:159] LiveTick saved
+[I 251222 22:53:46 live_data_runner:121] Tick received: 213472.0
+[I 251222 22:53:46 live_data_runner:159] LiveTick saved
+[I 251222 22:53:47 live_data_runner:121] Tick received: 213472.0
+[I 251222 22:53:47 live_data_runner:159] LiveTick saved
+[I 251222 22:53:48 live_data_runner:121] Tick received: 213472.0
+[I 251222 22:53:48 live_data_runner:159] LiveTick saved
+[I 251222 22:53:49 live_data_runner:121] Tick received: 213516.0
+[I 251222 22:53:49 live_data_runner:159] LiveTick saved
+[I 251222 22:53:50 live_data_runner:121] Tick received: 213516.0
+[I 251222 22:53:50 live_data_runner:159] LiveTick saved
+[I 251222 22:53:51 live_data_runner:121] Tick received: 213516.0
+[I 251222 22:53:51 live_data_runner:159] LiveTick saved
+[I 251222 22:53:53 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:53:53 live_data_runner:159] LiveTick saved
+[I 251222 22:53:54 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:53:54 live_data_runner:159] LiveTick saved
+[I 251222 22:53:55 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:53:55 live_data_runner:159] LiveTick saved
+[I 251222 22:53:57 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:53:57 live_data_runner:159] LiveTick saved
+[I 251222 22:53:57 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:53:57 live_data_runner:159] LiveTick saved
+[I 251222 22:53:59 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:53:59 live_data_runner:159] LiveTick saved
+[I 251222 22:53:59 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:53:59 live_data_runner:159] LiveTick saved
+[I 251222 22:54:00 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:54:00 live_data_runner:159] LiveTick saved
+[I 251222 22:54:02 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:54:02 live_data_runner:159] LiveTick saved
+[I 251222 22:54:03 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:54:03 live_data_runner:159] LiveTick saved
+[I 251222 22:54:04 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:54:04 live_data_runner:159] LiveTick saved
+[I 251222 22:54:04 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:54:04 live_data_runner:159] LiveTick saved
+[I 251222 22:54:06 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:54:06 live_data_runner:159] LiveTick saved
+[I 251222 22:54:07 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:54:07 live_data_runner:159] LiveTick saved
+[I 251222 22:54:09 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:54:09 live_data_runner:159] LiveTick saved
+[I 251222 22:54:10 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:54:10 live_data_runner:159] LiveTick saved
+[I 251222 22:54:12 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:54:12 live_data_runner:159] LiveTick saved
+[I 251222 22:54:12 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:54:12 live_data_runner:159] LiveTick saved
+[I 251222 22:54:14 live_data_runner:121] Tick received: 213490.0
+[I 251222 22:54:14 live_data_runner:159] LiveTick saved
+[I 251222 22:54:16 live_data_runner:121] Tick received: 213519.0
+[I 251222 22:54:16 live_data_runner:159] LiveTick saved
+[I 251222 22:54:18 live_data_runner:121] Tick received: 213521.0
+[I 251222 22:54:18 live_data_runner:159] LiveTick saved
+[I 251222 22:54:19 live_data_runner:121] Tick received: 213521.0
+[I 251222 22:54:19 live_data_runner:159] LiveTick saved
+[I 251222 22:54:21 live_data_runner:121] Tick received: 213521.0
+[I 251222 22:54:21 live_data_runner:159] LiveTick saved
+[I 251222 22:54:22 live_data_runner:121] Tick received: 213480.0
+[I 251222 22:54:22 live_data_runner:159] LiveTick saved
+[I 251222 22:54:22 live_data_runner:121] Tick received: 213512.0
+[I 251222 22:54:22 live_data_runner:159] LiveTick saved
+[I 251222 22:54:24 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:54:24 live_data_runner:159] LiveTick saved
+[I 251222 22:54:25 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:54:25 live_data_runner:159] LiveTick saved
+[I 251222 22:54:26 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:54:26 live_data_runner:159] LiveTick saved
+[I 251222 22:54:27 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:54:27 live_data_runner:159] LiveTick saved
+[I 251222 22:54:29 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:54:29 live_data_runner:159] LiveTick saved
+[I 251222 22:54:31 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:54:31 live_data_runner:159] LiveTick saved
+[I 251222 22:54:32 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:54:32 live_data_runner:159] LiveTick saved
+[I 251222 22:54:33 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:54:33 live_data_runner:159] LiveTick saved
+[I 251222 22:54:34 live_data_runner:121] Tick received: 213510.0
+[I 251222 22:54:34 live_data_runner:159] LiveTick saved
+[I 251222 22:54:35 live_data_runner:121] Tick received: 213510.0
+[I 251222 22:54:35 live_data_runner:159] LiveTick saved
+[I 251222 22:54:37 live_data_runner:121] Tick received: 213510.0
+[I 251222 22:54:37 live_data_runner:159] LiveTick saved
+[I 251222 22:54:38 live_data_runner:121] Tick received: 213510.0
+[I 251222 22:54:38 live_data_runner:159] LiveTick saved
+[I 251222 22:54:39 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:54:39 live_data_runner:159] LiveTick saved
+[I 251222 22:54:40 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:54:40 live_data_runner:159] LiveTick saved
+[I 251222 22:54:42 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:54:42 live_data_runner:159] LiveTick saved
+[I 251222 22:54:43 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:54:43 live_data_runner:159] LiveTick saved
+[I 251222 22:54:44 live_data_runner:121] Tick received: 213483.0
+[I 251222 22:54:44 live_data_runner:159] LiveTick saved
+[I 251222 22:54:46 live_data_runner:121] Tick received: 213483.0
+[I 251222 22:54:46 live_data_runner:159] LiveTick saved
+[I 251222 22:54:47 live_data_runner:121] Tick received: 213483.0
+[I 251222 22:54:47 live_data_runner:159] LiveTick saved
+[I 251222 22:54:47 live_data_runner:121] Tick received: 213483.0
+[I 251222 22:54:47 live_data_runner:159] LiveTick saved
+[I 251222 22:54:48 live_data_runner:121] Tick received: 213483.0
+[I 251222 22:54:48 live_data_runner:159] LiveTick saved
+[I 251222 22:54:49 live_data_runner:121] Tick received: 213483.0
+[I 251222 22:54:49 live_data_runner:159] LiveTick saved
+[I 251222 22:54:50 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:54:50 live_data_runner:159] LiveTick saved
+[I 251222 22:54:52 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:54:52 live_data_runner:159] LiveTick saved
+[I 251222 22:54:53 live_data_runner:121] Tick received: 213480.0
+[I 251222 22:54:53 live_data_runner:159] LiveTick saved
+[I 251222 22:54:55 live_data_runner:121] Tick received: 213480.0
+[I 251222 22:54:55 live_data_runner:159] LiveTick saved
+[I 251222 22:54:56 live_data_runner:121] Tick received: 213480.0
+[I 251222 22:54:56 live_data_runner:159] LiveTick saved
+[I 251222 22:54:57 live_data_runner:121] Tick received: 213480.0
+[I 251222 22:54:57 live_data_runner:159] LiveTick saved
+[I 251222 22:54:59 live_data_runner:121] Tick received: 213509.0
+[I 251222 22:54:59 live_data_runner:159] LiveTick saved
+[I 251222 22:55:00 live_data_runner:121] Tick received: 213514.0
+[I 251222 22:55:00 live_data_runner:159] LiveTick saved
+[I 251222 22:55:01 live_data_runner:121] Tick received: 213514.0
+[I 251222 22:55:01 live_data_runner:159] LiveTick saved
+[I 251222 22:55:02 live_data_runner:121] Tick received: 213539.0
+[I 251222 22:55:02 live_data_runner:159] LiveTick saved
+[I 251222 22:55:03 live_data_runner:121] Tick received: 213550.0
+[I 251222 22:55:03 live_data_runner:159] LiveTick saved
+[I 251222 22:55:04 live_data_runner:121] Tick received: 213550.0
+[I 251222 22:55:04 live_data_runner:159] LiveTick saved
+[I 251222 22:55:05 live_data_runner:121] Tick received: 213550.0
+[I 251222 22:55:05 live_data_runner:159] LiveTick saved
+[I 251222 22:55:07 live_data_runner:121] Tick received: 213550.0
+[I 251222 22:55:07 live_data_runner:159] LiveTick saved
+[I 251222 22:55:08 live_data_runner:121] Tick received: 213514.0
+[I 251222 22:55:08 live_data_runner:159] LiveTick saved
+[I 251222 22:55:09 live_data_runner:121] Tick received: 213514.0
+[I 251222 22:55:09 live_data_runner:159] LiveTick saved
+[I 251222 22:55:10 live_data_runner:121] Tick received: 213514.0
+[I 251222 22:55:10 live_data_runner:159] LiveTick saved
+[I 251222 22:55:12 live_data_runner:121] Tick received: 213514.0
+[I 251222 22:55:12 live_data_runner:159] LiveTick saved
+[I 251222 22:55:13 live_data_runner:121] Tick received: 213514.0
+[I 251222 22:55:13 live_data_runner:159] LiveTick saved
+[I 251222 22:55:15 live_data_runner:121] Tick received: 213576.0
+[I 251222 22:55:15 live_data_runner:159] LiveTick saved
+[I 251222 22:55:16 live_data_runner:121] Tick received: 213576.0
+[I 251222 22:55:16 live_data_runner:159] LiveTick saved
+[I 251222 22:55:17 live_data_runner:121] Tick received: 213576.0
+[I 251222 22:55:17 live_data_runner:159] LiveTick saved
+[I 251222 22:55:19 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:19 live_data_runner:159] LiveTick saved
+[I 251222 22:55:20 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:20 live_data_runner:159] LiveTick saved
+[I 251222 22:55:21 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:21 live_data_runner:159] LiveTick saved
+[I 251222 22:55:23 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:23 live_data_runner:159] LiveTick saved
+[I 251222 22:55:24 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:24 live_data_runner:159] LiveTick saved
+[I 251222 22:55:25 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:25 live_data_runner:159] LiveTick saved
+[I 251222 22:55:26 live_data_runner:121] Tick received: 213589.0
+[I 251222 22:55:26 live_data_runner:159] LiveTick saved
+[I 251222 22:55:28 live_data_runner:121] Tick received: 213589.0
+[I 251222 22:55:28 live_data_runner:159] LiveTick saved
+[I 251222 22:55:29 live_data_runner:121] Tick received: 213589.0
+[I 251222 22:55:29 live_data_runner:159] LiveTick saved
+[I 251222 22:55:31 live_data_runner:121] Tick received: 213589.0
+[I 251222 22:55:31 live_data_runner:159] LiveTick saved
+[I 251222 22:55:32 live_data_runner:121] Tick received: 213589.0
+[I 251222 22:55:32 live_data_runner:159] LiveTick saved
+[I 251222 22:55:34 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:34 live_data_runner:159] LiveTick saved
+[I 251222 22:55:36 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:36 live_data_runner:159] LiveTick saved
+[I 251222 22:55:37 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:37 live_data_runner:159] LiveTick saved
+[I 251222 22:55:39 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:39 live_data_runner:159] LiveTick saved
+[I 251222 22:55:40 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:40 live_data_runner:159] LiveTick saved
+[I 251222 22:55:41 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:41 live_data_runner:159] LiveTick saved
+[I 251222 22:55:42 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:42 live_data_runner:159] LiveTick saved
+[I 251222 22:55:44 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:44 live_data_runner:159] LiveTick saved
+[I 251222 22:55:45 live_data_runner:121] Tick received: 213590.0
+[I 251222 22:55:45 live_data_runner:159] LiveTick saved
+[I 251222 22:55:46 live_data_runner:121] Tick received: 213596.0
+[I 251222 22:55:46 live_data_runner:159] LiveTick saved
+[I 251222 22:55:47 live_data_runner:121] Tick received: 213600.0
+[I 251222 22:55:47 live_data_runner:159] LiveTick saved
+[I 251222 22:55:48 live_data_runner:121] Tick received: 213600.0
+[I 251222 22:55:48 live_data_runner:159] LiveTick saved
+[I 251222 22:55:50 live_data_runner:121] Tick received: 213594.0
+[I 251222 22:55:50 live_data_runner:159] LiveTick saved
+[I 251222 22:55:51 live_data_runner:121] Tick received: 213594.0
+[I 251222 22:55:51 live_data_runner:159] LiveTick saved
+[I 251222 22:55:52 live_data_runner:121] Tick received: 213618.0
+[I 251222 22:55:52 live_data_runner:159] LiveTick saved
+[I 251222 22:55:54 live_data_runner:121] Tick received: 213618.0
+[I 251222 22:55:54 live_data_runner:159] LiveTick saved
+[I 251222 22:55:55 live_data_runner:121] Tick received: 213618.0
+[I 251222 22:55:55 live_data_runner:159] LiveTick saved
+[I 251222 22:55:57 live_data_runner:121] Tick received: 213620.0
+[I 251222 22:55:57 live_data_runner:121] Tick received: 213620.0
+[I 251222 22:55:57 live_data_runner:159] LiveTick saved
+[I 251222 22:55:57 live_data_runner:159] LiveTick saved
+[I 251222 22:55:59 live_data_runner:121] Tick received: 213607.0
+[I 251222 22:55:59 live_data_runner:159] LiveTick saved
+[I 251222 22:56:00 live_data_runner:121] Tick received: 213607.0
+[I 251222 22:56:00 live_data_runner:159] LiveTick saved
+[I 251222 22:56:01 live_data_runner:121] Tick received: 213607.0
+[I 251222 22:56:01 live_data_runner:159] LiveTick saved
+[I 251222 22:56:02 live_data_runner:121] Tick received: 213636.0
+[I 251222 22:56:02 live_data_runner:159] LiveTick saved
+[I 251222 22:56:03 live_data_runner:121] Tick received: 213636.0
+[I 251222 22:56:03 live_data_runner:159] LiveTick saved
+[I 251222 22:56:04 live_data_runner:121] Tick received: 213602.0
+[I 251222 22:56:04 live_data_runner:159] LiveTick saved
+[I 251222 22:56:06 live_data_runner:121] Tick received: 213649.0
+[I 251222 22:56:06 live_data_runner:159] LiveTick saved
+[I 251222 22:56:07 live_data_runner:121] Tick received: 213648.0
+[I 251222 22:56:07 live_data_runner:159] LiveTick saved
+[I 251222 22:56:08 live_data_runner:121] Tick received: 213619.0
+[I 251222 22:56:08 live_data_runner:159] LiveTick saved
+[I 251222 22:56:10 live_data_runner:121] Tick received: 213619.0
+[I 251222 22:56:10 live_data_runner:159] LiveTick saved
+[I 251222 22:56:11 live_data_runner:121] Tick received: 213622.0
+[I 251222 22:56:11 live_data_runner:159] LiveTick saved
+[I 251222 22:56:13 live_data_runner:121] Tick received: 213650.0
+[I 251222 22:56:13 live_data_runner:159] LiveTick saved
+[I 251222 22:56:14 live_data_runner:121] Tick received: 213650.0
+[I 251222 22:56:14 live_data_runner:159] LiveTick saved
+[I 251222 22:56:15 live_data_runner:121] Tick received: 213677.0
+[I 251222 22:56:15 live_data_runner:159] LiveTick saved
+[I 251222 22:56:16 live_data_runner:121] Tick received: 213707.0
+[I 251222 22:56:16 live_data_runner:159] LiveTick saved
+[I 251222 22:56:17 live_data_runner:121] Tick received: 213665.0
+[I 251222 22:56:17 live_data_runner:159] LiveTick saved
+[I 251222 22:56:18 live_data_runner:121] Tick received: 213665.0
+[I 251222 22:56:18 live_data_runner:159] LiveTick saved
+[I 251222 22:56:20 live_data_runner:121] Tick received: 213708.0
+[I 251222 22:56:20 live_data_runner:159] LiveTick saved
+[I 251222 22:56:21 live_data_runner:121] Tick received: 213709.0
+[I 251222 22:56:21 live_data_runner:159] LiveTick saved
+[I 251222 22:56:22 live_data_runner:121] Tick received: 213709.0
+[I 251222 22:56:22 live_data_runner:159] LiveTick saved
+[I 251222 22:56:22 live_data_runner:121] Tick received: 213709.0
+[I 251222 22:56:22 live_data_runner:159] LiveTick saved
+[I 251222 22:56:24 live_data_runner:121] Tick received: 213709.0
+[I 251222 22:56:24 live_data_runner:159] LiveTick saved
+[I 251222 22:56:25 live_data_runner:121] Tick received: 213709.0
+[I 251222 22:56:25 live_data_runner:159] LiveTick saved
+[I 251222 22:56:26 live_data_runner:121] Tick received: 213709.0
+[I 251222 22:56:26 live_data_runner:159] LiveTick saved
+[I 251222 22:56:27 live_data_runner:121] Tick received: 213709.0
+[I 251222 22:56:27 live_data_runner:159] LiveTick saved
+[I 251222 22:56:29 live_data_runner:121] Tick received: 213701.0
+[I 251222 22:56:29 live_data_runner:159] LiveTick saved
+[I 251222 22:56:30 live_data_runner:121] Tick received: 213701.0
+[I 251222 22:56:30 live_data_runner:159] LiveTick saved
+[I 251222 22:56:31 live_data_runner:121] Tick received: 213701.0
+[I 251222 22:56:31 live_data_runner:159] LiveTick saved
+[I 251222 22:56:32 live_data_runner:121] Tick received: 213701.0
+[I 251222 22:56:32 live_data_runner:159] LiveTick saved
+[I 251222 22:56:32 live_data_runner:121] Tick received: 213693.0
+[I 251222 22:56:32 live_data_runner:159] LiveTick saved
+[I 251222 22:56:34 live_data_runner:121] Tick received: 213693.0
+[I 251222 22:56:34 live_data_runner:159] LiveTick saved
+[I 251222 22:56:36 live_data_runner:121] Tick received: 213650.0
+[I 251222 22:56:36 live_data_runner:159] LiveTick saved
+[I 251222 22:56:37 live_data_runner:121] Tick received: 213650.0
+[I 251222 22:56:37 live_data_runner:159] LiveTick saved
+[I 251222 22:56:39 live_data_runner:121] Tick received: 213700.0
+[I 251222 22:56:39 live_data_runner:159] LiveTick saved
+[I 251222 22:56:39 live_data_runner:121] Tick received: 213700.0
+[I 251222 22:56:39 live_data_runner:159] LiveTick saved
+[I 251222 22:56:41 live_data_runner:121] Tick received: 213700.0
+[I 251222 22:56:41 live_data_runner:159] LiveTick saved
+[I 251222 22:56:42 live_data_runner:121] Tick received: 213700.0
+[I 251222 22:56:42 live_data_runner:159] LiveTick saved
+[I 251222 22:56:43 live_data_runner:121] Tick received: 213668.0
+[I 251222 22:56:43 live_data_runner:159] LiveTick saved
+[I 251222 22:56:44 live_data_runner:121] Tick received: 213668.0
+[I 251222 22:56:44 live_data_runner:159] LiveTick saved
+[I 251222 22:56:44 live_data_runner:121] Tick received: 213668.0
+[I 251222 22:56:44 live_data_runner:159] LiveTick saved
+[I 251222 22:56:45 live_data_runner:121] Tick received: 213668.0
+[I 251222 22:56:45 live_data_runner:159] LiveTick saved
+[I 251222 22:56:46 live_data_runner:121] Tick received: 213668.0
+[I 251222 22:56:46 live_data_runner:159] LiveTick saved
+[I 251222 22:56:48 live_data_runner:121] Tick received: 213668.0
+[I 251222 22:56:48 live_data_runner:159] LiveTick saved
+[I 251222 22:56:51 live_data_runner:121] Tick received: 213650.0
+[I 251222 22:56:51 live_data_runner:159] LiveTick saved
+[I 251222 22:56:51 live_data_runner:121] Tick received: 213650.0
+[I 251222 22:56:51 live_data_runner:159] LiveTick saved
+[I 251222 22:56:52 live_data_runner:121] Tick received: 213650.0
+[I 251222 22:56:52 live_data_runner:159] LiveTick saved
+[I 251222 22:56:53 live_data_runner:121] Tick received: 213650.0
+[I 251222 22:56:53 live_data_runner:159] LiveTick saved
+[I 251222 22:56:55 live_data_runner:121] Tick received: 213650.0
+[I 251222 22:56:55 live_data_runner:159] LiveTick saved
+[I 251222 22:56:56 live_data_runner:121] Tick received: 213650.0
+[I 251222 22:56:56 live_data_runner:159] LiveTick saved
+[I 251222 22:56:57 live_data_runner:121] Tick received: 213650.0
+[I 251222 22:56:57 live_data_runner:159] LiveTick saved
+[I 251222 22:56:58 live_data_runner:121] Tick received: 213680.0
+[I 251222 22:56:58 live_data_runner:159] LiveTick saved
+[I 251222 22:56:59 live_data_runner:121] Tick received: 213650.0
+[I 251222 22:56:59 live_data_runner:159] LiveTick saved
+[I 251222 22:57:00 live_data_runner:121] Tick received: 213642.0
+[I 251222 22:57:01 live_data_runner:159] LiveTick saved
+[I 251222 22:57:01 live_data_runner:121] Tick received: 213642.0
+[I 251222 22:57:01 live_data_runner:159] LiveTick saved
+[I 251222 22:57:03 live_data_runner:121] Tick received: 213642.0
+[I 251222 22:57:03 live_data_runner:159] LiveTick saved
+[I 251222 22:57:04 live_data_runner:121] Tick received: 213642.0
+[I 251222 22:57:04 live_data_runner:159] LiveTick saved
+[I 251222 22:57:06 live_data_runner:121] Tick received: 213621.0
+[I 251222 22:57:06 live_data_runner:159] LiveTick saved
+[I 251222 22:57:07 live_data_runner:121] Tick received: 213621.0
+[I 251222 22:57:07 live_data_runner:159] LiveTick saved
+[I 251222 22:57:09 live_data_runner:121] Tick received: 213648.0
+[I 251222 22:57:09 live_data_runner:159] LiveTick saved
+[I 251222 22:57:12 live_data_runner:121] Tick received: 213600.0
+[I 251222 22:57:12 live_data_runner:159] LiveTick saved
+[I 251222 22:57:13 live_data_runner:121] Tick received: 213600.0
+[I 251222 22:57:13 live_data_runner:159] LiveTick saved
+[I 251222 22:57:14 live_data_runner:121] Tick received: 213600.0
+[I 251222 22:57:14 live_data_runner:159] LiveTick saved
+[I 251222 22:57:15 live_data_runner:121] Tick received: 213600.0
+[I 251222 22:57:15 live_data_runner:159] LiveTick saved
+[I 251222 22:57:16 live_data_runner:121] Tick received: 213600.0
+[I 251222 22:57:16 live_data_runner:159] LiveTick saved
+[I 251222 22:57:18 live_data_runner:121] Tick received: 213600.0
+[I 251222 22:57:18 live_data_runner:159] LiveTick saved
+[I 251222 22:57:19 live_data_runner:121] Tick received: 213632.0
+[I 251222 22:57:19 live_data_runner:159] LiveTick saved
+[I 251222 22:57:20 live_data_runner:121] Tick received: 213632.0
+[I 251222 22:57:20 live_data_runner:159] LiveTick saved
+[I 251222 22:57:21 live_data_runner:121] Tick received: 213632.0
+[I 251222 22:57:21 live_data_runner:159] LiveTick saved
+[I 251222 22:57:23 live_data_runner:121] Tick received: 213632.0
+[I 251222 22:57:23 live_data_runner:159] LiveTick saved
+[I 251222 22:57:24 live_data_runner:121] Tick received: 213640.0
+[I 251222 22:57:24 live_data_runner:159] LiveTick saved
+[I 251222 22:57:26 live_data_runner:121] Tick received: 213648.0
+[I 251222 22:57:26 live_data_runner:159] LiveTick saved
+[I 251222 22:57:27 live_data_runner:121] Tick received: 213648.0
+[I 251222 22:57:27 live_data_runner:159] LiveTick saved
+[I 251222 22:57:28 live_data_runner:121] Tick received: 213648.0
+[I 251222 22:57:28 live_data_runner:159] LiveTick saved
+[I 251222 22:57:29 live_data_runner:121] Tick received: 213648.0
+[I 251222 22:57:29 live_data_runner:159] LiveTick saved
+[I 251222 22:57:30 live_data_runner:121] Tick received: 213648.0
+[I 251222 22:57:30 live_data_runner:159] LiveTick saved
+[I 251222 22:57:31 live_data_runner:121] Tick received: 213648.0
+[I 251222 22:57:31 live_data_runner:159] LiveTick saved
+[I 251222 22:57:33 live_data_runner:121] Tick received: 213648.0
+[I 251222 22:57:33 live_data_runner:159] LiveTick saved
+[I 251222 22:57:34 live_data_runner:121] Tick received: 213648.0
+[I 251222 22:57:34 live_data_runner:159] LiveTick saved
+[I 251222 22:57:35 live_data_runner:121] Tick received: 213648.0
+[I 251222 22:57:35 live_data_runner:159] LiveTick saved
+[I 251222 22:57:36 live_data_runner:121] Tick received: 213648.0
+[I 251222 22:57:36 live_data_runner:159] LiveTick saved
+[I 251222 22:57:37 live_data_runner:121] Tick received: 213591.0
+[I 251222 22:57:37 live_data_runner:159] LiveTick saved
+[I 251222 22:57:39 live_data_runner:121] Tick received: 213591.0
+[I 251222 22:57:39 live_data_runner:159] LiveTick saved
+[I 251222 22:57:40 live_data_runner:121] Tick received: 213591.0
+[I 251222 22:57:40 live_data_runner:159] LiveTick saved
+[I 251222 22:57:41 live_data_runner:121] Tick received: 213591.0
+[I 251222 22:57:41 live_data_runner:159] LiveTick saved
+[I 251222 22:57:42 live_data_runner:121] Tick received: 213591.0
+[I 251222 22:57:42 live_data_runner:159] LiveTick saved
+[I 251222 22:57:44 live_data_runner:121] Tick received: 213591.0
+[I 251222 22:57:44 live_data_runner:159] LiveTick saved
+[I 251222 22:57:45 live_data_runner:121] Tick received: 213591.0
+[I 251222 22:57:45 live_data_runner:159] LiveTick saved
+[I 251222 22:57:47 live_data_runner:121] Tick received: 213631.0
+[I 251222 22:57:47 live_data_runner:159] LiveTick saved
+[I 251222 22:57:48 live_data_runner:121] Tick received: 213631.0
+[I 251222 22:57:48 live_data_runner:159] LiveTick saved
+[I 251222 22:57:49 live_data_runner:121] Tick received: 213631.0
+[I 251222 22:57:49 live_data_runner:159] LiveTick saved
+[I 251222 22:57:51 live_data_runner:121] Tick received: 213631.0
+[I 251222 22:57:51 live_data_runner:159] LiveTick saved
+[I 251222 22:57:52 live_data_runner:121] Tick received: 213631.0
+[I 251222 22:57:52 live_data_runner:159] LiveTick saved
+[I 251222 22:57:54 live_data_runner:121] Tick received: 213631.0
+[I 251222 22:57:54 live_data_runner:159] LiveTick saved
+[I 251222 22:57:54 live_data_runner:121] Tick received: 213631.0
+[I 251222 22:57:54 live_data_runner:159] LiveTick saved
+[I 251222 22:57:56 live_data_runner:121] Tick received: 213631.0
+[I 251222 22:57:56 live_data_runner:159] LiveTick saved
+[I 251222 22:57:56 live_data_runner:121] Tick received: 213631.0
+[I 251222 22:57:56 live_data_runner:159] LiveTick saved
+[I 251222 22:57:58 live_data_runner:121] Tick received: 213631.0
+[I 251222 22:57:58 live_data_runner:159] LiveTick saved
+[I 251222 22:57:59 live_data_runner:121] Tick received: 213580.0
+[I 251222 22:57:59 live_data_runner:159] LiveTick saved
+[I 251222 22:57:59 live_data_runner:121] Tick received: 213580.0
+[I 251222 22:57:59 live_data_runner:159] LiveTick saved
+[I 251222 22:58:00 live_data_runner:121] Tick received: 213580.0
+[I 251222 22:58:00 live_data_runner:159] LiveTick saved
+[I 251222 22:58:01 live_data_runner:121] Tick received: 213532.0
+[I 251222 22:58:01 live_data_runner:159] LiveTick saved
+[I 251222 22:58:02 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:58:02 live_data_runner:159] LiveTick saved
+[I 251222 22:58:03 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:58:03 live_data_runner:159] LiveTick saved
+[I 251222 22:58:04 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:58:04 live_data_runner:159] LiveTick saved
+[I 251222 22:58:05 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:58:05 live_data_runner:159] LiveTick saved
+[I 251222 22:58:06 live_data_runner:121] Tick received: 213484.0
+[I 251222 22:58:06 live_data_runner:159] LiveTick saved
+[I 251222 22:58:08 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:58:08 live_data_runner:159] LiveTick saved
+[I 251222 22:58:09 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:58:09 live_data_runner:159] LiveTick saved
+[I 251222 22:58:10 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:58:10 live_data_runner:159] LiveTick saved
+[I 251222 22:58:12 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:58:12 live_data_runner:159] LiveTick saved
+[I 251222 22:58:13 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:58:13 live_data_runner:159] LiveTick saved
+[I 251222 22:58:14 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:58:14 live_data_runner:159] LiveTick saved
+[I 251222 22:58:14 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:58:14 live_data_runner:159] LiveTick saved
+[I 251222 22:58:15 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:58:15 live_data_runner:159] LiveTick saved
+[I 251222 22:58:17 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:58:17 live_data_runner:159] LiveTick saved
+[I 251222 22:58:18 live_data_runner:121] Tick received: 213530.0
+[I 251222 22:58:18 live_data_runner:159] LiveTick saved
+[I 251222 22:58:19 live_data_runner:121] Tick received: 213480.0
+[I 251222 22:58:19 live_data_runner:159] LiveTick saved
+[I 251222 22:58:20 live_data_runner:121] Tick received: 213505.0
+[I 251222 22:58:20 live_data_runner:159] LiveTick saved
+[I 251222 22:58:21 live_data_runner:121] Tick received: 213505.0
+[I 251222 22:58:21 live_data_runner:159] LiveTick saved
+[I 251222 22:58:23 live_data_runner:121] Tick received: 213475.0
+[I 251222 22:58:23 live_data_runner:159] LiveTick saved
+[I 251222 22:58:24 live_data_runner:121] Tick received: 213500.0
+[I 251222 22:58:24 live_data_runner:159] LiveTick saved
+[I 251222 22:58:25 live_data_runner:121] Tick received: 213452.0
+[I 251222 22:58:25 live_data_runner:159] LiveTick saved
+[I 251222 22:58:26 live_data_runner:121] Tick received: 213430.0
+[I 251222 22:58:26 live_data_runner:159] LiveTick saved
+[I 251222 22:58:27 live_data_runner:121] Tick received: 213426.0
+[I 251222 22:58:27 live_data_runner:159] LiveTick saved
+[I 251222 22:58:28 live_data_runner:121] Tick received: 213426.0
+[I 251222 22:58:28 live_data_runner:159] LiveTick saved
+[I 251222 22:58:29 live_data_runner:121] Tick received: 213440.0
+[I 251222 22:58:29 live_data_runner:159] LiveTick saved
+[I 251222 22:58:31 live_data_runner:121] Tick received: 213416.0
+[I 251222 22:58:31 live_data_runner:159] LiveTick saved
+[I 251222 22:58:32 live_data_runner:121] Tick received: 213417.0
+[I 251222 22:58:32 live_data_runner:159] LiveTick saved
+[I 251222 22:58:34 live_data_runner:121] Tick received: 213424.0
+[I 251222 22:58:34 live_data_runner:159] LiveTick saved
+[I 251222 22:58:35 live_data_runner:121] Tick received: 213400.0
+[I 251222 22:58:35 live_data_runner:159] LiveTick saved
+[I 251222 22:58:36 live_data_runner:121] Tick received: 213406.0
+[I 251222 22:58:36 live_data_runner:159] LiveTick saved
+[I 251222 22:58:37 live_data_runner:121] Tick received: 213394.0
+[I 251222 22:58:37 live_data_runner:159] LiveTick saved
+[I 251222 22:58:38 live_data_runner:121] Tick received: 213388.0
+[I 251222 22:58:38 live_data_runner:159] LiveTick saved
+[I 251222 22:58:39 live_data_runner:121] Tick received: 213388.0
+[I 251222 22:58:39 live_data_runner:159] LiveTick saved
+[I 251222 22:58:39 live_data_runner:121] Tick received: 213388.0
+[I 251222 22:58:39 live_data_runner:159] LiveTick saved
+[I 251222 22:58:40 live_data_runner:121] Tick received: 213353.0
+[I 251222 22:58:40 live_data_runner:159] LiveTick saved
+[I 251222 22:58:42 live_data_runner:121] Tick received: 213369.0
+[I 251222 22:58:42 live_data_runner:159] LiveTick saved
+[I 251222 22:58:43 live_data_runner:121] Tick received: 213371.0
+[I 251222 22:58:43 live_data_runner:159] LiveTick saved
+[I 251222 22:58:44 live_data_runner:121] Tick received: 213400.0
+[I 251222 22:58:44 live_data_runner:159] LiveTick saved
+[I 251222 22:58:46 live_data_runner:121] Tick received: 213400.0
+[I 251222 22:58:46 live_data_runner:159] LiveTick saved
+[I 251222 22:58:47 live_data_runner:121] Tick received: 213400.0
+[I 251222 22:58:47 live_data_runner:159] LiveTick saved
+[I 251222 22:58:47 live_data_runner:121] Tick received: 213409.0
+[I 251222 22:58:47 live_data_runner:121] Tick received: 213409.0
+[I 251222 22:58:47 live_data_runner:159] LiveTick saved
+[I 251222 22:58:47 live_data_runner:159] LiveTick saved
+[I 251222 22:58:49 live_data_runner:121] Tick received: 213409.0
+[I 251222 22:58:49 live_data_runner:159] LiveTick saved
+[I 251222 22:58:50 live_data_runner:121] Tick received: 213409.0
+[I 251222 22:58:50 live_data_runner:159] LiveTick saved
+[I 251222 22:58:51 live_data_runner:121] Tick received: 213409.0
+[I 251222 22:58:51 live_data_runner:159] LiveTick saved
+[I 251222 22:58:52 live_data_runner:121] Tick received: 213403.0
+[I 251222 22:58:52 live_data_runner:159] LiveTick saved
+[I 251222 22:58:54 live_data_runner:121] Tick received: 213441.0
+[I 251222 22:58:54 live_data_runner:159] LiveTick saved
+[I 251222 22:58:55 live_data_runner:121] Tick received: 213415.0
+[I 251222 22:58:55 live_data_runner:159] LiveTick saved
+[I 251222 22:58:56 live_data_runner:121] Tick received: 213415.0
+[I 251222 22:58:56 live_data_runner:159] LiveTick saved
+[I 251222 22:58:57 live_data_runner:121] Tick received: 213415.0
+[I 251222 22:58:57 live_data_runner:159] LiveTick saved
+[I 251222 22:58:58 live_data_runner:121] Tick received: 213393.0
+[I 251222 22:58:58 live_data_runner:159] LiveTick saved
+[I 251222 22:59:00 live_data_runner:121] Tick received: 213358.0
+[I 251222 22:59:00 live_data_runner:159] LiveTick saved
+[I 251222 22:59:01 live_data_runner:121] Tick received: 213358.0
+[I 251222 22:59:01 live_data_runner:159] LiveTick saved
+[I 251222 22:59:02 live_data_runner:121] Tick received: 213374.0
+[I 251222 22:59:02 live_data_runner:159] LiveTick saved
+[I 251222 22:59:03 live_data_runner:121] Tick received: 213374.0
+[I 251222 22:59:03 live_data_runner:159] LiveTick saved
+[I 251222 22:59:04 live_data_runner:121] Tick received: 213374.0
+[I 251222 22:59:04 live_data_runner:159] LiveTick saved
+[I 251222 22:59:05 live_data_runner:121] Tick received: 213374.0
+[I 251222 22:59:05 live_data_runner:159] LiveTick saved
+[I 251222 22:59:07 live_data_runner:121] Tick received: 213281.0
+[I 251222 22:59:07 live_data_runner:159] LiveTick saved
+[I 251222 22:59:08 live_data_runner:121] Tick received: 213267.0
+[I 251222 22:59:08 live_data_runner:159] LiveTick saved
+[I 251222 22:59:09 live_data_runner:121] Tick received: 213257.0
+[I 251222 22:59:09 live_data_runner:159] LiveTick saved
+[I 251222 22:59:11 live_data_runner:121] Tick received: 213269.0
+[I 251222 22:59:11 live_data_runner:159] LiveTick saved
+[I 251222 22:59:12 live_data_runner:121] Tick received: 213269.0
+[I 251222 22:59:12 live_data_runner:159] LiveTick saved
+[I 251222 22:59:12 live_data_runner:121] Tick received: 213284.0
+[I 251222 22:59:12 live_data_runner:159] LiveTick saved
+[I 251222 22:59:14 live_data_runner:121] Tick received: 213260.0
+[I 251222 22:59:14 live_data_runner:159] LiveTick saved
+[I 251222 22:59:15 live_data_runner:121] Tick received: 213250.0
+[I 251222 22:59:15 live_data_runner:159] LiveTick saved
+[I 251222 22:59:16 live_data_runner:121] Tick received: 213269.0
+[I 251222 22:59:16 live_data_runner:159] LiveTick saved
+[I 251222 22:59:17 live_data_runner:121] Tick received: 213282.0
+[I 251222 22:59:17 live_data_runner:159] LiveTick saved
+[I 251222 22:59:18 live_data_runner:121] Tick received: 213315.0
+[I 251222 22:59:18 live_data_runner:159] LiveTick saved
+[I 251222 22:59:19 live_data_runner:121] Tick received: 213315.0
+[I 251222 22:59:19 live_data_runner:159] LiveTick saved
+[I 251222 22:59:20 live_data_runner:121] Tick received: 213315.0
+[I 251222 22:59:20 live_data_runner:159] LiveTick saved
+[I 251222 22:59:21 live_data_runner:121] Tick received: 213315.0
+[I 251222 22:59:21 live_data_runner:159] LiveTick saved
+[I 251222 22:59:22 live_data_runner:121] Tick received: 213285.0
+[I 251222 22:59:22 live_data_runner:159] LiveTick saved
+[I 251222 22:59:22 live_data_runner:121] Tick received: 213285.0
+[I 251222 22:59:22 live_data_runner:159] LiveTick saved
+[I 251222 22:59:23 live_data_runner:121] Tick received: 213285.0
+[I 251222 22:59:23 live_data_runner:159] LiveTick saved
+[I 251222 22:59:24 live_data_runner:121] Tick received: 213262.0
+[I 251222 22:59:24 live_data_runner:159] LiveTick saved
+[I 251222 22:59:26 live_data_runner:121] Tick received: 213262.0
+[I 251222 22:59:26 live_data_runner:159] LiveTick saved
+[I 251222 22:59:27 live_data_runner:121] Tick received: 213262.0
+[I 251222 22:59:27 live_data_runner:159] LiveTick saved
+[I 251222 22:59:28 live_data_runner:121] Tick received: 213262.0
+[I 251222 22:59:28 live_data_runner:159] LiveTick saved
+[I 251222 22:59:29 live_data_runner:121] Tick received: 213286.0
+[I 251222 22:59:29 live_data_runner:159] LiveTick saved
+[I 251222 22:59:30 live_data_runner:121] Tick received: 213322.0
+[I 251222 22:59:30 live_data_runner:159] LiveTick saved
+[I 251222 22:59:31 live_data_runner:121] Tick received: 213296.0
+[I 251222 22:59:31 live_data_runner:159] LiveTick saved
+[I 251222 22:59:32 live_data_runner:121] Tick received: 213296.0
+[I 251222 22:59:32 live_data_runner:159] LiveTick saved
+[I 251222 22:59:33 live_data_runner:121] Tick received: 213293.0
+[I 251222 22:59:33 live_data_runner:159] LiveTick saved
+[I 251222 22:59:34 live_data_runner:121] Tick received: 213281.0
+[I 251222 22:59:34 live_data_runner:159] LiveTick saved
+[I 251222 22:59:36 live_data_runner:121] Tick received: 213289.0
+[I 251222 22:59:36 live_data_runner:159] LiveTick saved
+[I 251222 22:59:37 live_data_runner:121] Tick received: 213285.0
+[I 251222 22:59:37 live_data_runner:159] LiveTick saved
+[I 251222 22:59:38 live_data_runner:121] Tick received: 213276.0
+[I 251222 22:59:38 live_data_runner:159] LiveTick saved
+[I 251222 22:59:39 live_data_runner:121] Tick received: 213276.0
+[I 251222 22:59:39 live_data_runner:159] LiveTick saved
+[I 251222 22:59:39 live_data_runner:121] Tick received: 213289.0
+[I 251222 22:59:39 live_data_runner:159] LiveTick saved
+[I 251222 22:59:41 live_data_runner:121] Tick received: 213258.0
+[I 251222 22:59:41 live_data_runner:159] LiveTick saved
+[I 251222 22:59:42 live_data_runner:121] Tick received: 213258.0
+[I 251222 22:59:42 live_data_runner:159] LiveTick saved
+[I 251222 22:59:43 live_data_runner:121] Tick received: 213300.0
+[I 251222 22:59:43 live_data_runner:159] LiveTick saved
+[I 251222 22:59:45 live_data_runner:121] Tick received: 213271.0
+[I 251222 22:59:45 live_data_runner:159] LiveTick saved
+[I 251222 22:59:47 live_data_runner:121] Tick received: 213239.0
+[I 251222 22:59:47 live_data_runner:159] LiveTick saved
+[I 251222 22:59:48 live_data_runner:121] Tick received: 213239.0
+[I 251222 22:59:48 live_data_runner:159] LiveTick saved
+[I 251222 22:59:48 live_data_runner:121] Tick received: 213251.0
+[I 251222 22:59:48 live_data_runner:159] LiveTick saved
+[I 251222 22:59:50 live_data_runner:121] Tick received: 213285.0
+[I 251222 22:59:50 live_data_runner:159] LiveTick saved
+[I 251222 22:59:51 live_data_runner:121] Tick received: 213250.0
+[I 251222 22:59:51 live_data_runner:159] LiveTick saved
+[I 251222 22:59:52 live_data_runner:121] Tick received: 213267.0
+[I 251222 22:59:52 live_data_runner:159] LiveTick saved
+[I 251222 22:59:53 live_data_runner:121] Tick received: 213247.0
+[I 251222 22:59:53 live_data_runner:159] LiveTick saved
+[I 251222 22:59:54 live_data_runner:121] Tick received: 213250.0
+[I 251222 22:59:54 live_data_runner:159] LiveTick saved
+[I 251222 22:59:55 live_data_runner:121] Tick received: 213250.0
+[I 251222 22:59:55 live_data_runner:159] LiveTick saved
+[I 251222 22:59:56 live_data_runner:121] Tick received: 213279.0
+[I 251222 22:59:56 live_data_runner:159] LiveTick saved
+[I 251222 22:59:58 live_data_runner:121] Tick received: 213291.0
+[I 251222 22:59:58 live_data_runner:159] LiveTick saved
+[I 251222 22:59:59 live_data_runner:121] Tick received: 213275.0
+[I 251222 22:59:59 live_data_runner:159] LiveTick saved
+[I 251222 23:00:00 live_data_runner:121] Tick received: 213268.0
+[I 251222 23:00:00 live_data_runner:159] LiveTick saved
+[I 251222 23:00:01 live_data_runner:121] Tick received: 213268.0
+[I 251222 23:00:01 live_data_runner:159] LiveTick saved
+[I 251222 23:00:01 live_data_runner:121] Tick received: 213240.0
+[I 251222 23:00:01 live_data_runner:159] LiveTick saved
+[I 251222 23:00:02 live_data_runner:121] Tick received: 213222.0
+[I 251222 23:00:02 live_data_runner:159] LiveTick saved
+[I 251222 23:00:04 live_data_runner:121] Tick received: 213268.0
+[I 251222 23:00:04 live_data_runner:159] LiveTick saved
+[I 251222 23:00:05 live_data_runner:121] Tick received: 213273.0
+[I 251222 23:00:05 live_data_runner:159] LiveTick saved
+[I 251222 23:00:16 angel_one:408] AngelOne re-login successful
+[I 251222 23:01:45 angel_one:408] AngelOne re-login successful
+[I 251222 23:01:46 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:01:46 live_data_runner:121] Tick received: 213360.0
+[I 251222 23:01:46 live_data_runner:159] LiveTick saved
+[I 251222 23:01:47 live_data_runner:121] Tick received: 213369.0
+[I 251222 23:01:47 live_data_runner:159] LiveTick saved
+[I 251222 23:01:48 live_data_runner:121] Tick received: 213369.0
+[I 251222 23:01:48 live_data_runner:159] LiveTick saved
+[I 251222 23:01:49 live_data_runner:121] Tick received: 213369.0
+[I 251222 23:01:49 live_data_runner:159] LiveTick saved
+[I 251222 23:01:51 live_data_runner:121] Tick received: 213369.0
+[I 251222 23:01:51 live_data_runner:159] LiveTick saved
+[I 251222 23:01:52 live_data_runner:121] Tick received: 213369.0
+[I 251222 23:01:52 live_data_runner:159] LiveTick saved
+[I 251222 23:01:53 live_data_runner:121] Tick received: 213362.0
+[I 251222 23:01:53 live_data_runner:159] LiveTick saved
+[I 251222 23:01:54 live_data_runner:121] Tick received: 213362.0
+[I 251222 23:01:54 live_data_runner:159] LiveTick saved
+[I 251222 23:01:55 live_data_runner:121] Tick received: 213362.0
+[I 251222 23:01:55 live_data_runner:159] LiveTick saved
+[I 251222 23:01:57 live_data_runner:121] Tick received: 213362.0
+[I 251222 23:01:57 live_data_runner:159] LiveTick saved
+[I 251222 23:01:58 live_data_runner:121] Tick received: 213392.0
+[I 251222 23:01:58 live_data_runner:159] LiveTick saved
+[I 251222 23:01:59 live_data_runner:121] Tick received: 213392.0
+[I 251222 23:01:59 live_data_runner:159] LiveTick saved
+[I 251222 23:02:00 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:02:00 live_data_runner:159] LiveTick saved
+[I 251222 23:02:01 live_data_runner:121] Tick received: 213331.0
+[I 251222 23:02:01 live_data_runner:159] LiveTick saved
+[I 251222 23:02:03 live_data_runner:121] Tick received: 213331.0
+[I 251222 23:02:03 live_data_runner:159] LiveTick saved
+[I 251222 23:02:03 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:03 live_data_runner:159] LiveTick saved
+[I 251222 23:02:04 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:04 live_data_runner:159] LiveTick saved
+[I 251222 23:02:05 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:05 live_data_runner:159] LiveTick saved
+[I 251222 23:02:07 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:07 live_data_runner:159] LiveTick saved
+[I 251222 23:02:08 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:08 live_data_runner:159] LiveTick saved
+[I 251222 23:02:09 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:09 live_data_runner:159] LiveTick saved
+[I 251222 23:02:10 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:10 live_data_runner:159] LiveTick saved
+[I 251222 23:02:10 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:10 live_data_runner:159] LiveTick saved
+[I 251222 23:02:11 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:11 live_data_runner:159] LiveTick saved
+[I 251222 23:02:12 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:12 live_data_runner:159] LiveTick saved
+[I 251222 23:02:13 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:13 live_data_runner:159] LiveTick saved
+[I 251222 23:02:14 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:14 live_data_runner:159] LiveTick saved
+[I 251222 23:02:15 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:15 live_data_runner:159] LiveTick saved
+[I 251222 23:02:17 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:17 live_data_runner:159] LiveTick saved
+[I 251222 23:02:18 live_data_runner:121] Tick received: 213423.0
+[I 251222 23:02:18 live_data_runner:159] LiveTick saved
+[I 251222 23:02:20 live_data_runner:121] Tick received: 213396.0
+[I 251222 23:02:20 live_data_runner:159] LiveTick saved
+[I 251222 23:02:21 live_data_runner:121] Tick received: 213396.0
+[I 251222 23:02:21 live_data_runner:159] LiveTick saved
+[I 251222 23:02:22 live_data_runner:121] Tick received: 213410.0
+[I 251222 23:02:22 live_data_runner:159] LiveTick saved
+[I 251222 23:02:23 live_data_runner:121] Tick received: 213386.0
+[I 251222 23:02:23 live_data_runner:159] LiveTick saved
+[I 251222 23:02:25 live_data_runner:121] Tick received: 213386.0
+[I 251222 23:02:25 live_data_runner:159] LiveTick saved
+[I 251222 23:02:26 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:26 live_data_runner:159] LiveTick saved
+[I 251222 23:02:27 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:27 live_data_runner:159] LiveTick saved
+[I 251222 23:02:28 live_data_runner:121] Tick received: 213419.0
+[I 251222 23:02:28 live_data_runner:159] LiveTick saved
+[I 251222 23:02:29 live_data_runner:121] Tick received: 213419.0
+[I 251222 23:02:29 live_data_runner:159] LiveTick saved
+[I 251222 23:02:30 live_data_runner:121] Tick received: 213419.0
+[I 251222 23:02:30 live_data_runner:159] LiveTick saved
+[I 251222 23:02:31 live_data_runner:121] Tick received: 213419.0
+[I 251222 23:02:31 live_data_runner:159] LiveTick saved
+[I 251222 23:02:32 live_data_runner:121] Tick received: 213419.0
+[I 251222 23:02:32 live_data_runner:159] LiveTick saved
+[I 251222 23:02:33 live_data_runner:121] Tick received: 213419.0
+[I 251222 23:02:33 live_data_runner:121] Tick received: 213419.0
+[I 251222 23:02:33 live_data_runner:159] LiveTick saved
+[I 251222 23:02:33 live_data_runner:159] LiveTick saved
+[I 251222 23:02:34 live_data_runner:121] Tick received: 213419.0
+[I 251222 23:02:34 live_data_runner:159] LiveTick saved
+[I 251222 23:02:35 live_data_runner:121] Tick received: 213399.0
+[I 251222 23:02:35 live_data_runner:159] LiveTick saved
+[I 251222 23:02:36 live_data_runner:121] Tick received: 213362.0
+[I 251222 23:02:36 live_data_runner:159] LiveTick saved
+[I 251222 23:02:37 live_data_runner:121] Tick received: 213362.0
+[I 251222 23:02:38 live_data_runner:159] LiveTick saved
+[I 251222 23:02:39 live_data_runner:121] Tick received: 213362.0
+[I 251222 23:02:39 live_data_runner:159] LiveTick saved
+[I 251222 23:02:40 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:02:40 live_data_runner:159] LiveTick saved
+[I 251222 23:02:41 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:02:41 live_data_runner:159] LiveTick saved
+[I 251222 23:02:42 live_data_runner:121] Tick received: 213327.0
+[I 251222 23:02:42 live_data_runner:159] LiveTick saved
+[I 251222 23:02:43 live_data_runner:121] Tick received: 213327.0
+[I 251222 23:02:43 live_data_runner:159] LiveTick saved
+[I 251222 23:02:45 live_data_runner:121] Tick received: 213327.0
+[I 251222 23:02:45 live_data_runner:159] LiveTick saved
+[I 251222 23:02:46 live_data_runner:121] Tick received: 213327.0
+[I 251222 23:02:46 live_data_runner:159] LiveTick saved
+[I 251222 23:02:48 live_data_runner:121] Tick received: 213327.0
+[I 251222 23:02:48 live_data_runner:159] LiveTick saved
+[I 251222 23:02:49 live_data_runner:121] Tick received: 213327.0
+[I 251222 23:02:49 live_data_runner:159] LiveTick saved
+[I 251222 23:02:50 live_data_runner:121] Tick received: 213327.0
+[I 251222 23:02:50 live_data_runner:159] LiveTick saved
+[I 251222 23:02:52 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:52 live_data_runner:159] LiveTick saved
+[I 251222 23:02:53 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:53 live_data_runner:159] LiveTick saved
+[I 251222 23:02:55 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:55 live_data_runner:159] LiveTick saved
+[I 251222 23:02:56 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:02:56 live_data_runner:159] LiveTick saved
+[I 251222 23:03:03 angel_one:408] AngelOne re-login successful
+[I 251222 23:03:04 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:03:04 live_data_runner:160] LiveTick saved
+[I 251222 23:03:05 live_data_runner:160] LiveTick saved
+[I 251222 23:03:06 live_data_runner:160] LiveTick saved
+[I 251222 23:03:07 live_data_runner:160] LiveTick saved
+[I 251222 23:03:08 live_data_runner:160] LiveTick saved
+[I 251222 23:03:10 live_data_runner:160] LiveTick saved
+[I 251222 23:03:12 live_data_runner:160] LiveTick saved
+[I 251222 23:03:13 live_data_runner:160] LiveTick saved
+[I 251222 23:03:14 live_data_runner:160] LiveTick saved
+[I 251222 23:03:14 live_data_runner:160] LiveTick saved
+[I 251222 23:03:15 live_data_runner:160] LiveTick saved
+[I 251222 23:03:16 live_data_runner:160] LiveTick saved
+[I 251222 23:03:17 live_data_runner:160] LiveTick saved
+[I 251222 23:03:18 live_data_runner:160] LiveTick saved
+[I 251222 23:03:20 live_data_runner:160] LiveTick saved
+[I 251222 23:03:21 live_data_runner:160] LiveTick saved
+[I 251222 23:03:22 live_data_runner:160] LiveTick saved
+[I 251222 23:03:23 live_data_runner:160] LiveTick saved
+[I 251222 23:03:25 live_data_runner:160] LiveTick saved
+[I 251222 23:03:26 live_data_runner:160] LiveTick saved
+[I 251222 23:03:27 live_data_runner:160] LiveTick saved
+[I 251222 23:03:28 live_data_runner:160] LiveTick saved
+[I 251222 23:03:29 live_data_runner:160] LiveTick saved
+[I 251222 23:03:31 live_data_runner:160] LiveTick saved
+[I 251222 23:03:32 live_data_runner:160] LiveTick saved
+[I 251222 23:03:33 live_data_runner:160] LiveTick saved
+[I 251222 23:03:41 angel_one:408] AngelOne re-login successful
+[I 251222 23:03:42 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:03:42 live_data_runner:121] Tick received: 213327.0
+[I 251222 23:03:42 live_data_runner:160] LiveTick saved
+[I 251222 23:03:42 live_data_runner:121] Tick received: 213327.0
+[I 251222 23:03:42 live_data_runner:160] LiveTick saved
+[I 251222 23:03:44 live_data_runner:121] Tick received: 213327.0
+[I 251222 23:03:44 live_data_runner:160] LiveTick saved
+[I 251222 23:03:45 live_data_runner:121] Tick received: 213304.0
+[I 251222 23:03:45 live_data_runner:160] LiveTick saved
+[I 251222 23:03:46 live_data_runner:121] Tick received: 213288.0
+[I 251222 23:03:46 live_data_runner:160] LiveTick saved
+[I 251222 23:03:47 live_data_runner:121] Tick received: 213272.0
+[I 251222 23:03:47 live_data_runner:160] LiveTick saved
+[I 251222 23:03:48 live_data_runner:121] Tick received: 213272.0
+[I 251222 23:03:48 live_data_runner:160] LiveTick saved
+[I 251222 23:03:49 live_data_runner:121] Tick received: 213223.0
+[I 251222 23:03:49 live_data_runner:160] LiveTick saved
+[I 251222 23:03:51 live_data_runner:121] Tick received: 213205.0
+[I 251222 23:03:51 live_data_runner:160] LiveTick saved
+[I 251222 23:03:52 live_data_runner:121] Tick received: 213205.0
+[I 251222 23:03:52 live_data_runner:160] LiveTick saved
+[I 251222 23:03:53 live_data_runner:121] Tick received: 213230.0
+[I 251222 23:03:53 live_data_runner:160] LiveTick saved
+[I 251222 23:03:54 live_data_runner:121] Tick received: 213270.0
+[I 251222 23:03:54 live_data_runner:160] LiveTick saved
+[I 251222 23:03:55 live_data_runner:121] Tick received: 213270.0
+[I 251222 23:03:55 live_data_runner:160] LiveTick saved
+[I 251222 23:03:55 live_data_runner:121] Tick received: 213235.0
+[I 251222 23:03:56 live_data_runner:160] LiveTick saved
+[I 251222 23:03:57 live_data_runner:121] Tick received: 213235.0
+[I 251222 23:03:57 live_data_runner:160] LiveTick saved
+[I 251222 23:03:58 live_data_runner:121] Tick received: 213267.0
+[I 251222 23:03:58 live_data_runner:160] LiveTick saved
+[I 251222 23:04:00 live_data_runner:121] Tick received: 213271.0
+[I 251222 23:04:00 live_data_runner:160] LiveTick saved
+[I 251222 23:04:01 live_data_runner:121] Tick received: 213205.0
+[I 251222 23:04:01 live_data_runner:160] LiveTick saved
+[I 251222 23:04:01 live_data_runner:121] Tick received: 213253.0
+[I 251222 23:04:01 live_data_runner:160] LiveTick saved
+[I 251222 23:04:02 live_data_runner:121] Tick received: 213253.0
+[I 251222 23:04:02 live_data_runner:160] LiveTick saved
+[I 251222 23:04:04 live_data_runner:121] Tick received: 213239.0
+[I 251222 23:04:04 live_data_runner:160] LiveTick saved
+[I 251222 23:04:05 live_data_runner:121] Tick received: 213235.0
+[I 251222 23:04:05 live_data_runner:160] LiveTick saved
+[I 251222 23:04:06 live_data_runner:121] Tick received: 213235.0
+[I 251222 23:04:06 live_data_runner:160] LiveTick saved
+[I 251222 23:04:07 live_data_runner:121] Tick received: 213235.0
+[I 251222 23:04:07 live_data_runner:160] LiveTick saved
+[I 251222 23:04:09 live_data_runner:121] Tick received: 213239.0
+[I 251222 23:04:09 live_data_runner:160] LiveTick saved
+[I 251222 23:04:10 live_data_runner:121] Tick received: 213239.0
+[I 251222 23:04:10 live_data_runner:160] LiveTick saved
+[I 251222 23:04:11 live_data_runner:121] Tick received: 213235.0
+[I 251222 23:04:11 live_data_runner:160] LiveTick saved
+[I 251222 23:04:12 live_data_runner:121] Tick received: 213230.0
+[I 251222 23:04:12 live_data_runner:160] LiveTick saved
+[I 251222 23:04:13 live_data_runner:121] Tick received: 213201.0
+[I 251222 23:04:13 live_data_runner:160] LiveTick saved
+[I 251222 23:04:14 live_data_runner:121] Tick received: 213195.0
+[I 251222 23:04:14 live_data_runner:160] LiveTick saved
+[I 251222 23:04:15 live_data_runner:121] Tick received: 213162.0
+[I 251222 23:04:15 live_data_runner:160] LiveTick saved
+[I 251222 23:04:16 live_data_runner:121] Tick received: 213162.0
+[I 251222 23:04:16 live_data_runner:160] LiveTick saved
+[I 251222 23:04:17 live_data_runner:121] Tick received: 213177.0
+[I 251222 23:04:17 live_data_runner:160] LiveTick saved
+[I 251222 23:04:18 live_data_runner:121] Tick received: 213150.0
+[I 251222 23:04:18 live_data_runner:160] LiveTick saved
+[I 251222 23:04:19 live_data_runner:121] Tick received: 213160.0
+[I 251222 23:04:19 live_data_runner:160] LiveTick saved
+[I 251222 23:04:21 live_data_runner:121] Tick received: 213193.0
+[I 251222 23:04:21 live_data_runner:160] LiveTick saved
+[I 251222 23:04:22 live_data_runner:121] Tick received: 213171.0
+[I 251222 23:04:22 live_data_runner:160] LiveTick saved
+[I 251222 23:04:23 live_data_runner:121] Tick received: 213171.0
+[I 251222 23:04:23 live_data_runner:160] LiveTick saved
+[I 251222 23:04:25 live_data_runner:121] Tick received: 213140.0
+[I 251222 23:04:25 live_data_runner:160] LiveTick saved
+[I 251222 23:04:27 live_data_runner:121] Tick received: 213140.0
+[I 251222 23:04:27 live_data_runner:160] LiveTick saved
+[I 251222 23:04:28 live_data_runner:121] Tick received: 213140.0
+[I 251222 23:04:28 live_data_runner:160] LiveTick saved
+[I 251222 23:04:29 live_data_runner:121] Tick received: 213101.0
+[I 251222 23:04:29 live_data_runner:160] LiveTick saved
+[I 251222 23:04:30 live_data_runner:121] Tick received: 213118.0
+[I 251222 23:04:30 live_data_runner:160] LiveTick saved
+[I 251222 23:04:31 live_data_runner:121] Tick received: 213101.0
+[I 251222 23:04:31 live_data_runner:160] LiveTick saved
+[I 251222 23:04:31 live_data_runner:121] Tick received: 213126.0
+[I 251222 23:04:31 live_data_runner:160] LiveTick saved
+[I 251222 23:04:33 live_data_runner:121] Tick received: 213119.0
+[I 251222 23:04:33 live_data_runner:160] LiveTick saved
+[I 251222 23:04:34 live_data_runner:121] Tick received: 213119.0
+[I 251222 23:04:34 live_data_runner:160] LiveTick saved
+[I 251222 23:04:36 live_data_runner:121] Tick received: 213140.0
+[I 251222 23:04:36 live_data_runner:160] LiveTick saved
+[I 251222 23:04:38 live_data_runner:121] Tick received: 213140.0
+[I 251222 23:04:38 live_data_runner:160] LiveTick saved
+[I 251222 23:04:39 live_data_runner:121] Tick received: 213121.0
+[I 251222 23:04:39 live_data_runner:160] LiveTick saved
+[I 251222 23:04:40 live_data_runner:121] Tick received: 213150.0
+[I 251222 23:04:40 live_data_runner:160] LiveTick saved
+[I 251222 23:04:41 live_data_runner:121] Tick received: 213119.0
+[I 251222 23:04:41 live_data_runner:160] LiveTick saved
+[I 251222 23:04:42 live_data_runner:121] Tick received: 213115.0
+[I 251222 23:04:42 live_data_runner:160] LiveTick saved
+[I 251222 23:04:43 live_data_runner:121] Tick received: 213128.0
+[I 251222 23:04:43 live_data_runner:160] LiveTick saved
+[I 251222 23:04:45 live_data_runner:121] Tick received: 213131.0
+[I 251222 23:04:45 live_data_runner:160] LiveTick saved
+[I 251222 23:04:46 live_data_runner:121] Tick received: 213145.0
+[I 251222 23:04:46 live_data_runner:160] LiveTick saved
+[I 251222 23:04:47 live_data_runner:121] Tick received: 213145.0
+[I 251222 23:04:47 live_data_runner:160] LiveTick saved
+[I 251222 23:04:48 live_data_runner:121] Tick received: 213145.0
+[I 251222 23:04:48 live_data_runner:160] LiveTick saved
+[I 251222 23:04:50 live_data_runner:121] Tick received: 213145.0
+[I 251222 23:04:50 live_data_runner:160] LiveTick saved
+[I 251222 23:04:51 live_data_runner:121] Tick received: 213105.0
+[I 251222 23:04:51 live_data_runner:160] LiveTick saved
+[I 251222 23:04:52 live_data_runner:121] Tick received: 213135.0
+[I 251222 23:04:52 live_data_runner:160] LiveTick saved
+[I 251222 23:04:53 live_data_runner:121] Tick received: 213130.0
+[I 251222 23:04:53 live_data_runner:121] Tick received: 213130.0
+[I 251222 23:04:53 live_data_runner:160] LiveTick saved
+[I 251222 23:04:53 live_data_runner:160] LiveTick saved
+[I 251222 23:04:54 live_data_runner:121] Tick received: 213130.0
+[I 251222 23:04:54 live_data_runner:160] LiveTick saved
+[I 251222 23:04:55 live_data_runner:121] Tick received: 213122.0
+[I 251222 23:04:55 live_data_runner:160] LiveTick saved
+[I 251222 23:04:57 live_data_runner:121] Tick received: 213090.0
+[I 251222 23:04:57 live_data_runner:160] LiveTick saved
+[I 251222 23:04:58 live_data_runner:121] Tick received: 213090.0
+[I 251222 23:04:58 live_data_runner:160] LiveTick saved
+[I 251222 23:04:59 live_data_runner:121] Tick received: 213065.0
+[I 251222 23:04:59 live_data_runner:160] LiveTick saved
+[I 251222 23:05:00 live_data_runner:121] Tick received: 213065.0
+[I 251222 23:05:00 live_data_runner:160] LiveTick saved
+[I 251222 23:05:00 live_data_runner:121] Tick received: 213051.0
+[I 251222 23:05:00 live_data_runner:160] LiveTick saved
+[I 251222 23:05:01 live_data_runner:121] Tick received: 213096.0
+[I 251222 23:05:01 live_data_runner:160] LiveTick saved
+[I 251222 23:05:02 live_data_runner:121] Tick received: 213031.0
+[I 251222 23:05:02 live_data_runner:160] LiveTick saved
+[I 251222 23:05:03 live_data_runner:121] Tick received: 213034.0
+[I 251222 23:05:03 live_data_runner:160] LiveTick saved
+[I 251222 23:05:04 live_data_runner:121] Tick received: 213087.0
+[I 251222 23:05:04 live_data_runner:160] LiveTick saved
+[I 251222 23:05:06 live_data_runner:121] Tick received: 213062.0
+[I 251222 23:05:06 live_data_runner:160] LiveTick saved
+[I 251222 23:05:07 live_data_runner:121] Tick received: 213062.0
+[I 251222 23:05:07 live_data_runner:160] LiveTick saved
+[I 251222 23:05:07 live_data_runner:121] Tick received: 213062.0
+[I 251222 23:05:07 live_data_runner:160] LiveTick saved
+[I 251222 23:05:08 live_data_runner:121] Tick received: 213062.0
+[I 251222 23:05:08 live_data_runner:160] LiveTick saved
+[I 251222 23:05:10 live_data_runner:121] Tick received: 213085.0
+[I 251222 23:05:10 live_data_runner:160] LiveTick saved
+[I 251222 23:05:11 live_data_runner:121] Tick received: 213101.0
+[I 251222 23:05:11 live_data_runner:160] LiveTick saved
+[I 251222 23:05:12 live_data_runner:121] Tick received: 213101.0
+[I 251222 23:05:12 live_data_runner:160] LiveTick saved
+[I 251222 23:05:13 live_data_runner:121] Tick received: 213115.0
+[I 251222 23:05:13 live_data_runner:160] LiveTick saved
+[I 251222 23:05:14 live_data_runner:121] Tick received: 213115.0
+[I 251222 23:05:14 live_data_runner:160] LiveTick saved
+[I 251222 23:05:14 live_data_runner:121] Tick received: 213109.0
+[I 251222 23:05:14 live_data_runner:160] LiveTick saved
+[I 251222 23:05:15 live_data_runner:121] Tick received: 213109.0
+[I 251222 23:05:15 live_data_runner:160] LiveTick saved
+[I 251222 23:05:16 live_data_runner:121] Tick received: 213109.0
+[I 251222 23:05:16 live_data_runner:160] LiveTick saved
+[I 251222 23:05:18 live_data_runner:121] Tick received: 213150.0
+[I 251222 23:05:18 live_data_runner:160] LiveTick saved
+[I 251222 23:05:19 live_data_runner:121] Tick received: 213150.0
+[I 251222 23:05:19 live_data_runner:160] LiveTick saved
+[I 251222 23:05:19 live_data_runner:121] Tick received: 213105.0
+[I 251222 23:05:19 live_data_runner:160] LiveTick saved
+[I 251222 23:05:20 live_data_runner:121] Tick received: 213107.0
+[I 251222 23:05:20 live_data_runner:160] LiveTick saved
+[I 251222 23:05:21 live_data_runner:121] Tick received: 213119.0
+[I 251222 23:05:21 live_data_runner:160] LiveTick saved
+[I 251222 23:05:23 live_data_runner:121] Tick received: 213119.0
+[I 251222 23:05:23 live_data_runner:160] LiveTick saved
+[I 251222 23:05:24 live_data_runner:121] Tick received: 213128.0
+[I 251222 23:05:24 live_data_runner:160] LiveTick saved
+[I 251222 23:05:26 live_data_runner:121] Tick received: 213128.0
+[I 251222 23:05:26 live_data_runner:160] LiveTick saved
+[I 251222 23:05:27 live_data_runner:121] Tick received: 213119.0
+[I 251222 23:05:27 live_data_runner:160] LiveTick saved
+[I 251222 23:05:27 live_data_runner:121] Tick received: 213145.0
+[I 251222 23:05:27 live_data_runner:160] LiveTick saved
+[I 251222 23:05:29 live_data_runner:121] Tick received: 213120.0
+[I 251222 23:05:29 live_data_runner:160] LiveTick saved
+[I 251222 23:05:30 live_data_runner:121] Tick received: 213120.0
+[I 251222 23:05:30 live_data_runner:160] LiveTick saved
+[I 251222 23:05:30 live_data_runner:121] Tick received: 213120.0
+[I 251222 23:05:30 live_data_runner:160] LiveTick saved
+[I 251222 23:05:31 live_data_runner:121] Tick received: 213150.0
+[I 251222 23:05:31 live_data_runner:160] LiveTick saved
+[I 251222 23:05:32 live_data_runner:121] Tick received: 213150.0
+[I 251222 23:05:32 live_data_runner:160] LiveTick saved
+[I 251222 23:05:33 live_data_runner:121] Tick received: 213150.0
+[I 251222 23:05:33 live_data_runner:160] LiveTick saved
+[I 251222 23:05:34 live_data_runner:121] Tick received: 213150.0
+[I 251222 23:05:34 live_data_runner:160] LiveTick saved
+[I 251222 23:05:36 live_data_runner:121] Tick received: 213175.0
+[I 251222 23:05:36 live_data_runner:160] LiveTick saved
+[I 251222 23:05:36 live_data_runner:121] Tick received: 213164.0
+[I 251222 23:05:36 live_data_runner:160] LiveTick saved
+[I 251222 23:05:38 live_data_runner:121] Tick received: 213190.0
+[I 251222 23:05:38 live_data_runner:160] LiveTick saved
+[I 251222 23:05:39 live_data_runner:121] Tick received: 213190.0
+[I 251222 23:05:39 live_data_runner:160] LiveTick saved
+[I 251222 23:05:40 live_data_runner:121] Tick received: 213190.0
+[I 251222 23:05:40 live_data_runner:160] LiveTick saved
+[I 251222 23:05:41 live_data_runner:121] Tick received: 213190.0
+[I 251222 23:05:41 live_data_runner:160] LiveTick saved
+[I 251222 23:05:42 live_data_runner:121] Tick received: 213190.0
+[I 251222 23:05:42 live_data_runner:160] LiveTick saved
+[I 251222 23:05:43 live_data_runner:121] Tick received: 213164.0
+[I 251222 23:05:43 live_data_runner:160] LiveTick saved
+[I 251222 23:05:45 live_data_runner:121] Tick received: 213164.0
+[I 251222 23:05:45 live_data_runner:160] LiveTick saved
+[I 251222 23:05:46 live_data_runner:121] Tick received: 213197.0
+[I 251222 23:05:46 live_data_runner:160] LiveTick saved
+[I 251222 23:05:47 live_data_runner:121] Tick received: 213179.0
+[I 251222 23:05:47 live_data_runner:160] LiveTick saved
+[I 251222 23:05:48 live_data_runner:121] Tick received: 213179.0
+[I 251222 23:05:48 live_data_runner:160] LiveTick saved
+[I 251222 23:05:50 live_data_runner:121] Tick received: 213179.0
+[I 251222 23:05:50 live_data_runner:160] LiveTick saved
+[I 251222 23:05:51 live_data_runner:121] Tick received: 213179.0
+[I 251222 23:05:51 live_data_runner:160] LiveTick saved
+[I 251222 23:05:52 live_data_runner:121] Tick received: 213179.0
+[I 251222 23:05:52 live_data_runner:160] LiveTick saved
+[I 251222 23:05:53 live_data_runner:121] Tick received: 213179.0
+[I 251222 23:05:53 live_data_runner:160] LiveTick saved
+[I 251222 23:05:55 live_data_runner:121] Tick received: 213179.0
+[I 251222 23:05:55 live_data_runner:160] LiveTick saved
+[I 251222 23:05:56 live_data_runner:121] Tick received: 213203.0
+[I 251222 23:05:56 live_data_runner:160] LiveTick saved
+[I 251222 23:05:58 live_data_runner:121] Tick received: 213203.0
+[I 251222 23:05:58 live_data_runner:160] LiveTick saved
+[I 251222 23:05:59 live_data_runner:121] Tick received: 213276.0
+[I 251222 23:05:59 live_data_runner:160] LiveTick saved
+[I 251222 23:06:00 live_data_runner:121] Tick received: 213276.0
+[I 251222 23:06:00 live_data_runner:160] LiveTick saved
+[I 251222 23:06:02 live_data_runner:121] Tick received: 213325.0
+[I 251222 23:06:02 live_data_runner:160] LiveTick saved
+[I 251222 23:06:03 live_data_runner:121] Tick received: 213279.0
+[I 251222 23:06:03 live_data_runner:160] LiveTick saved
+[I 251222 23:06:04 live_data_runner:121] Tick received: 213279.0
+[I 251222 23:06:04 live_data_runner:160] LiveTick saved
+[I 251222 23:06:06 live_data_runner:121] Tick received: 213317.0
+[I 251222 23:06:06 live_data_runner:160] LiveTick saved
+[I 251222 23:06:07 live_data_runner:121] Tick received: 213317.0
+[I 251222 23:06:07 live_data_runner:160] LiveTick saved
+[I 251222 23:06:07 live_data_runner:121] Tick received: 213317.0
+[I 251222 23:06:07 live_data_runner:160] LiveTick saved
+[I 251222 23:06:08 live_data_runner:121] Tick received: 213317.0
+[I 251222 23:06:08 live_data_runner:160] LiveTick saved
+[I 251222 23:06:10 live_data_runner:121] Tick received: 213285.0
+[I 251222 23:06:10 live_data_runner:160] LiveTick saved
+[I 251222 23:06:11 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:11 live_data_runner:160] LiveTick saved
+[I 251222 23:06:11 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:11 live_data_runner:160] LiveTick saved
+[I 251222 23:06:12 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:12 live_data_runner:160] LiveTick saved
+[I 251222 23:06:14 live_data_runner:121] Tick received: 213276.0
+[I 251222 23:06:14 live_data_runner:160] LiveTick saved
+[I 251222 23:06:15 live_data_runner:121] Tick received: 213254.0
+[I 251222 23:06:15 live_data_runner:160] LiveTick saved
+[I 251222 23:06:16 live_data_runner:121] Tick received: 213254.0
+[I 251222 23:06:16 live_data_runner:160] LiveTick saved
+[I 251222 23:06:17 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:17 live_data_runner:160] LiveTick saved
+[I 251222 23:06:18 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:18 live_data_runner:160] LiveTick saved
+[I 251222 23:06:18 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:18 live_data_runner:160] LiveTick saved
+[I 251222 23:06:20 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:20 live_data_runner:160] LiveTick saved
+[I 251222 23:06:21 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:21 live_data_runner:160] LiveTick saved
+[I 251222 23:06:23 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:23 live_data_runner:160] LiveTick saved
+[I 251222 23:06:24 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:24 live_data_runner:160] LiveTick saved
+[I 251222 23:06:26 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:26 live_data_runner:160] LiveTick saved
+[I 251222 23:06:28 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:28 live_data_runner:160] LiveTick saved
+[I 251222 23:06:29 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:29 live_data_runner:160] LiveTick saved
+[I 251222 23:06:30 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:30 live_data_runner:160] LiveTick saved
+[I 251222 23:06:31 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:31 live_data_runner:160] LiveTick saved
+[I 251222 23:06:32 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:32 live_data_runner:160] LiveTick saved
+[I 251222 23:06:33 live_data_runner:121] Tick received: 213311.0
+[I 251222 23:06:33 live_data_runner:160] LiveTick saved
+[I 251222 23:06:34 live_data_runner:121] Tick received: 213311.0
+[I 251222 23:06:34 live_data_runner:160] LiveTick saved
+[I 251222 23:06:35 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:35 live_data_runner:160] LiveTick saved
+[I 251222 23:06:37 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:37 live_data_runner:160] LiveTick saved
+[I 251222 23:06:38 live_data_runner:121] Tick received: 213300.0
+[I 251222 23:06:38 live_data_runner:160] LiveTick saved
+[E 251222 23:06:51 angel_one:417] AngelOne login failed: HTTPSConnectionPool(host='apiconnect.angelbroking.com', port=443): Read timed out. (read timeout=7)
+[E 251222 23:06:51 live_data_runner:87] AngelOne login failed
+[I 251222 23:07:23 angel_one:408] AngelOne re-login successful
+[I 251222 23:07:24 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:07:24 live_data_runner:121] Tick received: 213400.0
+[I 251222 23:07:24 live_data_runner:160] LiveTick saved
+[I 251222 23:07:25 live_data_runner:121] Tick received: 213429.0
+[I 251222 23:07:25 live_data_runner:160] LiveTick saved
+[I 251222 23:07:26 live_data_runner:121] Tick received: 213429.0
+[I 251222 23:07:26 live_data_runner:160] LiveTick saved
+[I 251222 23:07:27 live_data_runner:121] Tick received: 213429.0
+[I 251222 23:07:27 live_data_runner:160] LiveTick saved
+[I 251222 23:07:27 live_data_runner:121] Tick received: 213396.0
+[I 251222 23:07:27 live_data_runner:160] LiveTick saved
+[I 251222 23:07:29 live_data_runner:121] Tick received: 213396.0
+[I 251222 23:07:29 live_data_runner:160] LiveTick saved
+[I 251222 23:07:30 live_data_runner:121] Tick received: 213396.0
+[I 251222 23:07:30 live_data_runner:160] LiveTick saved
+[I 251222 23:07:38 angel_one:408] AngelOne re-login successful
+[I 251222 23:07:39 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:07:40 live_data_runner:121] Tick received: 213416.0
+[I 251222 23:07:40 live_data_runner:160] LiveTick saved
+[I 251222 23:07:40 live_data_runner:121] Tick received: 213416.0
+[I 251222 23:07:40 live_data_runner:160] LiveTick saved
+[I 251222 23:07:41 live_data_runner:121] Tick received: 213405.0
+[I 251222 23:07:41 live_data_runner:160] LiveTick saved
+[I 251222 23:07:42 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:07:42 live_data_runner:160] LiveTick saved
+[I 251222 23:07:43 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:07:43 live_data_runner:160] LiveTick saved
+[I 251222 23:07:45 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:07:45 live_data_runner:160] LiveTick saved
+[I 251222 23:07:47 live_data_runner:121] Tick received: 213396.0
+[I 251222 23:07:47 live_data_runner:160] LiveTick saved
+[I 251222 23:07:47 live_data_runner:121] Tick received: 213408.0
+[I 251222 23:07:47 live_data_runner:160] LiveTick saved
+[I 251222 23:07:48 live_data_runner:121] Tick received: 213408.0
+[I 251222 23:07:48 live_data_runner:160] LiveTick saved
+[I 251222 23:07:49 live_data_runner:121] Tick received: 213408.0
+[I 251222 23:07:49 live_data_runner:160] LiveTick saved
+[I 251222 23:07:49 live_data_runner:121] Tick received: 213408.0
+[I 251222 23:07:49 live_data_runner:160] LiveTick saved
+[I 251222 23:07:51 live_data_runner:121] Tick received: 213408.0
+[I 251222 23:07:51 live_data_runner:160] LiveTick saved
+[I 251222 23:07:53 live_data_runner:121] Tick received: 213399.0
+[I 251222 23:07:53 live_data_runner:121] Tick received: 213399.0
+[I 251222 23:07:53 live_data_runner:160] LiveTick saved
+[I 251222 23:07:53 live_data_runner:160] LiveTick saved
+[I 251222 23:07:55 live_data_runner:121] Tick received: 213399.0
+[I 251222 23:07:55 live_data_runner:160] LiveTick saved
+[I 251222 23:07:56 live_data_runner:121] Tick received: 213399.0
+[I 251222 23:07:56 live_data_runner:160] LiveTick saved
+[I 251222 23:07:57 live_data_runner:121] Tick received: 213361.0
+[I 251222 23:07:57 live_data_runner:160] LiveTick saved
+[I 251222 23:07:57 live_data_runner:121] Tick received: 213346.0
+[I 251222 23:07:57 live_data_runner:160] LiveTick saved
+[I 251222 23:07:59 live_data_runner:121] Tick received: 213346.0
+[I 251222 23:07:59 live_data_runner:160] LiveTick saved
+[I 251222 23:08:02 live_data_runner:121] Tick received: 213353.0
+[I 251222 23:08:02 live_data_runner:160] LiveTick saved
+[I 251222 23:08:02 live_data_runner:121] Tick received: 213397.0
+[I 251222 23:08:02 live_data_runner:160] LiveTick saved
+[I 251222 23:08:04 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:08:04 live_data_runner:160] LiveTick saved
+[I 251222 23:08:05 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:08:05 live_data_runner:160] LiveTick saved
+[I 251222 23:08:06 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:08:06 live_data_runner:160] LiveTick saved
+[I 251222 23:08:07 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:08:07 live_data_runner:160] LiveTick saved
+[I 251222 23:08:08 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:08:08 live_data_runner:160] LiveTick saved
+[I 251222 23:08:09 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:08:09 live_data_runner:160] LiveTick saved
+[I 251222 23:08:09 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:08:09 live_data_runner:160] LiveTick saved
+[I 251222 23:08:11 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:08:11 live_data_runner:160] LiveTick saved
+[I 251222 23:08:12 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:08:12 live_data_runner:160] LiveTick saved
+[I 251222 23:08:13 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:13 live_data_runner:160] LiveTick saved
+[I 251222 23:08:14 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:14 live_data_runner:160] LiveTick saved
+[I 251222 23:08:15 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:15 live_data_runner:160] LiveTick saved
+[I 251222 23:08:16 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:16 live_data_runner:160] LiveTick saved
+[I 251222 23:08:18 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:18 live_data_runner:160] LiveTick saved
+[I 251222 23:08:19 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:19 live_data_runner:160] LiveTick saved
+[I 251222 23:08:21 live_data_runner:121] Tick received: 213388.0
+[I 251222 23:08:21 live_data_runner:160] LiveTick saved
+[I 251222 23:08:23 live_data_runner:121] Tick received: 213346.0
+[I 251222 23:08:23 live_data_runner:160] LiveTick saved
+[I 251222 23:08:24 live_data_runner:121] Tick received: 213351.0
+[I 251222 23:08:24 live_data_runner:160] LiveTick saved
+[I 251222 23:08:26 live_data_runner:121] Tick received: 213351.0
+[I 251222 23:08:26 live_data_runner:160] LiveTick saved
+[I 251222 23:08:27 live_data_runner:121] Tick received: 213351.0
+[I 251222 23:08:27 live_data_runner:160] LiveTick saved
+[I 251222 23:08:28 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:28 live_data_runner:160] LiveTick saved
+[I 251222 23:08:29 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:29 live_data_runner:160] LiveTick saved
+[I 251222 23:08:30 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:30 live_data_runner:160] LiveTick saved
+[I 251222 23:08:31 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:31 live_data_runner:160] LiveTick saved
+[I 251222 23:08:33 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:33 live_data_runner:160] LiveTick saved
+[I 251222 23:08:33 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:33 live_data_runner:160] LiveTick saved
+[I 251222 23:08:34 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:34 live_data_runner:160] LiveTick saved
+[I 251222 23:08:35 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:35 live_data_runner:160] LiveTick saved
+[I 251222 23:08:37 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:37 live_data_runner:160] LiveTick saved
+[I 251222 23:08:38 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:38 live_data_runner:160] LiveTick saved
+[I 251222 23:08:41 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:41 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:41 live_data_runner:160] LiveTick saved
+[I 251222 23:08:41 live_data_runner:160] LiveTick saved
+[I 251222 23:08:41 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:41 live_data_runner:160] LiveTick saved
+[I 251222 23:08:43 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:43 live_data_runner:160] LiveTick saved
+[I 251222 23:08:45 live_data_runner:121] Tick received: 213318.0
+[I 251222 23:08:45 live_data_runner:160] LiveTick saved
+[I 251222 23:08:48 live_data_runner:121] Tick received: 213318.0
+[I 251222 23:08:48 live_data_runner:121] Tick received: 213318.0
+[I 251222 23:08:48 live_data_runner:160] LiveTick saved
+[I 251222 23:08:48 live_data_runner:160] LiveTick saved
+[I 251222 23:08:48 live_data_runner:121] Tick received: 213350.0
+[I 251222 23:08:48 live_data_runner:160] LiveTick saved
+[I 251222 23:08:52 live_data_runner:121] Tick received: 213371.0
+[I 251222 23:08:52 live_data_runner:160] LiveTick saved
+[I 251222 23:08:54 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:08:54 live_data_runner:160] LiveTick saved
+[I 251222 23:08:55 live_data_runner:121] Tick received: 213329.0
+[I 251222 23:08:55 live_data_runner:160] LiveTick saved
+[I 251222 23:08:56 live_data_runner:121] Tick received: 213329.0
+[I 251222 23:08:56 live_data_runner:160] LiveTick saved
+[I 251222 23:08:57 live_data_runner:121] Tick received: 213391.0
+[I 251222 23:08:57 live_data_runner:160] LiveTick saved
+[I 251222 23:08:58 live_data_runner:121] Tick received: 213391.0
+[I 251222 23:08:58 live_data_runner:160] LiveTick saved
+[I 251222 23:08:59 live_data_runner:121] Tick received: 213391.0
+[I 251222 23:08:59 live_data_runner:160] LiveTick saved
+[I 251222 23:09:00 live_data_runner:121] Tick received: 213340.0
+[I 251222 23:09:00 live_data_runner:160] LiveTick saved
+[I 251222 23:09:02 live_data_runner:121] Tick received: 213340.0
+[I 251222 23:09:02 live_data_runner:160] LiveTick saved
+[I 251222 23:09:04 live_data_runner:121] Tick received: 213330.0
+[I 251222 23:09:04 live_data_runner:160] LiveTick saved
+[I 251222 23:09:06 live_data_runner:121] Tick received: 213330.0
+[I 251222 23:09:06 live_data_runner:121] Tick received: 213330.0
+[I 251222 23:09:06 live_data_runner:160] LiveTick saved
+[I 251222 23:09:06 live_data_runner:160] LiveTick saved
+[I 251222 23:09:07 live_data_runner:121] Tick received: 213330.0
+[I 251222 23:09:07 live_data_runner:160] LiveTick saved
+[I 251222 23:09:09 live_data_runner:121] Tick received: 213330.0
+[I 251222 23:09:09 live_data_runner:160] LiveTick saved
+[I 251222 23:09:10 live_data_runner:121] Tick received: 213377.0
+[I 251222 23:09:10 live_data_runner:160] LiveTick saved
+[I 251222 23:09:11 live_data_runner:121] Tick received: 213377.0
+[I 251222 23:09:11 live_data_runner:160] LiveTick saved
+[I 251222 23:09:13 live_data_runner:121] Tick received: 213377.0
+[I 251222 23:09:13 live_data_runner:160] LiveTick saved
+[I 251222 23:09:14 live_data_runner:121] Tick received: 213337.0
+[I 251222 23:09:14 live_data_runner:160] LiveTick saved
+[I 251222 23:09:15 live_data_runner:121] Tick received: 213337.0
+[I 251222 23:09:15 live_data_runner:160] LiveTick saved
+[I 251222 23:09:16 live_data_runner:121] Tick received: 213376.0
+[I 251222 23:09:16 live_data_runner:160] LiveTick saved
+[I 251222 23:09:18 live_data_runner:121] Tick received: 213376.0
+[I 251222 23:09:18 live_data_runner:160] LiveTick saved
+[I 251222 23:09:19 live_data_runner:121] Tick received: 213376.0
+[I 251222 23:09:19 live_data_runner:160] LiveTick saved
+[I 251222 23:09:20 live_data_runner:121] Tick received: 213376.0
+[I 251222 23:09:20 live_data_runner:160] LiveTick saved
+[I 251222 23:09:21 live_data_runner:121] Tick received: 213376.0
+[I 251222 23:09:21 live_data_runner:160] LiveTick saved
+[I 251222 23:09:24 live_data_runner:121] Tick received: 213376.0
+[I 251222 23:09:24 live_data_runner:121] Tick received: 213376.0
+[I 251222 23:09:24 live_data_runner:160] LiveTick saved
+[I 251222 23:09:24 live_data_runner:160] LiveTick saved
+[I 251222 23:09:26 live_data_runner:121] Tick received: 213338.0
+[I 251222 23:09:26 live_data_runner:160] LiveTick saved
+[I 251222 23:09:26 live_data_runner:121] Tick received: 213338.0
+[I 251222 23:09:26 live_data_runner:160] LiveTick saved
+[I 251222 23:09:28 live_data_runner:121] Tick received: 213338.0
+[I 251222 23:09:28 live_data_runner:160] LiveTick saved
+[I 251222 23:09:29 live_data_runner:121] Tick received: 213338.0
+[I 251222 23:09:29 live_data_runner:160] LiveTick saved
+[I 251222 23:09:31 live_data_runner:121] Tick received: 213338.0
+[I 251222 23:09:31 live_data_runner:160] LiveTick saved
+[I 251222 23:09:33 live_data_runner:121] Tick received: 213363.0
+[I 251222 23:09:33 live_data_runner:160] LiveTick saved
+[I 251222 23:09:35 live_data_runner:121] Tick received: 213371.0
+[I 251222 23:09:35 live_data_runner:121] Tick received: 213371.0
+[I 251222 23:09:35 live_data_runner:160] LiveTick saved
+[I 251222 23:09:35 live_data_runner:160] LiveTick saved
+[I 251222 23:09:36 live_data_runner:121] Tick received: 213371.0
+[I 251222 23:09:36 live_data_runner:160] LiveTick saved
+[I 251222 23:09:39 live_data_runner:121] Tick received: 213364.0
+[I 251222 23:09:39 live_data_runner:160] LiveTick saved
+[I 251222 23:09:39 live_data_runner:121] Tick received: 213364.0
+[I 251222 23:09:39 live_data_runner:160] LiveTick saved
+[I 251222 23:09:40 live_data_runner:121] Tick received: 213364.0
+[I 251222 23:09:40 live_data_runner:160] LiveTick saved
+[I 251222 23:09:41 live_data_runner:121] Tick received: 213364.0
+[I 251222 23:09:41 live_data_runner:160] LiveTick saved
+[I 251222 23:09:44 live_data_runner:121] Tick received: 213364.0
+[I 251222 23:09:44 live_data_runner:160] LiveTick saved
+[I 251222 23:09:44 live_data_runner:121] Tick received: 213364.0
+[I 251222 23:09:44 live_data_runner:160] LiveTick saved
+[I 251222 23:09:45 live_data_runner:121] Tick received: 213364.0
+[I 251222 23:09:45 live_data_runner:160] LiveTick saved
+[I 251222 23:09:46 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:09:46 live_data_runner:160] LiveTick saved
+[I 251222 23:09:47 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:09:47 live_data_runner:160] LiveTick saved
+[I 251222 23:09:49 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:09:49 live_data_runner:160] LiveTick saved
+[I 251222 23:09:50 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:09:50 live_data_runner:160] LiveTick saved
+[I 251222 23:09:53 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:09:53 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:09:53 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:09:53 live_data_runner:160] LiveTick saved
+[I 251222 23:09:53 live_data_runner:160] LiveTick saved
+[I 251222 23:09:53 live_data_runner:160] LiveTick saved
+[I 251222 23:09:54 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:09:54 live_data_runner:160] LiveTick saved
+[I 251222 23:09:56 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:09:56 live_data_runner:160] LiveTick saved
+[I 251222 23:09:57 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:09:57 live_data_runner:160] LiveTick saved
+[I 251222 23:09:58 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:09:58 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:09:58 live_data_runner:160] LiveTick saved
+[I 251222 23:09:58 live_data_runner:160] LiveTick saved
+[I 251222 23:10:01 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:10:01 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:10:01 live_data_runner:160] LiveTick saved
+[I 251222 23:10:01 live_data_runner:160] LiveTick saved
+[I 251222 23:10:02 live_data_runner:121] Tick received: 213370.0
+[I 251222 23:10:02 live_data_runner:160] LiveTick saved
+[I 251222 23:10:03 live_data_runner:121] Tick received: 213380.0
+[I 251222 23:10:03 live_data_runner:160] LiveTick saved
+[I 251222 23:10:04 live_data_runner:121] Tick received: 213380.0
+[I 251222 23:10:04 live_data_runner:160] LiveTick saved
+[I 251222 23:10:06 live_data_runner:121] Tick received: 213380.0
+[I 251222 23:10:06 live_data_runner:160] LiveTick saved
+[I 251222 23:10:07 live_data_runner:121] Tick received: 213380.0
+[I 251222 23:10:07 live_data_runner:160] LiveTick saved
+[I 251222 23:10:08 live_data_runner:121] Tick received: 213399.0
+[I 251222 23:10:08 live_data_runner:160] LiveTick saved
+[I 251222 23:10:11 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:10:11 live_data_runner:160] LiveTick saved
+[I 251222 23:10:11 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:10:11 live_data_runner:160] LiveTick saved
+[I 251222 23:10:13 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:10:13 live_data_runner:160] LiveTick saved
+[I 251222 23:10:14 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:10:14 live_data_runner:160] LiveTick saved
+[I 251222 23:10:15 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:10:15 live_data_runner:160] LiveTick saved
+[I 251222 23:10:16 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:10:16 live_data_runner:160] LiveTick saved
+[I 251222 23:10:17 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:10:17 live_data_runner:160] LiveTick saved
+[I 251222 23:10:19 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:10:19 live_data_runner:160] LiveTick saved
+[I 251222 23:10:20 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:10:20 live_data_runner:160] LiveTick saved
+[I 251222 23:10:34 angel_one:408] AngelOne re-login successful
+[I 251222 23:10:34 live_data_runner:319] AngelOne login successful
+[I 251222 23:10:36 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:10:36 live_data_runner:121] Tick received: 213416.0
+[I 251222 23:10:36 live_data_runner:160] LiveTick saved
+[I 251222 23:10:39 live_data_runner:121] Tick received: 213416.0
+[I 251222 23:10:39 live_data_runner:121] Tick received: 213416.0
+[I 251222 23:10:39 live_data_runner:160] LiveTick saved
+[I 251222 23:10:39 live_data_runner:160] LiveTick saved
+[I 251222 23:10:40 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:10:40 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:10:40 live_data_runner:160] LiveTick saved
+[I 251222 23:10:40 live_data_runner:160] LiveTick saved
+[I 251222 23:10:42 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:10:42 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:10:42 live_data_runner:160] LiveTick saved
+[I 251222 23:10:42 live_data_runner:160] LiveTick saved
+[I 251222 23:10:43 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:10:43 live_data_runner:160] LiveTick saved
+[I 251222 23:10:45 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:10:45 live_data_runner:160] LiveTick saved
+[I 251222 23:10:47 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:10:47 live_data_runner:160] LiveTick saved
+[I 251222 23:10:48 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:10:48 live_data_runner:160] LiveTick saved
+[I 251222 23:10:49 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:10:49 live_data_runner:160] LiveTick saved
+[I 251222 23:10:51 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:10:51 live_data_runner:160] LiveTick saved
+[I 251222 23:10:52 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:10:52 live_data_runner:160] LiveTick saved
+[I 251222 23:10:53 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:10:53 live_data_runner:160] LiveTick saved
+[I 251222 23:10:54 live_data_runner:121] Tick received: 213488.0
+[I 251222 23:10:54 live_data_runner:160] LiveTick saved
+[I 251222 23:10:57 live_data_runner:121] Tick received: 213476.0
+[I 251222 23:10:57 live_data_runner:121] Tick received: 213470.0
+[I 251222 23:10:57 live_data_runner:160] LiveTick saved
+[I 251222 23:10:57 live_data_runner:160] LiveTick saved
+[I 251222 23:10:57 live_data_runner:121] Tick received: 213470.0
+[I 251222 23:10:57 live_data_runner:160] LiveTick saved
+[I 251222 23:10:57 live_data_runner:121] Tick received: 213470.0
+[I 251222 23:10:57 live_data_runner:160] LiveTick saved
+[I 251222 23:10:58 live_data_runner:121] Tick received: 213455.0
+[I 251222 23:10:58 live_data_runner:160] LiveTick saved
+[I 251222 23:11:00 live_data_runner:121] Tick received: 213455.0
+[I 251222 23:11:00 live_data_runner:160] LiveTick saved
+[I 251222 23:11:00 live_data_runner:121] Tick received: 213455.0
+[I 251222 23:11:00 live_data_runner:160] LiveTick saved
+[I 251222 23:11:01 live_data_runner:121] Tick received: 213455.0
+[I 251222 23:11:01 live_data_runner:160] LiveTick saved
+[I 251222 23:11:03 live_data_runner:121] Tick received: 213455.0
+[I 251222 23:11:03 live_data_runner:160] LiveTick saved
+[I 251222 23:11:03 live_data_runner:121] Tick received: 213455.0
+[I 251222 23:11:03 live_data_runner:160] LiveTick saved
+[I 251222 23:11:06 live_data_runner:121] Tick received: 213455.0
+[I 251222 23:11:06 live_data_runner:160] LiveTick saved
+[I 251222 23:11:21 angel_one:408] AngelOne re-login successful
+[I 251222 23:11:23 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:11:25 live_data_runner:121] Tick received: 213401.0
+[I 251222 23:11:25 live_data_runner:121] Tick received: 213401.0
+[I 251222 23:11:25 live_data_runner:160] LiveTick saved
+[I 251222 23:11:25 live_data_runner:160] LiveTick saved
+[I 251222 23:11:26 live_data_runner:121] Tick received: 213405.0
+[I 251222 23:11:26 live_data_runner:160] LiveTick saved
+[I 251222 23:11:28 live_data_runner:121] Tick received: 213405.0
+[I 251222 23:11:28 live_data_runner:160] LiveTick saved
+[I 251222 23:11:29 live_data_runner:121] Tick received: 213405.0
+[I 251222 23:11:29 live_data_runner:160] LiveTick saved
+[I 251222 23:11:31 live_data_runner:121] Tick received: 213405.0
+[I 251222 23:11:31 live_data_runner:160] LiveTick saved
+[I 251222 23:11:32 live_data_runner:121] Tick received: 213438.0
+[I 251222 23:11:32 live_data_runner:160] LiveTick saved
+[I 251222 23:11:35 live_data_runner:121] Tick received: 213410.0
+[I 251222 23:11:35 live_data_runner:121] Tick received: 213410.0
+[I 251222 23:11:35 live_data_runner:160] LiveTick saved
+[I 251222 23:11:35 live_data_runner:160] LiveTick saved
+[I 251222 23:11:36 live_data_runner:121] Tick received: 213410.0
+[I 251222 23:11:36 live_data_runner:160] LiveTick saved
+[I 251222 23:11:38 live_data_runner:121] Tick received: 213410.0
+[I 251222 23:11:38 live_data_runner:160] LiveTick saved
+[I 251222 23:11:40 live_data_runner:121] Tick received: 213410.0
+[I 251222 23:11:40 live_data_runner:160] LiveTick saved
+[I 251222 23:11:42 live_data_runner:121] Tick received: 213439.0
+[I 251222 23:11:42 live_data_runner:121] Tick received: 213439.0
+[I 251222 23:11:42 live_data_runner:160] LiveTick saved
+[I 251222 23:11:43 live_data_runner:160] LiveTick saved
+[I 251222 23:11:43 live_data_runner:121] Tick received: 213439.0
+[I 251222 23:11:43 live_data_runner:160] LiveTick saved
+[I 251222 23:11:44 live_data_runner:121] Tick received: 213416.0
+[I 251222 23:11:44 live_data_runner:160] LiveTick saved
+[I 251222 23:11:47 live_data_runner:121] Tick received: 213439.0
+[I 251222 23:11:47 live_data_runner:160] LiveTick saved
+[I 251222 23:11:50 live_data_runner:121] Tick received: 213439.0
+[I 251222 23:11:50 live_data_runner:121] Tick received: 213439.0
+[I 251222 23:11:50 live_data_runner:160] LiveTick saved
+[I 251222 23:11:50 live_data_runner:160] LiveTick saved
+[I 251222 23:11:51 live_data_runner:121] Tick received: 213439.0
+[I 251222 23:11:51 live_data_runner:160] LiveTick saved
+[I 251222 23:11:52 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:11:52 live_data_runner:160] LiveTick saved
+[I 251222 23:11:53 live_data_runner:121] Tick received: 213400.0
+[I 251222 23:11:53 live_data_runner:160] LiveTick saved
+[I 251222 23:11:56 live_data_runner:121] Tick received: 213395.0
+[I 251222 23:11:56 live_data_runner:121] Tick received: 213395.0
+[I 251222 23:11:56 live_data_runner:160] LiveTick saved
+[I 251222 23:11:56 live_data_runner:160] LiveTick saved
+[I 251222 23:11:56 live_data_runner:121] Tick received: 213417.0
+[I 251222 23:11:56 live_data_runner:160] LiveTick saved
+[I 251222 23:11:57 live_data_runner:121] Tick received: 213417.0
+[I 251222 23:11:57 live_data_runner:160] LiveTick saved
+[I 251222 23:11:58 live_data_runner:121] Tick received: 213417.0
+[I 251222 23:11:58 live_data_runner:160] LiveTick saved
+[I 251222 23:11:59 live_data_runner:121] Tick received: 213405.0
+[I 251222 23:11:59 live_data_runner:160] LiveTick saved
+[I 251222 23:12:01 live_data_runner:121] Tick received: 213405.0
+[I 251222 23:12:01 live_data_runner:160] LiveTick saved
+[I 251222 23:12:03 live_data_runner:121] Tick received: 213405.0
+[I 251222 23:12:03 live_data_runner:121] Tick received: 213405.0
+[I 251222 23:12:03 live_data_runner:160] LiveTick saved
+[I 251222 23:12:03 live_data_runner:160] LiveTick saved
+[I 251222 23:12:04 live_data_runner:121] Tick received: 213394.0
+[I 251222 23:12:04 live_data_runner:160] LiveTick saved
+[I 251222 23:12:05 live_data_runner:121] Tick received: 213394.0
+[I 251222 23:12:05 live_data_runner:160] LiveTick saved
+[I 251222 23:12:07 live_data_runner:121] Tick received: 213391.0
+[I 251222 23:12:07 live_data_runner:160] LiveTick saved
+[I 251222 23:12:08 live_data_runner:121] Tick received: 213391.0
+[I 251222 23:12:08 live_data_runner:160] LiveTick saved
+[I 251222 23:12:10 live_data_runner:121] Tick received: 213391.0
+[I 251222 23:12:10 live_data_runner:160] LiveTick saved
+[I 251222 23:12:11 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:12:11 live_data_runner:160] LiveTick saved
+[I 251222 23:12:13 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:12:13 live_data_runner:160] LiveTick saved
+[I 251222 23:12:14 live_data_runner:121] Tick received: 213441.0
+[I 251222 23:12:14 live_data_runner:160] LiveTick saved
+[I 251222 23:12:15 live_data_runner:121] Tick received: 213440.0
+[I 251222 23:12:15 live_data_runner:160] LiveTick saved
+[I 251222 23:12:17 live_data_runner:121] Tick received: 213440.0
+[I 251222 23:12:17 live_data_runner:160] LiveTick saved
+[I 251222 23:12:18 live_data_runner:121] Tick received: 213418.0
+[I 251222 23:12:18 live_data_runner:160] LiveTick saved
+[I 251222 23:12:19 live_data_runner:121] Tick received: 213418.0
+[I 251222 23:12:19 live_data_runner:160] LiveTick saved
+[I 251222 23:12:26 angel_one:408] AngelOne re-login successful
+[I 251222 23:12:28 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:12:28 live_data_runner:121] Tick received: 213418.0
+[I 251222 23:12:28 live_data_runner:121] Tick received: 213418.0
+[I 251222 23:12:28 live_data_runner:160] LiveTick saved
+[I 251222 23:12:28 live_data_runner:160] LiveTick saved
+[I 251222 23:12:30 live_data_runner:121] Tick received: 213418.0
+[I 251222 23:12:30 live_data_runner:160] LiveTick saved
+[I 251222 23:12:31 live_data_runner:121] Tick received: 213418.0
+[I 251222 23:12:31 live_data_runner:160] LiveTick saved
+[I 251222 23:12:32 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:12:32 live_data_runner:160] LiveTick saved
+[I 251222 23:12:34 live_data_runner:121] Tick received: 213422.0
+[I 251222 23:12:34 live_data_runner:160] LiveTick saved
+[I 251222 23:12:34 live_data_runner:121] Tick received: 213422.0
+[I 251222 23:12:34 live_data_runner:160] LiveTick saved
+[I 251222 23:12:36 live_data_runner:121] Tick received: 213422.0
+[I 251222 23:12:36 live_data_runner:160] LiveTick saved
+[I 251222 23:12:38 live_data_runner:121] Tick received: 213429.0
+[I 251222 23:12:38 live_data_runner:160] LiveTick saved
+[I 251222 23:12:39 live_data_runner:121] Tick received: 213429.0
+[I 251222 23:12:39 live_data_runner:160] LiveTick saved
+[I 251222 23:12:40 live_data_runner:121] Tick received: 213429.0
+[I 251222 23:12:40 live_data_runner:160] LiveTick saved
+[I 251222 23:12:41 live_data_runner:121] Tick received: 213429.0
+[I 251222 23:12:41 live_data_runner:160] LiveTick saved
+[I 251222 23:12:51 angel_one:408] AngelOne re-login successful
+[I 251222 23:12:51 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:12:52 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:12:52 live_data_runner:160] LiveTick saved
+[I 251222 23:12:52 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:12:52 live_data_runner:160] LiveTick saved
+[I 251222 23:12:54 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:12:54 live_data_runner:160] LiveTick saved
+[I 251222 23:12:55 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:12:55 live_data_runner:160] LiveTick saved
+[I 251222 23:12:56 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:12:56 live_data_runner:160] LiveTick saved
+[I 251222 23:12:57 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:12:57 live_data_runner:160] LiveTick saved
+[I 251222 23:12:59 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:12:59 live_data_runner:160] LiveTick saved
+[I 251222 23:13:01 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:13:01 live_data_runner:160] LiveTick saved
+[I 251222 23:13:01 live_data_runner:121] Tick received: 213464.0
+[I 251222 23:13:01 live_data_runner:160] LiveTick saved
+[I 251222 23:13:03 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:13:03 live_data_runner:160] LiveTick saved
+[I 251222 23:13:04 live_data_runner:121] Tick received: 213372.0
+[I 251222 23:13:04 live_data_runner:160] LiveTick saved
+[I 251222 23:13:05 live_data_runner:121] Tick received: 213372.0
+[I 251222 23:13:05 live_data_runner:160] LiveTick saved
+[I 251222 23:13:06 live_data_runner:121] Tick received: 213372.0
+[I 251222 23:13:06 live_data_runner:160] LiveTick saved
+[I 251222 23:13:07 live_data_runner:121] Tick received: 213372.0
+[I 251222 23:13:07 live_data_runner:160] LiveTick saved
+[I 251222 23:13:08 live_data_runner:121] Tick received: 213404.0
+[I 251222 23:13:08 live_data_runner:160] LiveTick saved
+[I 251222 23:13:09 live_data_runner:121] Tick received: 213404.0
+[I 251222 23:13:09 live_data_runner:160] LiveTick saved
+[I 251222 23:13:10 live_data_runner:121] Tick received: 213404.0
+[I 251222 23:13:10 live_data_runner:160] LiveTick saved
+[I 251222 23:13:11 live_data_runner:121] Tick received: 213404.0
+[I 251222 23:13:11 live_data_runner:160] LiveTick saved
+[I 251222 23:13:13 live_data_runner:121] Tick received: 213404.0
+[I 251222 23:13:13 live_data_runner:160] LiveTick saved
+[I 251222 23:13:14 live_data_runner:121] Tick received: 213415.0
+[I 251222 23:13:14 live_data_runner:160] LiveTick saved
+[I 251222 23:13:16 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:16 live_data_runner:160] LiveTick saved
+[I 251222 23:13:17 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:17 live_data_runner:160] LiveTick saved
+[I 251222 23:13:18 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:18 live_data_runner:160] LiveTick saved
+[I 251222 23:13:20 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:20 live_data_runner:160] LiveTick saved
+[I 251222 23:13:21 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:21 live_data_runner:160] LiveTick saved
+[I 251222 23:13:22 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:22 live_data_runner:160] LiveTick saved
+[I 251222 23:13:24 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:24 live_data_runner:160] LiveTick saved
+[I 251222 23:13:25 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:25 live_data_runner:160] LiveTick saved
+[I 251222 23:13:26 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:26 live_data_runner:160] LiveTick saved
+[I 251222 23:13:27 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:27 live_data_runner:160] LiveTick saved
+[I 251222 23:13:29 live_data_runner:121] Tick received: 213400.0
+[I 251222 23:13:29 live_data_runner:160] LiveTick saved
+[I 251222 23:13:30 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:13:30 live_data_runner:160] LiveTick saved
+[I 251222 23:13:32 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:13:32 live_data_runner:160] LiveTick saved
+[I 251222 23:13:32 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:13:32 live_data_runner:160] LiveTick saved
+[I 251222 23:13:34 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:13:34 live_data_runner:160] LiveTick saved
+[I 251222 23:13:36 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:13:36 live_data_runner:160] LiveTick saved
+[I 251222 23:13:37 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:37 live_data_runner:160] LiveTick saved
+[I 251222 23:13:39 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:39 live_data_runner:160] LiveTick saved
+[I 251222 23:13:40 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:40 live_data_runner:160] LiveTick saved
+[I 251222 23:13:41 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:41 live_data_runner:160] LiveTick saved
+[I 251222 23:13:43 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:43 live_data_runner:160] LiveTick saved
+[I 251222 23:13:44 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:44 live_data_runner:160] LiveTick saved
+[I 251222 23:13:45 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:45 live_data_runner:160] LiveTick saved
+[I 251222 23:13:46 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:46 live_data_runner:160] LiveTick saved
+[I 251222 23:13:47 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:47 live_data_runner:160] LiveTick saved
+[I 251222 23:13:48 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:13:48 live_data_runner:160] LiveTick saved
+[I 251222 23:13:48 live_data_runner:121] Tick received: 213406.0
+[I 251222 23:13:48 live_data_runner:160] LiveTick saved
+[I 251222 23:13:50 live_data_runner:121] Tick received: 213406.0
+[I 251222 23:13:50 live_data_runner:160] LiveTick saved
+[I 251222 23:13:51 live_data_runner:121] Tick received: 213406.0
+[I 251222 23:13:51 live_data_runner:160] LiveTick saved
+[I 251222 23:13:52 live_data_runner:121] Tick received: 213406.0
+[I 251222 23:13:52 live_data_runner:160] LiveTick saved
+[I 251222 23:13:54 live_data_runner:121] Tick received: 213406.0
+[I 251222 23:13:54 live_data_runner:160] LiveTick saved
+[I 251222 23:13:55 live_data_runner:121] Tick received: 213382.0
+[I 251222 23:13:55 live_data_runner:160] LiveTick saved
+[I 251222 23:13:57 live_data_runner:121] Tick received: 213364.0
+[I 251222 23:13:57 live_data_runner:160] LiveTick saved
+[I 251222 23:13:58 live_data_runner:121] Tick received: 213364.0
+[I 251222 23:13:58 live_data_runner:160] LiveTick saved
+[I 251222 23:14:08 angel_one:408] AngelOne re-login successful
+[I 251222 23:14:09 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:14:09 live_data_runner:121] Tick received: 213400.0
+[I 251222 23:14:09 live_data_runner:174] Tick received: 213400.0
+[I 251222 23:14:09 live_data_runner:160] LiveTick saved
+[I 251222 23:14:10 live_data_runner:121] Tick received: 213400.0
+[I 251222 23:14:10 live_data_runner:174] Tick received: 213400.0
+[I 251222 23:14:10 live_data_runner:160] LiveTick saved
+[I 251222 23:14:11 live_data_runner:121] Tick received: 213418.0
+[I 251222 23:14:11 live_data_runner:174] Tick received: 213418.0
+[I 251222 23:14:11 live_data_runner:160] LiveTick saved
+[I 251222 23:14:12 live_data_runner:121] Tick received: 213418.0
+[I 251222 23:14:12 live_data_runner:174] Tick received: 213418.0
+[I 251222 23:14:12 live_data_runner:160] LiveTick saved
+[I 251222 23:14:12 live_data_runner:121] Tick received: 213402.0
+[I 251222 23:14:12 live_data_runner:174] Tick received: 213402.0
+[I 251222 23:14:12 live_data_runner:160] LiveTick saved
+[I 251222 23:14:13 live_data_runner:121] Tick received: 213420.0
+[I 251222 23:14:13 live_data_runner:174] Tick received: 213420.0
+[I 251222 23:14:13 live_data_runner:160] LiveTick saved
+[I 251222 23:14:14 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:14:14 live_data_runner:174] Tick received: 213398.0
+[I 251222 23:14:14 live_data_runner:160] LiveTick saved
+[I 251222 23:14:15 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:14:15 live_data_runner:174] Tick received: 213398.0
+[I 251222 23:14:15 live_data_runner:160] LiveTick saved
+[I 251222 23:14:16 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:14:16 live_data_runner:174] Tick received: 213398.0
+[I 251222 23:14:16 live_data_runner:160] LiveTick saved
+[I 251222 23:14:18 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:14:18 live_data_runner:174] Tick received: 213398.0
+[I 251222 23:14:18 live_data_runner:160] LiveTick saved
+[I 251222 23:14:19 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:14:19 live_data_runner:174] Tick received: 213398.0
+[I 251222 23:14:19 live_data_runner:160] LiveTick saved
+[I 251222 23:14:20 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:14:20 live_data_runner:174] Tick received: 213398.0
+[I 251222 23:14:20 live_data_runner:160] LiveTick saved
+[I 251222 23:14:22 live_data_runner:121] Tick received: 213398.0
+[I 251222 23:14:22 live_data_runner:174] Tick received: 213398.0
+[I 251222 23:14:22 live_data_runner:160] LiveTick saved
+[I 251222 23:14:23 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:23 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:23 live_data_runner:160] LiveTick saved
+[I 251222 23:14:24 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:24 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:24 live_data_runner:160] LiveTick saved
+[I 251222 23:14:25 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:25 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:25 live_data_runner:160] LiveTick saved
+[I 251222 23:14:27 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:27 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:27 live_data_runner:160] LiveTick saved
+[I 251222 23:14:27 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:27 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:27 live_data_runner:160] LiveTick saved
+[I 251222 23:14:29 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:29 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:29 live_data_runner:160] LiveTick saved
+[I 251222 23:14:30 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:30 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:30 live_data_runner:160] LiveTick saved
+[I 251222 23:14:31 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:31 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:31 live_data_runner:160] LiveTick saved
+[I 251222 23:14:32 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:32 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:32 live_data_runner:160] LiveTick saved
+[I 251222 23:14:32 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:32 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:32 live_data_runner:160] LiveTick saved
+[I 251222 23:14:32 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:32 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:32 live_data_runner:160] LiveTick saved
+[I 251222 23:14:34 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:34 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:34 live_data_runner:160] LiveTick saved
+[I 251222 23:14:35 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:35 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:35 live_data_runner:160] LiveTick saved
+[I 251222 23:14:36 live_data_runner:121] Tick received: 213434.0
+[I 251222 23:14:36 live_data_runner:174] Tick received: 213434.0
+[I 251222 23:14:36 live_data_runner:160] LiveTick saved
+[I 251222 23:14:38 live_data_runner:121] Tick received: 213438.0
+[I 251222 23:14:38 live_data_runner:174] Tick received: 213438.0
+[I 251222 23:14:38 live_data_runner:160] LiveTick saved
+[I 251222 23:14:40 live_data_runner:121] Tick received: 213438.0
+[I 251222 23:14:40 live_data_runner:174] Tick received: 213438.0
+[I 251222 23:14:40 live_data_runner:160] LiveTick saved
+[I 251222 23:14:41 live_data_runner:121] Tick received: 213438.0
+[I 251222 23:14:41 live_data_runner:174] Tick received: 213438.0
+[I 251222 23:14:41 live_data_runner:160] LiveTick saved
+[I 251222 23:14:50 angel_one:408] AngelOne re-login successful
+[I 251222 23:14:51 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:14:52 live_data_runner:121] Tick received: 213438.0
+[I 251222 23:14:52 live_data_runner:174] Tick received: 213438.0
+[I 251222 23:14:52 live_data_runner:160] LiveTick saved
+[I 251222 23:14:52 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:52 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:52 live_data_runner:160] LiveTick saved
+[I 251222 23:14:53 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:53 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:53 live_data_runner:160] LiveTick saved
+[I 251222 23:14:55 live_data_runner:121] Tick received: 213421.0
+[I 251222 23:14:55 live_data_runner:174] Tick received: 213421.0
+[I 251222 23:14:55 live_data_runner:160] LiveTick saved
+[I 251222 23:14:58 live_data_runner:121] Tick received: 213436.0
+[I 251222 23:14:58 live_data_runner:174] Tick received: 213436.0
+[I 251222 23:14:58 live_data_runner:160] LiveTick saved
+[I 251222 23:14:59 live_data_runner:121] Tick received: 213396.0
+[I 251222 23:14:59 live_data_runner:174] Tick received: 213396.0
+[I 251222 23:14:59 live_data_runner:160] LiveTick saved
+[I 251222 23:15:01 live_data_runner:121] Tick received: 213396.0
+[I 251222 23:15:01 live_data_runner:174] Tick received: 213396.0
+[I 251222 23:15:01 live_data_runner:160] LiveTick saved
+[I 251222 23:15:02 live_data_runner:121] Tick received: 213396.0
+[I 251222 23:15:02 live_data_runner:174] Tick received: 213396.0
+[I 251222 23:15:02 live_data_runner:160] LiveTick saved
+[I 251222 23:15:02 live_data_runner:218] LiveCandle saved
+[I 251222 23:15:02 live_data_runner:224] [LIVE CANDLE] 2025-12-22 23:14:00+05:30 O:213438.0 H:213438.0 L:213396.0 C:213396.0
+[I 251222 23:15:06 live_data_runner:121] Tick received: 213396.0
+[I 251222 23:15:06 live_data_runner:121] Tick received: 213396.0
+[I 251222 23:15:06 live_data_runner:174] Tick received: 213396.0
+[I 251222 23:15:06 live_data_runner:174] Tick received: 213396.0
+[I 251222 23:15:06 live_data_runner:160] LiveTick saved
+[I 251222 23:15:06 live_data_runner:160] LiveTick saved
+[I 251222 23:15:06 live_data_runner:121] Tick received: 213396.0
+[I 251222 23:15:06 live_data_runner:121] Tick received: 213396.0
+[I 251222 23:15:06 live_data_runner:174] Tick received: 213396.0
+[I 251222 23:15:06 live_data_runner:174] Tick received: 213396.0
+[I 251222 23:15:06 live_data_runner:160] LiveTick saved
+[I 251222 23:15:06 live_data_runner:160] LiveTick saved
+[I 251222 23:15:07 live_data_runner:121] Tick received: 213430.0
+[I 251222 23:15:07 live_data_runner:174] Tick received: 213430.0
+[I 251222 23:15:07 live_data_runner:160] LiveTick saved
+[I 251222 23:15:08 live_data_runner:121] Tick received: 213430.0
+[I 251222 23:15:08 live_data_runner:174] Tick received: 213430.0
+[I 251222 23:15:08 live_data_runner:160] LiveTick saved
+[I 251222 23:15:09 live_data_runner:121] Tick received: 213430.0
+[I 251222 23:15:09 live_data_runner:174] Tick received: 213430.0
+[I 251222 23:15:09 live_data_runner:160] LiveTick saved
+[I 251222 23:15:09 live_data_runner:121] Tick received: 213430.0
+[I 251222 23:15:09 live_data_runner:174] Tick received: 213430.0
+[I 251222 23:15:09 live_data_runner:160] LiveTick saved
+[I 251222 23:15:11 live_data_runner:121] Tick received: 213450.0
+[I 251222 23:15:11 live_data_runner:174] Tick received: 213450.0
+[I 251222 23:15:11 live_data_runner:160] LiveTick saved
+[I 251222 23:15:13 live_data_runner:121] Tick received: 213437.0
+[I 251222 23:15:13 live_data_runner:174] Tick received: 213437.0
+[I 251222 23:15:13 live_data_runner:160] LiveTick saved
+[I 251222 23:15:15 live_data_runner:121] Tick received: 213437.0
+[I 251222 23:15:15 live_data_runner:174] Tick received: 213437.0
+[I 251222 23:15:15 live_data_runner:160] LiveTick saved
+[I 251222 23:15:17 live_data_runner:121] Tick received: 213425.0
+[I 251222 23:15:17 live_data_runner:121] Tick received: 213425.0
+[I 251222 23:15:17 live_data_runner:174] Tick received: 213425.0
+[I 251222 23:15:17 live_data_runner:174] Tick received: 213425.0
+[I 251222 23:15:17 live_data_runner:160] LiveTick saved
+[I 251222 23:15:17 live_data_runner:160] LiveTick saved
+[I 251222 23:15:18 live_data_runner:121] Tick received: 213440.0
+[I 251222 23:15:18 live_data_runner:174] Tick received: 213440.0
+[I 251222 23:15:18 live_data_runner:160] LiveTick saved
+[I 251222 23:15:19 live_data_runner:121] Tick received: 213440.0
+[I 251222 23:15:19 live_data_runner:174] Tick received: 213440.0
+[I 251222 23:15:19 live_data_runner:160] LiveTick saved
+[I 251222 23:15:20 live_data_runner:121] Tick received: 213464.0
+[I 251222 23:15:20 live_data_runner:174] Tick received: 213464.0
+[I 251222 23:15:20 live_data_runner:160] LiveTick saved
+[I 251222 23:15:21 live_data_runner:121] Tick received: 213448.0
+[I 251222 23:15:21 live_data_runner:174] Tick received: 213448.0
+[I 251222 23:15:21 live_data_runner:160] LiveTick saved
+[I 251222 23:15:23 live_data_runner:121] Tick received: 213481.0
+[I 251222 23:15:23 live_data_runner:174] Tick received: 213481.0
+[I 251222 23:15:23 live_data_runner:160] LiveTick saved
+[I 251222 23:15:24 live_data_runner:121] Tick received: 213488.0
+[I 251222 23:15:24 live_data_runner:174] Tick received: 213488.0
+[I 251222 23:15:24 live_data_runner:160] LiveTick saved
+[I 251222 23:15:25 live_data_runner:121] Tick received: 213488.0
+[I 251222 23:15:25 live_data_runner:174] Tick received: 213488.0
+[I 251222 23:15:25 live_data_runner:160] LiveTick saved
+[I 251222 23:15:26 live_data_runner:121] Tick received: 213496.0
+[I 251222 23:15:26 live_data_runner:174] Tick received: 213496.0
+[I 251222 23:15:26 live_data_runner:160] LiveTick saved
+[I 251222 23:15:28 live_data_runner:121] Tick received: 213496.0
+[I 251222 23:15:28 live_data_runner:174] Tick received: 213496.0
+[I 251222 23:15:28 live_data_runner:160] LiveTick saved
+[I 251222 23:15:30 live_data_runner:121] Tick received: 213496.0
+[I 251222 23:15:30 live_data_runner:174] Tick received: 213496.0
+[I 251222 23:15:30 live_data_runner:160] LiveTick saved
+[I 251222 23:15:31 live_data_runner:121] Tick received: 213496.0
+[I 251222 23:15:31 live_data_runner:174] Tick received: 213496.0
+[I 251222 23:15:31 live_data_runner:160] LiveTick saved
+[I 251222 23:15:33 live_data_runner:121] Tick received: 213496.0
+[I 251222 23:15:33 live_data_runner:174] Tick received: 213496.0
+[I 251222 23:15:33 live_data_runner:160] LiveTick saved
+[I 251222 23:15:35 live_data_runner:121] Tick received: 213498.0
+[I 251222 23:15:35 live_data_runner:174] Tick received: 213498.0
+[I 251222 23:15:35 live_data_runner:160] LiveTick saved
+[I 251222 23:15:36 live_data_runner:121] Tick received: 213488.0
+[I 251222 23:15:36 live_data_runner:174] Tick received: 213488.0
+[I 251222 23:15:36 live_data_runner:160] LiveTick saved
+[I 251222 23:15:37 live_data_runner:121] Tick received: 213498.0
+[I 251222 23:15:37 live_data_runner:174] Tick received: 213498.0
+[I 251222 23:15:37 live_data_runner:160] LiveTick saved
+[I 251222 23:15:38 live_data_runner:121] Tick received: 213463.0
+[I 251222 23:15:38 live_data_runner:174] Tick received: 213463.0
+[I 251222 23:15:38 live_data_runner:121] Tick received: 213463.0
+[I 251222 23:15:38 live_data_runner:174] Tick received: 213463.0
+[I 251222 23:15:38 live_data_runner:160] LiveTick saved
+[I 251222 23:15:38 live_data_runner:160] LiveTick saved
+[I 251222 23:15:39 live_data_runner:121] Tick received: 213463.0
+[I 251222 23:15:39 live_data_runner:174] Tick received: 213463.0
+[I 251222 23:15:39 live_data_runner:160] LiveTick saved
+[I 251222 23:15:41 live_data_runner:121] Tick received: 213485.0
+[I 251222 23:15:41 live_data_runner:174] Tick received: 213485.0
+[I 251222 23:15:41 live_data_runner:160] LiveTick saved
+[I 251222 23:15:42 live_data_runner:121] Tick received: 213485.0
+[I 251222 23:15:42 live_data_runner:174] Tick received: 213485.0
+[I 251222 23:15:42 live_data_runner:160] LiveTick saved
+[I 251222 23:15:43 live_data_runner:121] Tick received: 213485.0
+[I 251222 23:15:43 live_data_runner:174] Tick received: 213485.0
+[I 251222 23:15:43 live_data_runner:160] LiveTick saved
+[I 251222 23:15:45 live_data_runner:121] Tick received: 213447.0
+[I 251222 23:15:45 live_data_runner:174] Tick received: 213447.0
+[I 251222 23:15:45 live_data_runner:160] LiveTick saved
+[I 251222 23:15:46 live_data_runner:121] Tick received: 213447.0
+[I 251222 23:15:46 live_data_runner:174] Tick received: 213447.0
+[I 251222 23:15:46 live_data_runner:160] LiveTick saved
+[I 251222 23:15:47 live_data_runner:121] Tick received: 213483.0
+[I 251222 23:15:47 live_data_runner:174] Tick received: 213483.0
+[I 251222 23:15:47 live_data_runner:160] LiveTick saved
+[I 251222 23:15:48 live_data_runner:121] Tick received: 213483.0
+[I 251222 23:15:48 live_data_runner:174] Tick received: 213483.0
+[I 251222 23:15:48 live_data_runner:160] LiveTick saved
+[I 251222 23:15:51 live_data_runner:121] Tick received: 213483.0
+[I 251222 23:15:51 live_data_runner:174] Tick received: 213483.0
+[I 251222 23:15:51 live_data_runner:121] Tick received: 213439.0
+[I 251222 23:15:51 live_data_runner:174] Tick received: 213439.0
+[I 251222 23:15:51 live_data_runner:160] LiveTick saved
+[I 251222 23:15:51 live_data_runner:160] LiveTick saved
+[I 251222 23:15:53 live_data_runner:121] Tick received: 213485.0
+[I 251222 23:15:53 live_data_runner:174] Tick received: 213485.0
+[I 251222 23:15:53 live_data_runner:160] LiveTick saved
+[I 251222 23:15:54 live_data_runner:121] Tick received: 213490.0
+[I 251222 23:15:54 live_data_runner:174] Tick received: 213490.0
+[I 251222 23:15:54 live_data_runner:160] LiveTick saved
+[I 251222 23:15:58 live_data_runner:121] Tick received: 213496.0
+[I 251222 23:15:58 live_data_runner:174] Tick received: 213496.0
+[I 251222 23:15:58 live_data_runner:121] Tick received: 213496.0
+[I 251222 23:15:58 live_data_runner:174] Tick received: 213496.0
+[I 251222 23:15:58 live_data_runner:121] Tick received: 213504.0
+[I 251222 23:15:58 live_data_runner:174] Tick received: 213504.0
+[I 251222 23:15:58 live_data_runner:121] Tick received: 213504.0
+[I 251222 23:15:58 live_data_runner:174] Tick received: 213504.0
+[I 251222 23:15:58 live_data_runner:160] LiveTick saved
+[I 251222 23:15:58 live_data_runner:160] LiveTick saved
+[I 251222 23:15:58 live_data_runner:160] LiveTick saved
+[I 251222 23:15:58 live_data_runner:160] LiveTick saved
+[I 251222 23:16:00 live_data_runner:121] Tick received: 213527.0
+[I 251222 23:16:00 live_data_runner:174] Tick received: 213527.0
+[I 251222 23:16:00 live_data_runner:121] Tick received: 213502.0
+[I 251222 23:16:00 live_data_runner:174] Tick received: 213502.0
+[I 251222 23:16:00 live_data_runner:160] LiveTick saved
+[I 251222 23:16:00 live_data_runner:160] LiveTick saved
+[I 251222 23:16:00 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:16:00 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:16:01 live_data_runner:160] LiveTick saved
+[I 251222 23:16:01 live_data_runner:218] LiveCandle saved
+[I 251222 23:16:01 live_data_runner:224] [LIVE CANDLE] 2025-12-22 23:15:00+05:30 O:213396.0 H:213527.0 L:213396.0 C:213502.0
+[I 251222 23:16:04 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:16:04 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:16:04 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:16:04 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:16:04 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:16:04 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:16:04 live_data_runner:160] LiveTick saved
+[I 251222 23:16:04 live_data_runner:160] LiveTick saved
+[I 251222 23:16:04 live_data_runner:160] LiveTick saved
+[I 251222 23:16:06 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:16:06 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:16:06 live_data_runner:160] LiveTick saved
+[I 251222 23:16:07 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:16:07 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:16:07 live_data_runner:160] LiveTick saved
+[I 251222 23:16:09 live_data_runner:121] Tick received: 213529.0
+[I 251222 23:16:09 live_data_runner:174] Tick received: 213529.0
+[I 251222 23:16:09 live_data_runner:160] LiveTick saved
+[I 251222 23:16:10 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:16:10 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:16:11 live_data_runner:160] LiveTick saved
+[I 251222 23:16:12 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:16:12 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:16:12 live_data_runner:160] LiveTick saved
+[I 251222 23:16:12 live_data_runner:121] Tick received: 213526.0
+[I 251222 23:16:12 live_data_runner:174] Tick received: 213526.0
+[I 251222 23:16:13 live_data_runner:160] LiveTick saved
+[I 251222 23:16:14 live_data_runner:121] Tick received: 213526.0
+[I 251222 23:16:14 live_data_runner:174] Tick received: 213526.0
+[I 251222 23:16:14 live_data_runner:160] LiveTick saved
+[I 251222 23:16:15 live_data_runner:121] Tick received: 213526.0
+[I 251222 23:16:15 live_data_runner:174] Tick received: 213526.0
+[I 251222 23:16:15 live_data_runner:160] LiveTick saved
+[I 251222 23:16:17 live_data_runner:121] Tick received: 213575.0
+[I 251222 23:16:17 live_data_runner:174] Tick received: 213575.0
+[I 251222 23:16:17 live_data_runner:160] LiveTick saved
+[I 251222 23:16:18 live_data_runner:121] Tick received: 213579.0
+[I 251222 23:16:18 live_data_runner:174] Tick received: 213579.0
+[I 251222 23:16:18 live_data_runner:160] LiveTick saved
+[I 251222 23:16:21 live_data_runner:121] Tick received: 213580.0
+[I 251222 23:16:21 live_data_runner:174] Tick received: 213580.0
+[I 251222 23:16:21 live_data_runner:121] Tick received: 213670.0
+[I 251222 23:16:21 live_data_runner:174] Tick received: 213670.0
+[I 251222 23:16:21 live_data_runner:160] LiveTick saved
+[I 251222 23:16:21 live_data_runner:160] LiveTick saved
+[I 251222 23:16:22 live_data_runner:121] Tick received: 213627.0
+[I 251222 23:16:22 live_data_runner:174] Tick received: 213627.0
+[I 251222 23:16:22 live_data_runner:160] LiveTick saved
+[I 251222 23:16:23 live_data_runner:121] Tick received: 213605.0
+[I 251222 23:16:23 live_data_runner:174] Tick received: 213605.0
+[I 251222 23:16:23 live_data_runner:160] LiveTick saved
+[I 251222 23:16:24 live_data_runner:121] Tick received: 213588.0
+[I 251222 23:16:24 live_data_runner:174] Tick received: 213588.0
+[I 251222 23:16:24 live_data_runner:160] LiveTick saved
+[I 251222 23:16:25 live_data_runner:121] Tick received: 213601.0
+[I 251222 23:16:25 live_data_runner:174] Tick received: 213601.0
+[I 251222 23:16:25 live_data_runner:160] LiveTick saved
+[I 251222 23:16:26 live_data_runner:121] Tick received: 213580.0
+[I 251222 23:16:26 live_data_runner:174] Tick received: 213580.0
+[I 251222 23:16:26 live_data_runner:160] LiveTick saved
+[I 251222 23:16:28 live_data_runner:121] Tick received: 213557.0
+[I 251222 23:16:28 live_data_runner:174] Tick received: 213557.0
+[I 251222 23:16:28 live_data_runner:160] LiveTick saved
+[I 251222 23:16:28 live_data_runner:121] Tick received: 213598.0
+[I 251222 23:16:28 live_data_runner:174] Tick received: 213598.0
+[I 251222 23:16:28 live_data_runner:160] LiveTick saved
+[I 251222 23:16:32 live_data_runner:121] Tick received: 213598.0
+[I 251222 23:16:32 live_data_runner:174] Tick received: 213598.0
+[I 251222 23:16:32 live_data_runner:121] Tick received: 213576.0
+[I 251222 23:16:32 live_data_runner:174] Tick received: 213576.0
+[I 251222 23:16:32 live_data_runner:160] LiveTick saved
+[I 251222 23:16:32 live_data_runner:160] LiveTick saved
+[I 251222 23:16:33 live_data_runner:121] Tick received: 213576.0
+[I 251222 23:16:33 live_data_runner:174] Tick received: 213576.0
+[I 251222 23:16:33 live_data_runner:121] Tick received: 213576.0
+[I 251222 23:16:33 live_data_runner:174] Tick received: 213576.0
+[I 251222 23:16:33 live_data_runner:160] LiveTick saved
+[I 251222 23:16:33 live_data_runner:160] LiveTick saved
+[I 251222 23:16:34 live_data_runner:121] Tick received: 213579.0
+[I 251222 23:16:34 live_data_runner:174] Tick received: 213579.0
+[I 251222 23:16:34 live_data_runner:160] LiveTick saved
+[I 251222 23:16:35 live_data_runner:121] Tick received: 213569.0
+[I 251222 23:16:35 live_data_runner:174] Tick received: 213569.0
+[I 251222 23:16:35 live_data_runner:160] LiveTick saved
+[I 251222 23:16:35 live_data_runner:121] Tick received: 213569.0
+[I 251222 23:16:35 live_data_runner:174] Tick received: 213569.0
+[I 251222 23:16:35 live_data_runner:160] LiveTick saved
+[I 251222 23:16:37 live_data_runner:121] Tick received: 213569.0
+[I 251222 23:16:37 live_data_runner:174] Tick received: 213569.0
+[I 251222 23:16:37 live_data_runner:160] LiveTick saved
+[I 251222 23:16:38 live_data_runner:121] Tick received: 213569.0
+[I 251222 23:16:38 live_data_runner:174] Tick received: 213569.0
+[I 251222 23:16:38 live_data_runner:160] LiveTick saved
+[I 251222 23:16:39 live_data_runner:121] Tick received: 213580.0
+[I 251222 23:16:39 live_data_runner:174] Tick received: 213580.0
+[I 251222 23:16:39 live_data_runner:160] LiveTick saved
+[I 251222 23:16:39 live_data_runner:121] Tick received: 213577.0
+[I 251222 23:16:39 live_data_runner:174] Tick received: 213577.0
+[I 251222 23:16:39 live_data_runner:160] LiveTick saved
+[I 251222 23:16:41 live_data_runner:121] Tick received: 213582.0
+[I 251222 23:16:41 live_data_runner:174] Tick received: 213582.0
+[I 251222 23:16:41 live_data_runner:160] LiveTick saved
+[I 251222 23:16:43 live_data_runner:121] Tick received: 213592.0
+[I 251222 23:16:43 live_data_runner:174] Tick received: 213592.0
+[I 251222 23:16:43 live_data_runner:160] LiveTick saved
+[I 251222 23:16:44 live_data_runner:121] Tick received: 213531.0
+[I 251222 23:16:44 live_data_runner:174] Tick received: 213531.0
+[I 251222 23:16:44 live_data_runner:160] LiveTick saved
+[I 251222 23:16:46 live_data_runner:121] Tick received: 213526.0
+[I 251222 23:16:46 live_data_runner:174] Tick received: 213526.0
+[I 251222 23:16:46 live_data_runner:160] LiveTick saved
+[I 251222 23:16:49 live_data_runner:121] Tick received: 213526.0
+[I 251222 23:16:49 live_data_runner:174] Tick received: 213526.0
+[I 251222 23:16:49 live_data_runner:121] Tick received: 213526.0
+[I 251222 23:16:49 live_data_runner:174] Tick received: 213526.0
+[I 251222 23:16:49 live_data_runner:160] LiveTick saved
+[I 251222 23:16:49 live_data_runner:160] LiveTick saved
+[I 251222 23:16:50 live_data_runner:121] Tick received: 213526.0
+[I 251222 23:16:50 live_data_runner:174] Tick received: 213526.0
+[I 251222 23:16:50 live_data_runner:160] LiveTick saved
+[I 251222 23:16:51 live_data_runner:121] Tick received: 213526.0
+[I 251222 23:16:51 live_data_runner:174] Tick received: 213526.0
+[I 251222 23:16:51 live_data_runner:160] LiveTick saved
+[I 251222 23:16:52 live_data_runner:121] Tick received: 213600.0
+[I 251222 23:16:52 live_data_runner:174] Tick received: 213600.0
+[I 251222 23:16:52 live_data_runner:160] LiveTick saved
+[I 251222 23:16:54 live_data_runner:121] Tick received: 213600.0
+[I 251222 23:16:54 live_data_runner:174] Tick received: 213600.0
+[I 251222 23:16:54 live_data_runner:160] LiveTick saved
+[I 251222 23:16:55 live_data_runner:121] Tick received: 213565.0
+[I 251222 23:16:55 live_data_runner:174] Tick received: 213565.0
+[I 251222 23:16:55 live_data_runner:160] LiveTick saved
+[I 251222 23:16:56 live_data_runner:121] Tick received: 213565.0
+[I 251222 23:16:56 live_data_runner:174] Tick received: 213565.0
+[I 251222 23:16:56 live_data_runner:160] LiveTick saved
+[I 251222 23:16:57 live_data_runner:121] Tick received: 213565.0
+[I 251222 23:16:57 live_data_runner:174] Tick received: 213565.0
+[I 251222 23:16:57 live_data_runner:160] LiveTick saved
+[I 251222 23:16:58 live_data_runner:121] Tick received: 213565.0
+[I 251222 23:16:58 live_data_runner:174] Tick received: 213565.0
+[I 251222 23:16:58 live_data_runner:160] LiveTick saved
+[I 251222 23:16:59 live_data_runner:121] Tick received: 213565.0
+[I 251222 23:16:59 live_data_runner:174] Tick received: 213565.0
+[I 251222 23:16:59 live_data_runner:160] LiveTick saved
+[I 251222 23:17:00 live_data_runner:121] Tick received: 213565.0
+[I 251222 23:17:00 live_data_runner:174] Tick received: 213565.0
+[I 251222 23:17:00 live_data_runner:160] LiveTick saved
+[I 251222 23:17:00 live_data_runner:218] LiveCandle saved
+[I 251222 23:17:00 live_data_runner:224] [LIVE CANDLE] 2025-12-22 23:16:00+05:30 O:213500.0 H:213670.0 L:213500.0 C:213565.0
+[I 251222 23:17:01 live_data_runner:121] Tick received: 213565.0
+[I 251222 23:17:01 live_data_runner:174] Tick received: 213565.0
+[I 251222 23:17:01 live_data_runner:160] LiveTick saved
+[I 251222 23:17:02 live_data_runner:121] Tick received: 213603.0
+[I 251222 23:17:02 live_data_runner:121] Tick received: 213603.0
+[I 251222 23:17:02 live_data_runner:174] Tick received: 213603.0
+[I 251222 23:17:02 live_data_runner:174] Tick received: 213603.0
+[I 251222 23:17:02 live_data_runner:160] LiveTick saved
+[I 251222 23:17:02 live_data_runner:160] LiveTick saved
+[I 251222 23:17:04 live_data_runner:121] Tick received: 213603.0
+[I 251222 23:17:04 live_data_runner:174] Tick received: 213603.0
+[I 251222 23:17:04 live_data_runner:160] LiveTick saved
+[I 251222 23:17:05 live_data_runner:121] Tick received: 213603.0
+[I 251222 23:17:05 live_data_runner:174] Tick received: 213603.0
+[I 251222 23:17:05 live_data_runner:160] LiveTick saved
+[I 251222 23:17:07 live_data_runner:121] Tick received: 213603.0
+[I 251222 23:17:07 live_data_runner:174] Tick received: 213603.0
+[I 251222 23:17:07 live_data_runner:160] LiveTick saved
+[I 251222 23:17:08 live_data_runner:121] Tick received: 213581.0
+[I 251222 23:17:08 live_data_runner:174] Tick received: 213581.0
+[I 251222 23:17:08 live_data_runner:160] LiveTick saved
+[I 251222 23:17:09 live_data_runner:121] Tick received: 213598.0
+[I 251222 23:17:09 live_data_runner:174] Tick received: 213598.0
+[I 251222 23:17:09 live_data_runner:160] LiveTick saved
+[I 251222 23:17:10 live_data_runner:121] Tick received: 213598.0
+[I 251222 23:17:10 live_data_runner:174] Tick received: 213598.0
+[I 251222 23:17:10 live_data_runner:160] LiveTick saved
+[I 251222 23:17:12 live_data_runner:121] Tick received: 213598.0
+[I 251222 23:17:12 live_data_runner:174] Tick received: 213598.0
+[I 251222 23:17:12 live_data_runner:160] LiveTick saved
+[I 251222 23:17:13 live_data_runner:121] Tick received: 213545.0
+[I 251222 23:17:13 live_data_runner:174] Tick received: 213545.0
+[I 251222 23:17:13 live_data_runner:160] LiveTick saved
+[I 251222 23:17:14 live_data_runner:121] Tick received: 213541.0
+[I 251222 23:17:14 live_data_runner:174] Tick received: 213541.0
+[I 251222 23:17:14 live_data_runner:160] LiveTick saved
+[I 251222 23:17:15 live_data_runner:121] Tick received: 213541.0
+[I 251222 23:17:15 live_data_runner:174] Tick received: 213541.0
+[I 251222 23:17:15 live_data_runner:160] LiveTick saved
+[I 251222 23:17:16 live_data_runner:121] Tick received: 213582.0
+[I 251222 23:17:16 live_data_runner:174] Tick received: 213582.0
+[I 251222 23:17:16 live_data_runner:160] LiveTick saved
+[I 251222 23:17:18 live_data_runner:121] Tick received: 213582.0
+[I 251222 23:17:18 live_data_runner:174] Tick received: 213582.0
+[I 251222 23:17:18 live_data_runner:160] LiveTick saved
+[I 251222 23:17:19 live_data_runner:121] Tick received: 213541.0
+[I 251222 23:17:19 live_data_runner:174] Tick received: 213541.0
+[I 251222 23:17:19 live_data_runner:160] LiveTick saved
+[I 251222 23:17:20 live_data_runner:121] Tick received: 213531.0
+[I 251222 23:17:20 live_data_runner:174] Tick received: 213531.0
+[I 251222 23:17:20 live_data_runner:160] LiveTick saved
+[I 251222 23:17:22 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:17:22 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:17:22 live_data_runner:160] LiveTick saved
+[I 251222 23:17:23 live_data_runner:121] Tick received: 213544.0
+[I 251222 23:17:23 live_data_runner:174] Tick received: 213544.0
+[I 251222 23:17:23 live_data_runner:160] LiveTick saved
+[I 251222 23:17:25 live_data_runner:121] Tick received: 213544.0
+[I 251222 23:17:25 live_data_runner:174] Tick received: 213544.0
+[I 251222 23:17:25 live_data_runner:160] LiveTick saved
+[I 251222 23:17:26 live_data_runner:121] Tick received: 213544.0
+[I 251222 23:17:26 live_data_runner:174] Tick received: 213544.0
+[I 251222 23:17:26 live_data_runner:160] LiveTick saved
+[I 251222 23:17:28 live_data_runner:121] Tick received: 213544.0
+[I 251222 23:17:28 live_data_runner:174] Tick received: 213544.0
+[I 251222 23:17:28 live_data_runner:160] LiveTick saved
+[I 251222 23:17:30 live_data_runner:121] Tick received: 213540.0
+[I 251222 23:17:30 live_data_runner:174] Tick received: 213540.0
+[I 251222 23:17:30 live_data_runner:121] Tick received: 213540.0
+[I 251222 23:17:30 live_data_runner:174] Tick received: 213540.0
+[I 251222 23:17:30 live_data_runner:160] LiveTick saved
+[I 251222 23:17:30 live_data_runner:160] LiveTick saved
+[I 251222 23:17:31 live_data_runner:121] Tick received: 213547.0
+[I 251222 23:17:31 live_data_runner:174] Tick received: 213547.0
+[I 251222 23:17:31 live_data_runner:160] LiveTick saved
+[I 251222 23:17:32 live_data_runner:121] Tick received: 213547.0
+[I 251222 23:17:32 live_data_runner:174] Tick received: 213547.0
+[I 251222 23:17:32 live_data_runner:160] LiveTick saved
+[I 251222 23:17:33 live_data_runner:121] Tick received: 213547.0
+[I 251222 23:17:33 live_data_runner:174] Tick received: 213547.0
+[I 251222 23:17:33 live_data_runner:160] LiveTick saved
+[I 251222 23:17:34 live_data_runner:121] Tick received: 213547.0
+[I 251222 23:17:34 live_data_runner:174] Tick received: 213547.0
+[I 251222 23:17:34 live_data_runner:160] LiveTick saved
+[I 251222 23:17:35 live_data_runner:121] Tick received: 213587.0
+[I 251222 23:17:35 live_data_runner:174] Tick received: 213587.0
+[I 251222 23:17:35 live_data_runner:160] LiveTick saved
+[I 251222 23:17:38 live_data_runner:121] Tick received: 213584.0
+[I 251222 23:17:38 live_data_runner:174] Tick received: 213584.0
+[I 251222 23:17:38 live_data_runner:160] LiveTick saved
+[I 251222 23:17:39 live_data_runner:121] Tick received: 213575.0
+[I 251222 23:17:39 live_data_runner:174] Tick received: 213575.0
+[I 251222 23:17:39 live_data_runner:160] LiveTick saved
+[I 251222 23:17:40 live_data_runner:121] Tick received: 213575.0
+[I 251222 23:17:40 live_data_runner:174] Tick received: 213575.0
+[I 251222 23:17:40 live_data_runner:160] LiveTick saved
+[I 251222 23:17:41 live_data_runner:121] Tick received: 213575.0
+[I 251222 23:17:41 live_data_runner:174] Tick received: 213575.0
+[I 251222 23:17:41 live_data_runner:160] LiveTick saved
+[I 251222 23:17:41 live_data_runner:121] Tick received: 213522.0
+[I 251222 23:17:41 live_data_runner:174] Tick received: 213522.0
+[I 251222 23:17:41 live_data_runner:160] LiveTick saved
+[I 251222 23:17:44 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:17:44 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:17:44 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:17:44 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:17:44 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:17:44 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:17:44 live_data_runner:160] LiveTick saved
+[I 251222 23:17:44 live_data_runner:160] LiveTick saved
+[I 251222 23:17:44 live_data_runner:160] LiveTick saved
+[I 251222 23:17:46 live_data_runner:121] Tick received: 213504.0
+[I 251222 23:17:46 live_data_runner:174] Tick received: 213504.0
+[I 251222 23:17:46 live_data_runner:160] LiveTick saved
+[I 251222 23:17:48 live_data_runner:121] Tick received: 213502.0
+[I 251222 23:17:48 live_data_runner:174] Tick received: 213502.0
+[I 251222 23:17:48 live_data_runner:160] LiveTick saved
+[I 251222 23:17:49 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:17:49 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:17:49 live_data_runner:160] LiveTick saved
+[I 251222 23:17:51 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:17:51 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:17:51 live_data_runner:160] LiveTick saved
+[I 251222 23:17:53 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:17:53 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:17:53 live_data_runner:160] LiveTick saved
+[I 251222 23:17:54 live_data_runner:121] Tick received: 213533.0
+[I 251222 23:17:54 live_data_runner:174] Tick received: 213533.0
+[I 251222 23:17:54 live_data_runner:160] LiveTick saved
+[I 251222 23:17:56 live_data_runner:121] Tick received: 213533.0
+[I 251222 23:17:56 live_data_runner:174] Tick received: 213533.0
+[I 251222 23:17:56 live_data_runner:160] LiveTick saved
+[I 251222 23:17:58 live_data_runner:121] Tick received: 213533.0
+[I 251222 23:17:58 live_data_runner:174] Tick received: 213533.0
+[I 251222 23:17:58 live_data_runner:160] LiveTick saved
+[I 251222 23:18:00 live_data_runner:121] Tick received: 213533.0
+[I 251222 23:18:00 live_data_runner:121] Tick received: 213533.0
+[I 251222 23:18:00 live_data_runner:174] Tick received: 213533.0
+[I 251222 23:18:00 live_data_runner:174] Tick received: 213533.0
+[I 251222 23:18:00 live_data_runner:160] LiveTick saved
+[I 251222 23:18:00 live_data_runner:160] LiveTick saved
+[I 251222 23:18:01 live_data_runner:121] Tick received: 213533.0
+[I 251222 23:18:01 live_data_runner:174] Tick received: 213533.0
+[I 251222 23:18:01 live_data_runner:160] LiveTick saved
+[I 251222 23:18:01 live_data_runner:218] LiveCandle saved
+[I 251222 23:18:01 live_data_runner:224] [LIVE CANDLE] 2025-12-22 23:17:00+05:30 O:213565.0 H:213603.0 L:213500.0 C:213533.0
+[I 251222 23:18:03 live_data_runner:121] Tick received: 213551.0
+[I 251222 23:18:03 live_data_runner:174] Tick received: 213551.0
+[I 251222 23:18:03 live_data_runner:160] LiveTick saved
+[I 251222 23:18:04 live_data_runner:121] Tick received: 213533.0
+[I 251222 23:18:04 live_data_runner:174] Tick received: 213533.0
+[I 251222 23:18:04 live_data_runner:160] LiveTick saved
+[I 251222 23:18:08 live_data_runner:121] Tick received: 213533.0
+[I 251222 23:18:08 live_data_runner:121] Tick received: 213484.0
+[I 251222 23:18:08 live_data_runner:174] Tick received: 213533.0
+[I 251222 23:18:08 live_data_runner:121] Tick received: 213484.0
+[I 251222 23:18:08 live_data_runner:174] Tick received: 213484.0
+[I 251222 23:18:08 live_data_runner:174] Tick received: 213484.0
+[I 251222 23:18:08 live_data_runner:160] LiveTick saved
+[I 251222 23:18:08 live_data_runner:160] LiveTick saved
+[I 251222 23:18:08 live_data_runner:160] LiveTick saved
+[I 251222 23:18:09 live_data_runner:121] Tick received: 213484.0
+[I 251222 23:18:09 live_data_runner:174] Tick received: 213484.0
+[I 251222 23:18:09 live_data_runner:160] LiveTick saved
+[I 251222 23:18:12 live_data_runner:121] Tick received: 213484.0
+[I 251222 23:18:12 live_data_runner:174] Tick received: 213484.0
+[I 251222 23:18:12 live_data_runner:121] Tick received: 213484.0
+[I 251222 23:18:12 live_data_runner:174] Tick received: 213484.0
+[I 251222 23:18:12 live_data_runner:160] LiveTick saved
+[I 251222 23:18:12 live_data_runner:160] LiveTick saved
+[I 251222 23:18:13 live_data_runner:121] Tick received: 213550.0
+[I 251222 23:18:13 live_data_runner:174] Tick received: 213550.0
+[I 251222 23:18:13 live_data_runner:160] LiveTick saved
+[I 251222 23:18:15 live_data_runner:121] Tick received: 213550.0
+[I 251222 23:18:15 live_data_runner:174] Tick received: 213550.0
+[I 251222 23:18:15 live_data_runner:160] LiveTick saved
+[I 251222 23:18:16 live_data_runner:121] Tick received: 213513.0
+[I 251222 23:18:16 live_data_runner:174] Tick received: 213513.0
+[I 251222 23:18:16 live_data_runner:160] LiveTick saved
+[I 251222 23:18:17 live_data_runner:121] Tick received: 213513.0
+[I 251222 23:18:17 live_data_runner:174] Tick received: 213513.0
+[I 251222 23:18:17 live_data_runner:160] LiveTick saved
+[I 251222 23:18:18 live_data_runner:121] Tick received: 213513.0
+[I 251222 23:18:18 live_data_runner:174] Tick received: 213513.0
+[I 251222 23:18:18 live_data_runner:160] LiveTick saved
+[I 251222 23:18:19 live_data_runner:121] Tick received: 213513.0
+[I 251222 23:18:19 live_data_runner:174] Tick received: 213513.0
+[I 251222 23:18:19 live_data_runner:160] LiveTick saved
+[I 251222 23:18:21 live_data_runner:121] Tick received: 213513.0
+[I 251222 23:18:21 live_data_runner:174] Tick received: 213513.0
+[I 251222 23:18:21 live_data_runner:160] LiveTick saved
+[I 251222 23:18:22 live_data_runner:121] Tick received: 213513.0
+[I 251222 23:18:22 live_data_runner:174] Tick received: 213513.0
+[I 251222 23:18:22 live_data_runner:160] LiveTick saved
+[I 251222 23:18:23 live_data_runner:121] Tick received: 213518.0
+[I 251222 23:18:23 live_data_runner:174] Tick received: 213518.0
+[I 251222 23:18:23 live_data_runner:160] LiveTick saved
+[I 251222 23:18:25 live_data_runner:121] Tick received: 213518.0
+[I 251222 23:18:25 live_data_runner:174] Tick received: 213518.0
+[I 251222 23:18:25 live_data_runner:160] LiveTick saved
+[I 251222 23:18:26 live_data_runner:121] Tick received: 213518.0
+[I 251222 23:18:26 live_data_runner:174] Tick received: 213518.0
+[I 251222 23:18:26 live_data_runner:160] LiveTick saved
+[I 251222 23:18:28 live_data_runner:121] Tick received: 213518.0
+[I 251222 23:18:28 live_data_runner:174] Tick received: 213518.0
+[I 251222 23:18:28 live_data_runner:160] LiveTick saved
+[I 251222 23:18:30 live_data_runner:121] Tick received: 213518.0
+[I 251222 23:18:30 live_data_runner:174] Tick received: 213518.0
+[I 251222 23:18:30 live_data_runner:160] LiveTick saved
+[I 251222 23:18:31 live_data_runner:121] Tick received: 213518.0
+[I 251222 23:18:31 live_data_runner:174] Tick received: 213518.0
+[I 251222 23:18:31 live_data_runner:160] LiveTick saved
+[I 251222 23:18:32 live_data_runner:121] Tick received: 213518.0
+[I 251222 23:18:32 live_data_runner:174] Tick received: 213518.0
+[I 251222 23:18:32 live_data_runner:160] LiveTick saved
+[I 251222 23:18:34 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:18:34 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:18:34 live_data_runner:160] LiveTick saved
+[I 251222 23:18:35 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:18:35 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:18:35 live_data_runner:160] LiveTick saved
+[I 251222 23:18:36 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:18:36 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:18:36 live_data_runner:160] LiveTick saved
+[I 251222 23:18:38 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:18:38 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:18:38 live_data_runner:160] LiveTick saved
+[I 251222 23:18:41 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:18:41 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:18:41 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:18:41 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:18:41 live_data_runner:160] LiveTick saved
+[I 251222 23:18:41 live_data_runner:160] LiveTick saved
+[I 251222 23:18:42 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:18:42 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:18:42 live_data_runner:160] LiveTick saved
+[I 251222 23:18:43 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:18:43 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:18:43 live_data_runner:160] LiveTick saved
+[I 251222 23:18:44 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:18:44 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:18:44 live_data_runner:160] LiveTick saved
+[I 251222 23:18:46 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:18:46 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:18:46 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:18:46 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:18:46 live_data_runner:160] LiveTick saved
+[I 251222 23:18:46 live_data_runner:160] LiveTick saved
+[I 251222 23:18:47 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:18:47 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:18:47 live_data_runner:160] LiveTick saved
+[I 251222 23:18:48 live_data_runner:121] Tick received: 213500.0
+[I 251222 23:18:48 live_data_runner:174] Tick received: 213500.0
+[I 251222 23:18:48 live_data_runner:160] LiveTick saved
+[I 251222 23:18:58 angel_one:408] AngelOne re-login successful
+[I 251222 23:18:59 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:18:59 live_data_runner:121] Tick received: 213465.0
+[I 251222 23:18:59 live_data_runner:174] Tick received: 213465.0
+[I 251222 23:18:59 live_data_runner:160] LiveTick saved
+[I 251222 23:18:59 live_data_runner:121] Tick received: 213465.0
+[I 251222 23:18:59 live_data_runner:174] Tick received: 213465.0
+[I 251222 23:18:59 live_data_runner:160] LiveTick saved
+[I 251222 23:19:00 live_data_runner:121] Tick received: 213485.0
+[I 251222 23:19:00 live_data_runner:174] Tick received: 213485.0
+[W 251222 23:19:00 live_data_runner:205] CANDLE SWITCH 2025-12-22 23:18:00+05:30 -> 2025-12-22 23:19:00+05:30
+[I 251222 23:19:00 live_data_runner:160] LiveTick saved
+[I 251222 23:19:00 live_data_runner:223] LiveCandle saved
+[I 251222 23:19:00 live_data_runner:229] [LIVE CANDLE] 2025-12-22 23:18:00+05:30 O:213465.0 H:213465.0 L:213465.0 C:213465.0
+[I 251222 23:19:02 live_data_runner:121] Tick received: 213515.0
+[I 251222 23:19:02 live_data_runner:174] Tick received: 213515.0
+[I 251222 23:19:02 live_data_runner:160] LiveTick saved
+[I 251222 23:19:03 live_data_runner:121] Tick received: 213515.0
+[I 251222 23:19:03 live_data_runner:174] Tick received: 213515.0
+[I 251222 23:19:03 live_data_runner:160] LiveTick saved
+[I 251222 23:19:04 live_data_runner:121] Tick received: 213456.0
+[I 251222 23:19:04 live_data_runner:174] Tick received: 213456.0
+[I 251222 23:19:04 live_data_runner:160] LiveTick saved
+[I 251222 23:19:05 live_data_runner:121] Tick received: 213456.0
+[I 251222 23:19:05 live_data_runner:174] Tick received: 213456.0
+[I 251222 23:19:05 live_data_runner:160] LiveTick saved
+[I 251222 23:19:06 live_data_runner:121] Tick received: 213456.0
+[I 251222 23:19:06 live_data_runner:174] Tick received: 213456.0
+[I 251222 23:19:06 live_data_runner:160] LiveTick saved
+[I 251222 23:19:07 live_data_runner:121] Tick received: 213456.0
+[I 251222 23:19:07 live_data_runner:174] Tick received: 213456.0
+[I 251222 23:19:07 live_data_runner:160] LiveTick saved
+[I 251222 23:19:08 live_data_runner:121] Tick received: 213456.0
+[I 251222 23:19:08 live_data_runner:174] Tick received: 213456.0
+[I 251222 23:19:08 live_data_runner:160] LiveTick saved
+[I 251222 23:19:09 live_data_runner:121] Tick received: 213456.0
+[I 251222 23:19:09 live_data_runner:174] Tick received: 213456.0
+[I 251222 23:19:09 live_data_runner:160] LiveTick saved
+[I 251222 23:19:10 live_data_runner:121] Tick received: 213456.0
+[I 251222 23:19:10 live_data_runner:174] Tick received: 213456.0
+[I 251222 23:19:10 live_data_runner:160] LiveTick saved
+[I 251222 23:19:11 live_data_runner:121] Tick received: 213456.0
+[I 251222 23:19:11 live_data_runner:174] Tick received: 213456.0
+[I 251222 23:19:11 live_data_runner:160] LiveTick saved
+[I 251222 23:19:12 live_data_runner:121] Tick received: 213456.0
+[I 251222 23:19:12 live_data_runner:174] Tick received: 213456.0
+[I 251222 23:19:12 live_data_runner:160] LiveTick saved
+[I 251222 23:19:13 live_data_runner:121] Tick received: 213456.0
+[I 251222 23:19:13 live_data_runner:174] Tick received: 213456.0
+[I 251222 23:19:13 live_data_runner:160] LiveTick saved
+[I 251222 23:19:14 live_data_runner:121] Tick received: 213460.0
+[I 251222 23:19:14 live_data_runner:174] Tick received: 213460.0
+[I 251222 23:19:14 live_data_runner:160] LiveTick saved
+[I 251222 23:19:15 live_data_runner:121] Tick received: 213460.0
+[I 251222 23:19:15 live_data_runner:174] Tick received: 213460.0
+[I 251222 23:19:15 live_data_runner:160] LiveTick saved
+[I 251222 23:19:15 live_data_runner:121] Tick received: 213460.0
+[I 251222 23:19:15 live_data_runner:174] Tick received: 213460.0
+[I 251222 23:19:15 live_data_runner:160] LiveTick saved
+[I 251222 23:19:16 live_data_runner:121] Tick received: 213460.0
+[I 251222 23:19:16 live_data_runner:174] Tick received: 213460.0
+[I 251222 23:19:16 live_data_runner:160] LiveTick saved
+[I 251222 23:19:17 live_data_runner:121] Tick received: 213485.0
+[I 251222 23:19:17 live_data_runner:174] Tick received: 213485.0
+[I 251222 23:19:17 live_data_runner:160] LiveTick saved
+[I 251222 23:19:18 live_data_runner:121] Tick received: 213485.0
+[I 251222 23:19:18 live_data_runner:174] Tick received: 213485.0
+[I 251222 23:19:18 live_data_runner:160] LiveTick saved
+[I 251222 23:19:19 live_data_runner:121] Tick received: 213494.0
+[I 251222 23:19:19 live_data_runner:174] Tick received: 213494.0
+[I 251222 23:19:19 live_data_runner:160] LiveTick saved
+[I 251222 23:19:20 live_data_runner:121] Tick received: 213543.0
+[I 251222 23:19:20 live_data_runner:174] Tick received: 213543.0
+[I 251222 23:19:20 live_data_runner:160] LiveTick saved
+[I 251222 23:19:22 live_data_runner:121] Tick received: 213569.0
+[I 251222 23:19:22 live_data_runner:174] Tick received: 213569.0
+[I 251222 23:19:22 live_data_runner:160] LiveTick saved
+[I 251222 23:19:31 angel_one:408] AngelOne re-login successful
+[I 251222 23:19:37 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:19:38 live_data_runner:121] Tick received: 213543.0
+[I 251222 23:19:38 live_data_runner:174] Tick received: 213543.0
+[I 251222 23:19:38 live_data_runner:160] LiveTick saved
+[I 251222 23:19:38 live_data_runner:121] Tick received: 213541.0
+[I 251222 23:19:38 live_data_runner:174] Tick received: 213541.0
+[I 251222 23:19:38 live_data_runner:160] LiveTick saved
+[I 251222 23:19:43 live_data_runner:121] Tick received: 213541.0
+[I 251222 23:19:43 live_data_runner:174] Tick received: 213541.0
+[I 251222 23:19:43 live_data_runner:121] Tick received: 213541.0
+[I 251222 23:19:43 live_data_runner:174] Tick received: 213541.0
+[I 251222 23:19:43 live_data_runner:121] Tick received: 213541.0
+[I 251222 23:19:43 live_data_runner:174] Tick received: 213541.0
+[I 251222 23:19:43 live_data_runner:160] LiveTick saved
+[I 251222 23:19:43 live_data_runner:160] LiveTick saved
+[I 251222 23:19:43 live_data_runner:160] LiveTick saved
+[I 251222 23:19:44 live_data_runner:121] Tick received: 213541.0
+[I 251222 23:19:44 live_data_runner:174] Tick received: 213541.0
+[I 251222 23:19:44 live_data_runner:160] LiveTick saved
+[I 251222 23:19:45 live_data_runner:121] Tick received: 213541.0
+[I 251222 23:19:45 live_data_runner:174] Tick received: 213541.0
+[I 251222 23:19:45 live_data_runner:160] LiveTick saved
+[I 251222 23:19:46 live_data_runner:121] Tick received: 213541.0
+[I 251222 23:19:46 live_data_runner:174] Tick received: 213541.0
+[I 251222 23:19:46 live_data_runner:160] LiveTick saved
+[I 251222 23:19:50 live_data_runner:121] Tick received: 213541.0
+[I 251222 23:19:50 live_data_runner:174] Tick received: 213541.0
+[I 251222 23:19:50 live_data_runner:121] Tick received: 213541.0
+[I 251222 23:19:50 live_data_runner:174] Tick received: 213541.0
+[I 251222 23:19:50 live_data_runner:160] LiveTick saved
+[I 251222 23:19:50 live_data_runner:160] LiveTick saved
+[I 251222 23:19:50 live_data_runner:121] Tick received: 213541.0
+[I 251222 23:19:50 live_data_runner:174] Tick received: 213541.0
+[I 251222 23:19:50 live_data_runner:160] LiveTick saved
+[I 251222 23:19:51 live_data_runner:121] Tick received: 213503.0
+[I 251222 23:19:51 live_data_runner:174] Tick received: 213503.0
+[I 251222 23:19:51 live_data_runner:160] LiveTick saved
+[I 251222 23:19:53 live_data_runner:121] Tick received: 213503.0
+[I 251222 23:19:53 live_data_runner:174] Tick received: 213503.0
+[I 251222 23:19:53 live_data_runner:160] LiveTick saved
+[I 251222 23:19:53 live_data_runner:121] Tick received: 213511.0
+[I 251222 23:19:53 live_data_runner:174] Tick received: 213511.0
+[I 251222 23:19:53 live_data_runner:160] LiveTick saved
+[I 251222 23:19:56 live_data_runner:121] Tick received: 213511.0
+[I 251222 23:19:56 live_data_runner:174] Tick received: 213511.0
+[I 251222 23:19:56 live_data_runner:160] LiveTick saved
+[I 251222 23:19:56 live_data_runner:121] Tick received: 213511.0
+[I 251222 23:19:56 live_data_runner:174] Tick received: 213511.0
+[I 251222 23:19:56 live_data_runner:160] LiveTick saved
+[I 251222 23:20:00 live_data_runner:121] Tick received: 213511.0
+[I 251222 23:20:00 live_data_runner:174] Tick received: 213511.0
+[I 251222 23:20:00 live_data_runner:121] Tick received: 213511.0
+[I 251222 23:20:00 live_data_runner:174] Tick received: 213511.0
+[I 251222 23:20:00 live_data_runner:121] Tick received: 213511.0
+[I 251222 23:20:00 live_data_runner:174] Tick received: 213511.0
+[I 251222 23:20:00 live_data_runner:160] LiveTick saved
+[I 251222 23:20:00 live_data_runner:160] LiveTick saved
+[I 251222 23:20:00 live_data_runner:160] LiveTick saved
+[I 251222 23:20:09 angel_one:408] AngelOne re-login successful
+[I 251222 23:20:10 live_data_runner:106] WebSocket connected : subscribing
+[I 251222 23:20:10 live_data_runner:121] Tick received: 213513.0
+[I 251222 23:20:10 live_data_runner:174] Tick received: 213513.0
+[I 251222 23:20:10 live_data_runner:160] LiveTick saved
+[I 251222 23:20:11 live_data_runner:121] Tick received: 213513.0
+[I 251222 23:20:11 live_data_runner:174] Tick received: 213513.0
+[I 251222 23:20:11 live_data_runner:160] LiveTick saved
+[I 251222 23:20:12 live_data_runner:121] Tick received: 213513.0
+[I 251222 23:20:12 live_data_runner:174] Tick received: 213513.0
+[I 251222 23:20:12 live_data_runner:160] LiveTick saved
+[I 251222 23:20:14 live_data_runner:121] Tick received: 213513.0
+[I 251222 23:20:14 live_data_runner:174] Tick received: 213513.0
+[I 251222 23:20:14 live_data_runner:160] LiveTick saved
+[I 251222 23:20:14 live_data_runner:121] Tick received: 213513.0
+[I 251222 23:20:14 live_data_runner:174] Tick received: 213513.0
+[I 251222 23:20:14 live_data_runner:160] LiveTick saved
+[I 251222 23:20:16 live_data_runner:121] Tick received: 213515.0
+[I 251222 23:20:16 live_data_runner:174] Tick received: 213515.0
+[I 251222 23:20:16 live_data_runner:160] LiveTick saved
+[I 251222 23:20:17 live_data_runner:121] Tick received: 213569.0
+[I 251222 23:20:17 live_data_runner:174] Tick received: 213569.0
+[I 251222 23:20:17 live_data_runner:160] LiveTick saved
+[I 251222 23:20:18 live_data_runner:121] Tick received: 213569.0
+[I 251222 23:20:18 live_data_runner:174] Tick received: 213569.0
+[I 251222 23:20:18 live_data_runner:160] LiveTick saved
+[I 251222 23:20:19 live_data_runner:121] Tick received: 213569.0
+[I 251222 23:20:19 live_data_runner:174] Tick received: 213569.0
+[I 251222 23:20:19 live_data_runner:160] LiveTick saved
+[I 251222 23:20:21 live_data_runner:121] Tick received: 213571.0
+[I 251222 23:20:21 live_data_runner:174] Tick received: 213571.0
+[I 251222 23:20:21 live_data_runner:160] LiveTick saved
+[I 251222 23:20:21 live_data_runner:121] Tick received: 213571.0
+[I 251222 23:20:21 live_data_runner:174] Tick received: 213571.0
+[I 251222 23:20:21 live_data_runner:160] LiveTick saved
+[I 251222 23:20:22 live_data_runner:121] Tick received: 213571.0
+[I 251222 23:20:22 live_data_runner:174] Tick received: 213571.0
+[I 251222 23:20:22 live_data_runner:160] LiveTick saved
+[I 251222 23:20:24 live_data_runner:121] Tick received: 213571.0
+[I 251222 23:20:24 live_data_runner:174] Tick received: 213571.0
+[I 251222 23:20:24 live_data_runner:160] LiveTick saved
+[I 251222 23:20:25 live_data_runner:121] Tick received: 213564.0
+[I 251222 23:20:25 live_data_runner:174] Tick received: 213564.0
+[I 251222 23:20:25 live_data_runner:160] LiveTick saved
+[I 251222 23:20:26 live_data_runner:121] Tick received: 213564.0
+[I 251222 23:20:26 live_data_runner:174] Tick received: 213564.0
+[I 251222 23:20:26 live_data_runner:160] LiveTick saved
+[I 251222 23:20:27 live_data_runner:121] Tick received: 213548.0
+[I 251222 23:20:27 live_data_runner:174] Tick received: 213548.0
+[I 251222 23:20:27 live_data_runner:160] LiveTick saved
+[I 251222 23:20:28 live_data_runner:121] Tick received: 213527.0
+[I 251222 23:20:28 live_data_runner:174] Tick received: 213527.0
+[I 251222 23:20:28 live_data_runner:160] LiveTick saved
+[I 251222 23:20:29 live_data_runner:121] Tick received: 213527.0
+[I 251222 23:20:29 live_data_runner:174] Tick received: 213527.0
+[I 251222 23:20:29 live_data_runner:160] LiveTick saved
+[I 251222 23:20:31 live_data_runner:121] Tick received: 213538.0
+[I 251222 23:20:31 live_data_runner:174] Tick received: 213538.0
+[I 251222 23:20:31 live_data_runner:160] LiveTick saved
+[I 251222 23:20:32 live_data_runner:121] Tick received: 213512.0
+[I 251222 23:20:32 live_data_runner:174] Tick received: 213512.0
+[I 251222 23:20:32 live_data_runner:160] LiveTick saved
+[I 251222 23:20:33 live_data_runner:121] Tick received: 213502.0
+[I 251222 23:20:33 live_data_runner:174] Tick received: 213502.0
+[I 251222 23:20:33 live_data_runner:160] LiveTick saved
+[I 251222 23:20:35 live_data_runner:121] Tick received: 213502.0
+[I 251222 23:20:35 live_data_runner:174] Tick received: 213502.0
+[I 251222 23:20:35 live_data_runner:160] LiveTick saved
+[I 251222 23:20:36 live_data_runner:121] Tick received: 213502.0
+[I 251222 23:20:36 live_data_runner:174] Tick received: 213502.0
+[I 251222 23:20:36 live_data_runner:160] LiveTick saved
+[I 251222 23:20:37 live_data_runner:121] Tick received: 213545.0
+[I 251222 23:20:37 live_data_runner:174] Tick received: 213545.0
+[I 251222 23:20:37 live_data_runner:160] LiveTick saved
+[I 251222 23:20:38 live_data_runner:121] Tick received: 213583.0
+[I 251222 23:20:38 live_data_runner:174] Tick received: 213583.0
+[I 251222 23:20:38 live_data_runner:160] LiveTick saved
+[I 251222 23:20:39 live_data_runner:121] Tick received: 213589.0
+[I 251222 23:20:39 live_data_runner:174] Tick received: 213589.0
+[I 251222 23:20:39 live_data_runner:160] LiveTick saved
+[I 251222 23:20:41 live_data_runner:121] Tick received: 213589.0
+[I 251222 23:20:41 live_data_runner:174] Tick received: 213589.0
+[I 251222 23:20:41 live_data_runner:160] LiveTick saved
+[I 251222 23:20:42 live_data_runner:121] Tick received: 213589.0
+[I 251222 23:20:42 live_data_runner:174] Tick received: 213589.0
+[I 251222 23:20:42 live_data_runner:160] LiveTick saved
+[I 251222 23:20:43 live_data_runner:121] Tick received: 213589.0
+[I 251222 23:20:43 live_data_runner:174] Tick received: 213589.0
+[I 251222 23:20:43 live_data_runner:160] LiveTick saved
+[I 251222 23:20:45 live_data_runner:121] Tick received: 213594.0
+[I 251222 23:20:45 live_data_runner:174] Tick received: 213594.0
+[I 251222 23:20:45 live_data_runner:160] LiveTick saved
+[I 251222 23:20:46 live_data_runner:121] Tick received: 213594.0
+[I 251222 23:20:46 live_data_runner:174] Tick received: 213594.0
+[I 251222 23:20:46 live_data_runner:160] LiveTick saved
+[I 251222 23:20:48 live_data_runner:121] Tick received: 213594.0
+[I 251222 23:20:48 live_data_runner:174] Tick received: 213594.0
+[I 251222 23:20:48 live_data_runner:160] LiveTick saved
+[I 251222 23:20:50 live_data_runner:121] Tick received: 213568.0
+[I 251222 23:20:50 live_data_runner:174] Tick received: 213568.0
+[I 251222 23:20:50 live_data_runner:160] LiveTick saved
+[I 251222 23:20:51 live_data_runner:121] Tick received: 213568.0
+[I 251222 23:20:51 live_data_runner:174] Tick received: 213568.0
+[I 251222 23:20:51 live_data_runner:160] LiveTick saved
+[I 251222 23:20:52 live_data_runner:121] Tick received: 213568.0
+[I 251222 23:20:52 live_data_runner:174] Tick received: 213568.0
+[I 251222 23:20:52 live_data_runner:160] LiveTick saved
+[I 251222 23:20:54 live_data_runner:121] Tick received: 213590.0
+[I 251222 23:20:54 live_data_runner:174] Tick received: 213590.0
+[I 251222 23:20:54 live_data_runner:160] LiveTick saved
+[I 251222 23:20:55 live_data_runner:121] Tick received: 213564.0
+[I 251222 23:20:55 live_data_runner:174] Tick received: 213564.0
+[I 251222 23:20:55 live_data_runner:160] LiveTick saved
+[I 251222 23:20:56 live_data_runner:121] Tick received: 213564.0
+[I 251222 23:20:56 live_data_runner:174] Tick received: 213564.0
+[I 251222 23:20:56 live_data_runner:160] LiveTick saved
+[I 251222 23:20:57 live_data_runner:121] Tick received: 213564.0
+[I 251222 23:20:57 live_data_runner:174] Tick received: 213564.0
+[I 251222 23:20:57 live_data_runner:160] LiveTick saved
+[I 251222 23:20:58 live_data_runner:121] Tick received: 213564.0
+[I 251222 23:20:58 live_data_runner:174] Tick received: 213564.0
+[I 251222 23:20:58 live_data_runner:160] LiveTick saved
+[I 251222 23:21:00 live_data_runner:121] Tick received: 213600.0
+[I 251222 23:21:00 live_data_runner:174] Tick received: 213600.0
+[I 251222 23:21:00 live_data_runner:160] LiveTick saved
+[I 251222 23:21:01 live_data_runner:121] Tick received: 213567.0
+[I 251222 23:21:01 live_data_runner:174] Tick received: 213567.0
+[I 251222 23:21:01 live_data_runner:160] LiveTick saved
+[I 251222 23:21:02 live_data_runner:121] Tick received: 213598.0
+[I 251222 23:21:02 live_data_runner:174] Tick received: 213598.0
+[I 251222 23:21:02 live_data_runner:160] LiveTick saved
+[I 251222 23:21:04 live_data_runner:121] Tick received: 213600.0
+[I 251222 23:21:04 live_data_runner:174] Tick received: 213600.0
+[I 251222 23:21:04 live_data_runner:160] LiveTick saved
+[I 251222 23:21:05 live_data_runner:121] Tick received: 213600.0
+[I 251222 23:21:05 live_data_runner:174] Tick received: 213600.0
+[I 251222 23:21:05 live_data_runner:160] LiveTick saved
+[I 251222 23:21:07 live_data_runner:121] Tick received: 213600.0
+[I 251222 23:21:07 live_data_runner:174] Tick received: 213600.0
+[I 251222 23:21:07 live_data_runner:160] LiveTick saved
+[I 251222 23:21:08 live_data_runner:121] Tick received: 213598.0
+[I 251222 23:21:08 live_data_runner:174] Tick received: 213598.0
+[I 251222 23:21:08 live_data_runner:160] LiveTick saved
+[I 251222 23:21:09 live_data_runner:121] Tick received: 213554.0
+[I 251222 23:21:09 live_data_runner:174] Tick received: 213554.0
+[I 251222 23:21:09 live_data_runner:160] LiveTick saved
+[I 251222 23:21:10 live_data_runner:121] Tick received: 213544.0
+[I 251222 23:21:10 live_data_runner:174] Tick received: 213544.0
+[I 251222 23:21:10 live_data_runner:160] LiveTick saved
+[I 251222 23:21:11 live_data_runner:121] Tick received: 213530.0
+[I 251222 23:21:11 live_data_runner:174] Tick received: 213530.0
+[I 251222 23:21:11 live_data_runner:160] LiveTick saved
+[I 251222 23:21:13 live_data_runner:121] Tick received: 213530.0
+[I 251222 23:21:13 live_data_runner:174] Tick received: 213530.0
+[I 251222 23:21:13 live_data_runner:160] LiveTick saved
+[I 251222 23:21:14 live_data_runner:121] Tick received: 213530.0
+[I 251222 23:21:14 live_data_runner:174] Tick received: 213530.0
+[I 251222 23:21:14 live_data_runner:160] LiveTick saved
+[I 251222 23:21:16 live_data_runner:121] Tick received: 213530.0
+[I 251222 23:21:16 live_data_runner:174] Tick received: 213530.0
+[I 251222 23:21:16 live_data_runner:160] LiveTick saved

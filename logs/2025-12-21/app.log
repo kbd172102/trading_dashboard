@@ -1,0 +1,14 @@
+[I 251221 21:17:03 angel_one:408] AngelOne re-login successful
+[I 251221 21:24:20 angel_one:408] AngelOne re-login successful
+[I 251221 21:31:41 angel_one:69] AngelOne login successful
+[I 251221 21:32:22 angel_one:408] AngelOne re-login successful
+[I 251221 22:04:31 angel_one:408] AngelOne re-login successful
+[I 251221 22:25:11 live_data_runner:525] [LIVE CANDLE] 2025-12-18 23:15:00+05:30 O:204695.0 H:204695.0 L:204611.0 C:204627.0
+[I 251221 22:25:11 live_data_runner:538] Strategy evaluated for user 1
+[I 251221 22:25:20 live_data_runner:393] Login Successful
+[I 251221 22:25:21 live_data_runner:425] WebSocket Connected
+[I 251221 22:25:22 live_data_runner:525] [LIVE CANDLE] 2025-12-20 06:45:00+05:30 O:208869.0 H:208869.0 L:208869.0 C:208869.0
+[I 251221 22:25:22 live_data_runner:538] Strategy evaluated for user 1
+[I 251221 22:35:58 live_data_runner:194] [LIVE CANDLE] 2025-12-20 06:45:00+05:30 O:208869.0 H:208869.0 L:208869.0 C:208869.0
+[I 251221 22:47:11 angel_one:408] AngelOne re-login successful
+[I 251221 22:50:40 angel_one:408] AngelOne re-login successful

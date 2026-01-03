@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('adminpanel/', include('adminpanel.urls')),
+    # path('live/', include('live_trading.urls')),
     path('', include('dashboard.urls', namespace='dashboard')),
 ]
 

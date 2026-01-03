@@ -1,4 +1,4 @@
-# backtest_runner/backtest.py
+# utils/backtest.py
 import os
 import io
 import base64
@@ -11,16 +11,16 @@ import matplotlib.pyplot as plt
 
 # Default strategy parameters (used if strategy object lacks a field)
 DEFAULTS = {
-    "point_value": 1.0,
-    "ema_short": 9,
-    "ema_long": 26,
+    "point_value": 5,
+    "ema_short": 27,
+    "ema_long": 78,
     "fixed_sl_pct": 0.015,
     "trail_sl_pct": 0.025,
     "breakout_buffer": 0.0012,
     "cooldown_bars": 3,
-    "initial_lots": 1,
+    "initial_lots": 2,
     "brokerage_pct": 0.0003,
-    "daily_trade_cap": None,
+    "daily_trade_cap": 10,
     "reserve_cash": 1000.0,
     "bar_minutes": 15,
 }
@@ -79,8 +79,20 @@ def apply_indicators(df, strategy_params):
     df["c3_low"]  = df["low"].rolling(3).min()
 
     # time features used in older script
+    # df["ym"] = df["datetime"].dt.to_period("M")
+    # df["is_month_end"] = df["ym"] = df["datetime"].dt.to_period("M")
+    # df["is_month_end"] = False
+    # df.loc[df.groupby("ym").tail(1).index, "is_month_end"] = True
+    # ["datetime"].dt.is_month_end.fillna(False)
+    # ensure datetime is pandas datetime (CRITICAL)
+    df["datetime"] = pd.to_datetime(df["datetime"], errors="coerce")
+    df = df.dropna(subset=["datetime"])
+
+    # EXACT match to original script behavior
     df["ym"] = df["datetime"].dt.to_period("M")
-    df["is_month_end"] = df["datetime"].dt.is_month_end.fillna(False)
+    df["is_month_end"] = False
+    df.loc[df.groupby("ym").tail(1).index, "is_month_end"] = True
+
     return df
 
 def save_figure_to_base64(fig):
@@ -398,17 +410,11 @@ def balance_chart_base64(events_df, text_on_empty="No data available"):
     if events_df is None or events_df.empty:
         return make_empty_png_base64(text_on_empty)
 
-    # dfb = events_df[events_df["event"]=="EXIT"][["time","available_cash"]].dropna()
-    dfb = dfb = events_df[["time","available_cash"]][["time","available_cash"]].dropna()
+    dfb = events_df[["time", "available_cash"]].dropna()
     if dfb.empty:
-        fig, ax = plt.subplots(figsize=(10, 4))
-        ax.plot([events_df["time"].min(), events_df["time"].max()],
-                [events_df["available_cash"].iloc[0],
-                 events_df["available_cash"].iloc[0]])
-        return save_figure_to_base64(fig)
-        # return make_empty_png_base64(text_on_empty)
+        return make_empty_png_base64(text_on_empty)
 
-    fig, ax = plt.subplots(figsize=(10,4))
+    fig, ax = plt.subplots(figsize=(10, 4))
     dfb = dfb.sort_values("time")
     ax.plot(dfb["time"], dfb["available_cash"])
     ax.fill_between(dfb["time"], dfb["available_cash"], alpha=0.25)
@@ -417,3 +423,110 @@ def balance_chart_base64(events_df, text_on_empty="No data available"):
     ax.set_ylabel("Available (₹)")
     fig.autofmt_xdate()
     return save_figure_to_base64(fig)
+
+import pandas as pd
+
+def build_detailed_pnl_df(events_df, bar_minutes=15):
+    """
+    Build detailed PnL dataframe from ENTRY/EXIT events.
+    """
+    if events_df is None or events_df.empty:
+        return pd.DataFrame(columns=[
+            "entry_time","exit_time","direction","entry_price","exit_price","lots",
+            "reason_entry","reason_exit","holding_bars","holding_minutes",
+            "mfe_pct","mae_pct","gross_pnl","brokerage","net_pnl",
+            "pnl_pct_price","starting_cash_at_entry","available_after_exit"
+        ])
+
+    events_df = events_df.sort_values("time").reset_index(drop=True)
+
+    rows = []
+    open_trade = None
+
+    for _, r in events_df.iterrows():
+
+        # ---------------- ENTRY ----------------
+        if r["event"] == "ENTRY":
+            open_trade = {
+                "entry_time": r["time"],
+                "direction": r["direction"],
+                "entry_price": r["price"],
+                "lots": r["lots"],
+                "reason_entry": r["reason"],
+                "entry_bar": r["bar_index"],
+                "starting_cash_at_entry": r["available_cash"],
+                "max_fav_price": r["price"],
+                "max_adv_price": r["price"],
+                "entry_fee": 0.0  # will infer later
+            }
+
+        # ---------------- EXIT ----------------
+        elif r["event"] == "EXIT" and open_trade is not None:
+
+            exit_price = r["price"]
+            side = 1 if open_trade["direction"] == "LONG" else -1
+
+            # holding
+            holding_bars = r["bar_index"] - open_trade["entry_bar"]
+            holding_minutes = holding_bars * bar_minutes
+
+            # price movement %
+            mfe_pct = (
+                (open_trade["max_fav_price"] - open_trade["entry_price"])
+                / open_trade["entry_price"]
+            ) * 100 * side
+
+            mae_pct = (
+                (open_trade["max_adv_price"] - open_trade["entry_price"])
+                / open_trade["entry_price"]
+            ) * 100 * side
+
+            # gross pnl (before fees)
+            gross_pnl = (
+                (exit_price - open_trade["entry_price"])
+                * side
+                * open_trade["lots"]
+            )
+
+            # brokerage = gross - net
+            net_pnl = r["realized_pnl"]
+            brokerage = gross_pnl - net_pnl
+
+            pnl_pct_price = (
+                (exit_price - open_trade["entry_price"])
+                / open_trade["entry_price"]
+            ) * 100 * side
+
+            rows.append({
+                "entry_time": open_trade["entry_time"],
+                "exit_time": r["time"],
+                "direction": open_trade["direction"],
+                "entry_price": open_trade["entry_price"],
+                "exit_price": exit_price,
+                "lots": open_trade["lots"],
+                "reason_entry": open_trade["reason_entry"],
+                "reason_exit": r["reason"],
+                "holding_bars": holding_bars,
+                "holding_minutes": holding_minutes,
+                "mfe_pct": round(mfe_pct, 2),
+                "mae_pct": round(mae_pct, 2),
+                "gross_pnl": round(gross_pnl, 2),
+                "brokerage": round(brokerage, 2),
+                "net_pnl": round(net_pnl, 2),
+                "pnl_pct_price": round(pnl_pct_price, 2),
+                "starting_cash_at_entry": open_trade["starting_cash_at_entry"],
+                "available_after_exit": r["available_cash"],
+            })
+
+            open_trade = None
+
+        # ---------------- TRACK MFE / MAE ----------------
+        if open_trade is not None:
+            if open_trade["direction"] == "LONG":
+                open_trade["max_fav_price"] = max(open_trade["max_fav_price"], r["price"])
+                open_trade["max_adv_price"] = min(open_trade["max_adv_price"], r["price"])
+            else:
+                open_trade["max_fav_price"] = min(open_trade["max_fav_price"], r["price"])
+                open_trade["max_adv_price"] = max(open_trade["max_adv_price"], r["price"])
+
+    return pd.DataFrame(rows)
