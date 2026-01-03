@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
-
+import dj_database_url
 from django.conf.global_settings import MEDIA_URL, MEDIA_ROOT
 from dotenv import load_dotenv
 
@@ -94,26 +94,34 @@ WSGI_APPLICATION = 'portal.wsgi.application'
 
 DB_ENGINE = os.getenv("DB_ENGINE", "sqlite3")
 
-if DB_ENGINE == "sqlite3":
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / os.getenv("DB_NAME", "db.sqlite3"),
-        }
-    }
-elif DB_ENGINE == "postgresql":
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv("DB_NAME"),
-            "USER": os.getenv("DB_USER"),
-            "PASSWORD": os.getenv("DB_PASSWORD"),
-            "HOST": os.getenv("DB_HOST", "localhost"),
-            "PORT": os.getenv("DB_PORT", "5432"),
-        }
-    }
-else:
-    raise RuntimeError("Unsupported DB_ENGINE: " + DB_ENGINE)
+DATABASES = {
+    'default': dj_database_url.config(
+        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
+}
+
+# if DB_ENGINE == "sqlite3":
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": BASE_DIR / os.getenv("DB_NAME", "db.sqlite3"),
+#         }
+#     }
+# elif DB_ENGINE == "postgresql":
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.postgresql",
+#             "NAME": os.getenv("DB_NAME"),
+#             "USER": os.getenv("DB_USER"),
+#             "PASSWORD": os.getenv("DB_PASSWORD"),
+#             "HOST": os.getenv("DB_HOST", "localhost"),
+#             "PORT": os.getenv("DB_PORT", "5432"),
+#         }
+#     }
+# else:
+#     raise RuntimeError("Unsupported DB_ENGINE: " + DB_ENGINE)
 
 
 
@@ -165,15 +173,17 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #custom user
 AUTH_USER_MODEL = "accounts.User"
 
-CELERY_BROKER_URL = "redis://localhost:6379/0"
-CELERY_RESULT_BACKEND = "redis://localhost:6379/1"   # optional
+REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379')
+
+CELERY_BROKER_URL = f"{REDIS_URL}/0"
+CELERY_RESULT_BACKEND = f"{REDIS_URL}/1"
 CELERY_TASK_TRACK_STARTED = True
 # CELERY_TASK_TIME_LIMIT = 60 * 60 * 2  # 2 hours default limit for tasks
 
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": f"{REDIS_URL}/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
