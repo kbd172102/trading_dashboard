@@ -3,8 +3,6 @@
 
 {% block content %}
 
-<!-- No extra wrappers needed, content goes directly inside the main.content from base.html -->
-
     {% if no_api %}
         <div class="alert alert-warning text-center mt-4">
             <div class="d-flex flex-column align-items-center">
@@ -19,8 +17,8 @@
     {% else %}
 
     <!-- Dashboard Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+        <h2 class="fw-bold mb-3 mb-md-0">
             <i class="bi bi-graph-up-arrow me-2 text-primary"></i>Portfolio Dashboard
         </h2>
         <a href="{% url 'dashboard:api_integration' %}" class="btn btn-outline-secondary">
@@ -31,7 +29,7 @@
     <!-- Summary Cards -->
     <div class="row g-4 mb-4">
         <!-- Total Balance -->
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card shadow-sm h-100 border-0 rounded-3">
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center">
@@ -50,7 +48,7 @@
         </div>
 
         <!-- Net Profit -->
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card shadow-sm h-100 border-0 rounded-3">
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center">
@@ -73,7 +71,7 @@
         </div>
 
         <!-- Available Cash -->
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card shadow-sm h-100 border-0 rounded-3">
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center">
@@ -250,5 +248,55 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
+<style>
+/* Ensure content doesn't overflow horizontally */
+.content {
+    overflow-x: hidden;
+}
+
+/* Responsive adjustments for cards */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1rem !important;
+    }
+
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    .d-flex.justify-content-between .btn {
+        margin-top: 0.5rem;
+    }
+
+    .table-responsive {
+        font-size: 0.75rem;
+    }
+
+    .card-body {
+        padding: 0.75rem !important;
+    }
+
+    .flex-grow-1 h3 {
+        font-size: 1.25rem;
+    }
+
+    .flex-grow-1 h6 {
+        font-size: 0.875rem;
+    }
+}
+</style>
 
 {% endblock %}

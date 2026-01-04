@@ -2,12 +2,11 @@
 {% load static %}
 {% block content %}
 
-<div class="content-wrapper">
-  <div class="container-fluid">
+<div class="container-fluid">
 
     <!-- Page Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <div>
+    <div class="page-header d-flex justify-content-between align-items-center mb-4">
+        <div>
         <h3 class="fw-bold mb-1">Manage Clients</h3>
         <p class="text-muted mb-0">View, edit and manage user accounts</p>
       </div>
@@ -391,14 +390,6 @@ const apiData = {
         {% endfor %}
     };
 // API credential
-<!--function openAPIForm(id, username) {-->
-<!--    document.getElementById('api-user-id').value = id;-->
-<!--    document.getElementById('addAPIKeyForm').action =-->
-<!--        '{% url "adminpanel:add_client_api" %}';-->
-
-<!--    const modal = new bootstrap.Modal(document.getElementById('addAPIKeyModal'));-->
-<!--    modal.show();-->
-<!--}-->
 function openAPIForm(id, username) {
     document.getElementById('api-user-id').value = id;
 

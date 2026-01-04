@@ -1,31 +1,30 @@
 {% extends "adminpanel/base.html" %}
 {% load static %}
 {% block content %}
-<div class="content-wrapper">
-  <div class="container-fluid">
-    <!-- Page Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <div>
-        <h3 class="fw-bold mb-1">Admin Dashboard</h3>
-        <p class="text-muted mb-0">Monitor system activity and manage resources</p>
-      </div>
-      <div class="d-none d-md-block">
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-calendar3 me-1"></i> Last 30 Days
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Last 7 Days</a></li>
-            <li><a class="dropdown-item" href="#">Last 30 Days</a></li>
-            <li><a class="dropdown-item" href="#">Last 3 Months</a></li>
-            <li><a class="dropdown-item" href="#">Last Year</a></li>
-          </ul>
-        </div>
+<div class="container-fluid">
+  <!-- Page Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4 page-header">
+    <div>
+      <h3 class="fw-bold mb-1">Admin Dashboard</h3>
+      <p class="text-muted mb-0">Monitor system activity and manage resources</p>
+    </div>
+    <div class="d-none d-md-block">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-calendar3 me-1"></i> Last 30 Days
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Last 7 Days</a></li>
+          <li><a class="dropdown-item" href="#">Last 30 Days</a></li>
+          <li><a class="dropdown-item" href="#">Last 3 Months</a></li>
+          <li><a class="dropdown-item" href="#">Last Year</a></li>
+        </ul>
       </div>
     </div>
+  </div>
 
-    <!-- Stats Cards -->
-    <div class="row g-4 mb-4">
+  <!-- Stats Cards -->
+  <div class="row g-4 mb-4">
       <div class="col-xl-6 col-md-6 col-12">
         <div class="card stat-card border-0 shadow-sm h-100">
           <div class="card-body p-4">
@@ -151,56 +150,5 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
-
-<style>
-.stat-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.stat-icon {
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.table th {
-  font-weight: 600;
-  color: var(--sidebar-bg);
-  border-bottom: 2px solid #f0f0f0;
-}
-
-.table td {
-  vertical-align: middle;
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .content-wrapper {
-    padding: 15px;
-  }
-
-  .stat-card .card-body {
-    padding: 15px !important;
-  }
-
-  .stat-icon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .stat-icon i {
-    font-size: 1.2rem !important;
-  }
-}
-</style>
-
 {% endblock %}
