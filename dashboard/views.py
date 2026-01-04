@@ -152,7 +152,7 @@ def api_integration(request):
 
                 start_live_engine(
                     user_id=request.user.id,
-                    token="451669"  # this should be dynamic later
+                    token="458305"  # this should be dynamic later
                 )
 
                 messages.success(request, "API Key connected successfully!")
@@ -349,7 +349,7 @@ def start_trading(request):
             return JsonResponse({"status": "error", "message": "Trading not enabled or API key missing."})
 
         # You may want to get the token dynamically, here it's hardcoded
-        token = "451669"  # Replace with user's selected token if needed
+        token = "458305"  # Replace with user's selected token if needed
 
         start_live_engine(user.id, token)
         user.trading_enabled = True
@@ -361,7 +361,7 @@ def start_trading(request):
 def stop_trading(request):
     if request.method == "POST":
         user = request.user
-        token = "451669"
+        token = "458305"
         # Stop trading logic
         stop_live_engine(user.id, token)
         user.trading_enabled = False

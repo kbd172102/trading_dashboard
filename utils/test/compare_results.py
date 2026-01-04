@@ -89,7 +89,7 @@ df = pd.read_csv("SILVERM_2year_15_MIN.csv")
 df["timestamp"] = pd.to_datetime(df["timestamp"])
 df = df.sort_values("timestamp")
 
-pm = PositionManager(user_id=1, token=4516695)
+pm = PositionManager(user_id=1, token=451669)
 candles = []
 
 for i in range(len(df)):

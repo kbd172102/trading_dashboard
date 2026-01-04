@@ -11,5 +11,5 @@ class LiveTradingConfig(AppConfig):
         #
         # enabled_users = User.objects.filter(trading_enabled=True)
         # for user in enabled_users:
-        #     token = "451669"  # Replace with user's token if needed
+        #     token = "458305"  # Replace with user's token if needed
         #     start_live_engine(user.id, token)
