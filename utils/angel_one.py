@@ -416,3 +416,50 @@ def login_and_get_tokens(angel_key):
     except Exception as e:
         logger.error("AngelOne login failed: %s", e)
         return None
+
+def get_margin_required(api_key, jwt_token, exchange, tradingsymbol, symboltoken, transaction_type, quantity=1, product_type="INTRADAY", order_type="MARKET"):
+    """
+    Fetch required margin for a single lot from Angel One's margin API.
+    """
+    url = "https://apiconnect.angelone.in/rest/secure/angelbroking/margin/v1/batch"
+    
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {jwt_token}",
+        "X-PrivateKey": api_key,
+        "X-UserType": "USER",
+        "X-SourceID": "WEB",
+    }
+
+    payload = [
+        {
+            "exchange": exchange.upper(),
+            "margin_type": "REQUIRED",
+            "tradingsymbol": tradingsymbol,
+            "symboltoken": symboltoken,
+            "transaction_type": transaction_type.upper(),
+            "variety": "NORMAL",
+            "product": product_type.upper(),
+            "order_type": order_type.upper(),
+            "quantity": quantity,
+            "price": 0, # Market order
+        }
+    ]
+
+    try:
+        response = requests.post(url, headers=headers, json=payload)
+        data = response.json()
+        
+        if data.get("status") and data.get("data"):
+            margin_data = data["data"]
+            if isinstance(margin_data, list) and len(margin_data) > 0:
+                return margin_data[0].get("totalMarginRequired", 0)
+            elif isinstance(margin_data, dict): # Sometimes it returns a dict
+                return margin_data.get("totalMarginRequired", 0)
+
+        logger.error("Margin API failed: %s", data)
+        return 0
+
+    except Exception as e:
+        logger.exception("Margin API request failed: %s", e)
+        return 0
