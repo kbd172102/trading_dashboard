@@ -1,4 +1,5 @@
 # accounts/views.py
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
@@ -128,3 +129,6 @@ def user_login(request):
     else:
         form = LoginForm()
     return render(request, 'accounts/login.html', {'form': form})
+
+def health_check(request):
+    return JsonResponse({"status": "ok"})
