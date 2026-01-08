@@ -45,12 +45,11 @@ def start_live_engine(user_id, token):
 
 
 def stop_live_engine(user_id, token=None):
-    global user_engines
-    if user_id in user_engines:
-        engine = user_engines[user_id]
+    if user_id in ENGINES:
+        engine = ENGINES[user_id]
         # Add your logic to stop the engine/thread here
         engine.stop()  # or whatever your stop method is
-        del user_engines[user_id]
+        del ENGINES[user_id]
         print(f"Stopped engine for user {user_id}")
     else:
         print(f"No live engine found for user {user_id}")
