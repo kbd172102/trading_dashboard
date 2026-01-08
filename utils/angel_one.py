@@ -431,20 +431,20 @@ def get_margin_required(api_key, jwt_token, exchange, tradingsymbol, symboltoken
         "X-SourceID": "WEB",
     }
 
-    payload = [
-        {
-            "exchange": exchange.upper(),
-            "margin_type": "REQUIRED",
-            "tradingsymbol": tradingsymbol,
-            "symboltoken": symboltoken,
-            "transaction_type": transaction_type.upper(),
-            "variety": "NORMAL",
-            "product": product_type.upper(),
-            "order_type": order_type.upper(),
-            "quantity": quantity,
-            "price": 0, # Market order
+    payload = {
+            "positions": [
+                {
+                    "exchange": "MCX",
+                    "qty": 1,
+                    "price": 0,
+                    "productType": "INTRADAY",
+                    "orderType": "LIMIT",
+                    "token": "458305",
+                    "tradeType": "BUY"
+                }
+            ]
         }
-    ]
+
 
     try:
         response = requests.post(url, headers=headers, json=payload)
