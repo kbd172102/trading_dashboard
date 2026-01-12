@@ -25,7 +25,6 @@ from utils.position_manager import PositionManager
 from utils.expiry_utils import is_last_friday_before_expiry, is_one_week_before_expiry
 from utils.redis_cache import redis_lock, redis_unlock, redis_is_locked
 
-
 CANDLE_INTERVAL_MINUTES = 15
 IST = pytz.timezone("Asia/Kolkata")
 
@@ -84,7 +83,6 @@ class UserEngine:
 # THREAD 1 — WEBSOCKET
 # ==========================================================
 def websocket_thread(engine):
-
     if not ensure_valid_session(engine):
         logger.error("AngelOne login failed")
         return
@@ -100,7 +98,7 @@ def websocket_thread(engine):
     mode = 1  # 1 = LTP, 2 = Quote, 3 = SnapQuote
 
     token_list = [{
-        "exchangeType": 5,   # 5 = NSE (INDEX)
+        "exchangeType": 5,  # 5 = NSE (INDEX)
         "tokens": [engine.token]
     }]
 
@@ -113,7 +111,7 @@ def websocket_thread(engine):
             return
 
         ltp = tick["last_traded_price"] / 100
-        
+
         # Check for tick-based exits (SL)
         engine.position_manager.check_exit_on_tick(ltp)
 
@@ -146,6 +144,7 @@ def websocket_thread(engine):
     sws.on_close = on_close
 
     sws.connect()
+
 
 # ==========================================================
 # THREAD 2 — DB WRITER (ASYNC, NON-BLOCKING)
@@ -252,6 +251,7 @@ def candle_and_strategy_thread(engine):
         }
         engine.last_candle_start = candle_start
 
+
 def get_live_balance(engine):
     key = f"balance:{engine.user_id}"
 
@@ -302,20 +302,20 @@ def run_strategy_live(engine, df):
     # ---------------- EXIT MANAGEMENT (CANDLE-BASED) ----------------
     if pm.has_open_position():
         side = pm.position["side"]
-        
+
         # EMA Reversal Exit (C3 Confirmed)
         is_uptrend = ema_fast > ema_slow
-        
+
         exit_on_reversal = False
         if side == "LONG" and not is_uptrend and action == "SELL":
             exit_on_reversal = True
         elif side == "SHORT" and is_uptrend and action == "BUY":
             exit_on_reversal = True
-        
+
         if exit_on_reversal:
             logger.info("C3-confirmed EMA reversal detected. Exiting position.")
             pm.force_exit(reason="EMA_REVERSAL_C3", price=last["close"])
-        return # Decision made for this candle (exit or hold)
+        return  # Decision made for this candle (exit or hold)
 
     # ---------------- ENTRY MANAGEMENT ----------------
     if pm.in_cooldown():
@@ -332,7 +332,7 @@ def run_strategy_live(engine, df):
     # EMA Trend Confirmation for ENTRY
     is_uptrend = ema_fast > ema_slow
     if (action == "BUY" and not is_uptrend) or \
-       (action == "SELL" and is_uptrend):
+            (action == "SELL" and is_uptrend):
         logger.info("Signal %s ignored due to EMA trend filter.", action)
         return
 
@@ -346,7 +346,7 @@ def run_strategy_live(engine, df):
     try:
         balance = get_live_balance(engine)
         available_cash = balance.get("available_cash", 0)
-        if available_cash <= 1000: # Reserve
+        if available_cash <= 1000:  # Reserve
             logger.warning("Insufficient cash (<= 1000 reserve).")
             return
 
@@ -354,8 +354,8 @@ def run_strategy_live(engine, df):
         margin_per_lot = get_margin_required(
             api_key=engine.api_key,
             jwt_token=engine.jwt_token,
-            exchange="NFO", # Example, adjust as needed
-            tradingsymbol="BANKNIFTY24JUL49000CE", # Example, adjust as needed
+            exchange="NFO",  # Example, adjust as needed
+            tradingsymbol="BANKNIFTY24JUL49000CE",  # Example, adjust as needed
             symboltoken=engine.token,
             transaction_type="BUY" if action == "BUY" else "SELL"
         )
@@ -372,7 +372,7 @@ def run_strategy_live(engine, df):
             return
 
         side = "LONG" if action == "BUY" else "SHORT"
-        
+
         response = None
         if action == "BUY":
             response = buy_order(engine.user_id, engine.token, qty)
@@ -389,12 +389,13 @@ def run_strategy_live(engine, df):
                 quantity=qty
             )
             # Increment trade count
-            cache_set(trade_count_key, trade_count + 1, ttl=86400) # 24 hours
+            cache_set(trade_count_key, trade_count + 1, ttl=86400)  # 24 hours
         else:
             logger.error("Order failed: %s", response)
 
     finally:
         redis_unlock(lock_key)
+
 
 def ensure_valid_session(engine, force=False):
     """
@@ -407,9 +408,9 @@ def ensure_valid_session(engine, force=False):
     REFRESH_BUFFER = 5 * 60
 
     if (
-        not force and
-        engine.jwt_token and
-        (now - engine.last_login_time) < (engine.jwt_validity_seconds - REFRESH_BUFFER)
+            not force and
+            engine.jwt_token and
+            (now - engine.last_login_time) < (engine.jwt_validity_seconds - REFRESH_BUFFER)
     ):
         return True
 

@@ -54,26 +54,20 @@ def c3_strategy(df: pd.DataFrame):
     long_c2 = cl2 > o2
     long_c2_higher = h2 > h1
     long_break = cl3 > (h2 * (1 + BREAKOUT_BUFFER))
-    long_ok = ema_s > ema_l
 
     # SHORT conditions
     short_c1 = cl1 < o1
     short_c2 = cl2 < o2
     short_c2_lower = l2 < l1
     short_break = cl3 < (l2 * (1 - BREAKOUT_BUFFER))
-    short_ok = ema_s < ema_l
 
 
-    if long_c1 and long_c2 and long_c2_higher and long_break and long_ok:
-        # response = buy_order(api_key, jwt_token, client_code, "26000", quantity=1)
-        # print("Buy Order Placed:", response)
-        return {"action":"BUY", "reason":"LONG C3 + EMA OK", "price": float(cl3)}
-    if short_c1 and short_c2 and short_c2_lower and short_break and short_ok:
-        # response = sell_order(api_key, jwt_token, client_code, "26000", quantity=1)
-        # print("Sell Order Placed:", response)
-        return {"action":"SELL", "reason":"SHORT C3 + EMA OK", "price": float(cl3)}
+    if long_c1 and long_c2 and long_c2_higher and long_break:
+        return {"action":"BUY", "reason":"LONG C3", "price": float(cl3)}
+    if short_c1 and short_c2 and short_c2_lower and short_break:
+        return {"action":"SELL", "reason":"SHORT C3", "price": float(cl3)}
 
-    return {"action":"HOLD", "reason":"No valid C3 + EMA alignment", "price": float(cl3)}
+    return {"action":"HOLD", "reason":"No valid C3 pattern", "price": float(cl3)}
 
 
 import re
@@ -91,4 +85,3 @@ def to_float(x):
         return None
 
     return pd.to_numeric(x, errors="coerce")
-
