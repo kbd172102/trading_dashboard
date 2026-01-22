@@ -17,16 +17,31 @@ from SmartApi.smartWebSocketV2 import SmartWebSocketV2
 from backtest_runner.models import AngelOneKey
 from live_trading.models import LiveTick, LiveCandle
 from utils.placeorder import buy_order, sell_order
-from utils.redis_cache import cache_get, cache_set
 from utils.angel_one import get_account_balance, login_and_get_tokens, get_margin_required
 from utils.indicator_preprocessor import add_indicators
 from utils.strategies_live import c3_strategy, EMA_LONG
 from utils.position_manager import PositionManager
 from utils.expiry_utils import is_last_friday_before_expiry, is_one_week_before_expiry
-from utils.redis_cache import redis_lock, redis_unlock, redis_is_locked
 
 CANDLE_INTERVAL_MINUTES = 15
+
+from utils.redis_cache import init_redis, acquire_candle_lock
+
+init_redis()
+
+import pytz
+from datetime import datetime
+
 IST = pytz.timezone("Asia/Kolkata")
+
+def to_ist(ts: datetime) -> datetime:
+    """
+    Convert any datetime to IST.
+    Assumes UTC if tzinfo is missing.
+    """
+    if ts.tzinfo is None:
+        return ts.replace(tzinfo=pytz.UTC).astimezone(IST)
+    return ts.astimezone(IST)
 
 
 # ==========================================================
@@ -83,95 +98,67 @@ class UserEngine:
 # THREAD 1 — WEBSOCKET
 # ==========================================================
 def websocket_thread(engine):
-    reconnect_delay = 5  # Initial delay in seconds
-    max_reconnect_delay = 60  # Maximum delay
+    if not ensure_valid_session(engine):
+        logger.error("AngelOne login failed")
+        return
 
-    while engine.running.is_set():
-        # Force a session refresh before each connection attempt
-        if not ensure_valid_session(engine, force=True):
-            logger.error(
-                "AngelOne login failed, retrying in %s seconds...", reconnect_delay
+    sws = SmartWebSocketV2(
+        engine.jwt_token,
+        engine.api_key,
+        AngelOneKey.objects.get(user_id=engine.user_id).client_code,
+        engine.feed_token
+    )
+
+    correlation_id = "live_feed"
+    mode = 1  # 1 = LTP, 2 = Quote, 3 = SnapQuote
+
+    token_list = [{
+        "exchangeType": 5,  # 5 = NSE (INDEX)
+        "tokens": [engine.token]
+    }]
+
+    def on_open(ws):
+        logger.info("WebSocket connected : subscribing")
+        sws.subscribe(correlation_id, mode, token_list)
+
+    def on_data(ws, tick):
+        if "last_traded_price" not in tick:
+            return
+
+        ltp = tick["last_traded_price"] / 100
+
+        # Check for tick-based exits (SL)
+        engine.position_manager.check_exit_on_tick(ltp)
+
+        data = {
+            "token": tick.get("token", engine.token),
+            "ltp": ltp,
+            "timestamp": datetime.fromtimestamp(
+                tick["exchange_timestamp"] / 1000, pytz.UTC
             )
-            time.sleep(reconnect_delay)
-            reconnect_delay = min(reconnect_delay * 2, max_reconnect_delay)
-            continue
+        }
 
-        sws = SmartWebSocketV2(
-            engine.jwt_token,
-            engine.api_key,
-            AngelOneKey.objects.get(user_id=engine.user_id).client_code,
-            engine.feed_token,
-        )
-
-        correlation_id = "live_feed"
-        mode = 1  # 1 = LTP, 2 = Quote, 3 = SnapQuote
-
-        token_list = [{"exchangeType": 5, "tokens": [engine.token]}]  # 5 = NSE (INDEX)
-
-        def on_open(ws):
-            nonlocal reconnect_delay
-            logger.info("WebSocket connected : subscribing")
-            sws.subscribe(correlation_id, mode, token_list)
-            # Reset reconnect delay on successful connection
-            reconnect_delay = 5
-
-        def on_data(ws, tick):
-            if "last_traded_price" not in tick:
-                return
-
-            ltp = tick["last_traded_price"] / 100
-
-            # Check for tick-based exits (SL)
-            engine.position_manager.check_exit_on_tick(ltp)
-
-            data = {
-                "token": tick.get("token", engine.token),
-                "ltp": ltp,
-                "timestamp": datetime.fromtimestamp(
-                    tick["exchange_timestamp"] / 1000, pytz.UTC
-                ),
-            }
-
-            logger.info("Tick received: %s", data["ltp"])
-
-            try:
-                engine.tick_queue_db.put_nowait(data)
-            except queue.Full:
-                logger.warning("Tick queue for DB is full")
-
-            try:
-                engine.tick_queue_candle.put_nowait(data)
-            except queue.Full:
-                logger.warning("Tick queue for Candle is full")
-
-        def on_error(ws, error):
-            logger.error("WebSocket error: %s", error)
-
-        def on_close(ws):
-            logger.warning("WebSocket closed")
-
-        sws.on_open = on_open
-        sws.on_data = on_data
-        sws.on_error = on_error
-        sws.on_close = on_close
+        logger.info("Tick received: %s", data["ltp"])
 
         try:
-            logger.info("Connecting to WebSocket...")
-            sws.connect()
-            # If connect() returns, it means the connection was closed permanently
-            # after max retries. The loop will then handle reconnection.
-            logger.warning("WebSocket connection lost. Will attempt to reconnect...")
+            engine.tick_queue_db.put_nowait(data)
+            engine.tick_queue_candle.put_nowait(data)
 
-        except Exception as e:
-            logger.exception(
-                "Exception in websocket connection: %s. Will attempt to reconnect...", e
-            )
+        except queue.Full:
+            logger.warning("Tick queue full")
 
-        # Wait before trying to reconnect, if the engine is still running
-        if engine.running.is_set():
-            logger.info("Waiting %s seconds before reconnecting.", reconnect_delay)
-            time.sleep(reconnect_delay)
-            reconnect_delay = min(reconnect_delay * 2, max_reconnect_delay)
+    def on_error(ws, error):
+        logger.error("WebSocket error: %s", error)
+
+    def on_close(ws):
+        logger.warning("WebSocket closed")
+
+    sws.on_open = on_open
+    sws.on_data = on_data
+    sws.on_error = on_error
+    sws.on_close = on_close
+
+    sws.connect()
 
 
 # ==========================================================
@@ -200,7 +187,9 @@ def db_writer_thread(engine):
 # THREAD 3 — CANDLE + STRATEGY (NO DB POLLING)
 # ==========================================================
 def candle_and_strategy_thread(engine):
-    ist = pytz.timezone("Asia/Kolkata")
+    """
+    Builds candles in IST timezone and runs strategy on candle close
+    """
 
     while engine.running.is_set():
         try:
@@ -209,13 +198,37 @@ def candle_and_strategy_thread(engine):
         except queue.Empty:
             continue
 
-        ts_ist = tick["timestamp"].astimezone(ist)
+        # ✅ SINGLE SOURCE OF TRUTH — convert here
+        ts_ist = to_ist(tick["timestamp"])
 
         minute = (ts_ist.minute // CANDLE_INTERVAL_MINUTES) * CANDLE_INTERVAL_MINUTES
         candle_start = ts_ist.replace(minute=minute, second=0, microsecond=0)
 
-        # 🔹 First candle
+        # 🔹 FIRST CANDLE
         if engine.current_candle is None:
+            engine.current_candle = {
+                "start": candle_start,
+                "open": tick["ltp"],
+                "high": tick["ltp"],
+                "low": tick["ltp"],
+                "close": tick["ltp"],
+            }
+            engine.last_candle_start = candle_start
+            continue
+
+        # 🔹 SAME CANDLE (update OHLC)
+        if candle_start == engine.last_candle_start:
+            c = engine.current_candle
+            c["high"] = max(c["high"], tick["ltp"])
+            c["low"] = min(c["low"], tick["ltp"])
+            c["close"] = tick["ltp"]
+            continue
+
+        # 🔹 CANDLE CLOSED
+        closed = engine.current_candle
+
+        if not acquire_candle_lock(engine.token, closed["start"]):
+            logger.warning("Duplicate candle ignored: %s", closed["start"])
             engine.current_candle = {
                 "start": candle_start,
                 "open": tick["ltp"],
@@ -226,42 +239,36 @@ def candle_and_strategy_thread(engine):
             engine.last_candle_start = candle_start
             continue
 
-        # 🔹 Same candle
-        if candle_start == engine.last_candle_start:
-            c = engine.current_candle
-            c["high"] = max(c["high"], tick["ltp"])
-            c["low"] = min(c["low"], tick["ltp"])
-            c["close"] = tick["ltp"]
-            continue
-
-        # 🔹 Candle closed
-        closed = engine.current_candle
-
-        # SAVE TO DB (for dashboard)
+        # ✅ SAVE TO DB (IST ONLY)
         try:
             LiveCandle.objects.create(
                 user_id=engine.user_id,
                 token=engine.token,
+                interval=f"{CANDLE_INTERVAL_MINUTES}m",
                 start_time=closed["start"],
                 end_time=closed["start"] + timedelta(minutes=CANDLE_INTERVAL_MINUTES),
                 open=closed["open"],
                 high=closed["high"],
                 low=closed["low"],
-                close=closed["close"]
+                close=closed["close"],
             )
-            logger.info("LiveCandle saved")
+            logger.info("LiveCandle saved @ %s", closed["start"])
         except Exception as e:
             logger.exception("LiveCandle DB error: %s", e)
 
+        # ✅ KEEP IN MEMORY (ORDER PRESERVED)
         engine.candles.append(closed)
 
         logger.info(
             "[LIVE CANDLE] %s O:%s H:%s L:%s C:%s",
-            closed["start"], closed["open"], closed["high"],
-            closed["low"], closed["close"]
+            closed["start"],
+            closed["open"],
+            closed["high"],
+            closed["low"],
+            closed["close"],
         )
 
-        # 🔥 STRATEGY (SAFE)
+        # 🔥 STRATEGY — ONLY ON CLOSED CANDLE
         df = pd.DataFrame(engine.candles)
         df.rename(columns={"start": "timestamp"}, inplace=True)
 
@@ -269,13 +276,13 @@ def candle_and_strategy_thread(engine):
             df = add_indicators(df)
             run_strategy_live(engine, df)
 
-        # 🔹 New candle
+        # 🔹 START NEW CANDLE
         engine.current_candle = {
             "start": candle_start,
             "open": tick["ltp"],
             "high": tick["ltp"],
             "low": tick["ltp"],
-            "close": tick["ltp"]
+            "close": tick["ltp"],
         }
         engine.last_candle_start = candle_start
 
@@ -303,10 +310,9 @@ def run_strategy_live(engine, df):
 
     # ---------------- SAFETY: ONE CANDLE = ONE DECISION ----------------
     candle_key = f"candle_done:{engine.user_id}:{engine.token}:{ist_time.strftime('%Y-%m-%d:%H:%M')}"
-    if redis_is_locked(candle_key):
+    if not acquire_candle_lock(engine.token, ist_time, ttl=3600):
         logger.info("Candle already processed, skipping")
         return
-    redis_lock(candle_key, ttl=3600)
 
     # ---------------- DAILY TRADE CAP ----------------
     trade_count_key = f"trade_count:{engine.user_id}:{ist_time.strftime('%Y-%m-%d')}"
@@ -365,11 +371,10 @@ def run_strategy_live(engine, df):
         return
 
     # ---------------- CAPITAL CHECK & ORDER PLACEMENT ----------------
-    lock_key = f"trade_lock:{engine.user_id}:{engine.token}"
-    if redis_is_locked(lock_key):
+    trade_lock_key = f"trade_lock:{engine.user_id}:{engine.token}"
+    if not acquire_candle_lock(engine.token, trade_lock_key, ttl=120):
         logger.info("Trade lock active, skipping entry.")
         return
-    redis_lock(lock_key, ttl=120)
 
     try:
         balance = get_live_balance(engine)
@@ -422,7 +427,8 @@ def run_strategy_live(engine, df):
             logger.error("Order failed: %s", response)
 
     finally:
-        redis_unlock(lock_key)
+        pass
+        # redis_unlock(lock_key)
 
 
 def ensure_valid_session(engine, force=False):

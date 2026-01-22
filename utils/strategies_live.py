@@ -69,6 +69,12 @@ def c3_strategy(df: pd.DataFrame):
 
     return {"action":"HOLD", "reason":"No valid C3 pattern", "price": float(cl3)}
 
+def should_run_strategy(engine, candle_time):
+    if engine.last_strategy_candle == candle_time:
+        return False
+    engine.last_strategy_candle = candle_time
+    return True
+
 
 import re
 

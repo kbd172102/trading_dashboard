@@ -34,7 +34,8 @@ class LiveCandle(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('user','token','start_time')
+        unique_together = ('user','token','start_time', "interval")
+
 
 
 class LivePosition(models.Model):

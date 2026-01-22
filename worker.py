@@ -6,6 +6,11 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
+import os
+IS_WORKER = os.getenv("SERVICE_TYPE") == "worker"
+
+if not IS_WORKER:
+    raise RuntimeError("live_data_runner must run only in WORKER service")
 
 # Add the project root to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
