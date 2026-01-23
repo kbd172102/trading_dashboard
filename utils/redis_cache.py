@@ -64,7 +64,7 @@ def init_redis():
     global redis_client
 
     try:
-        redis_url = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+        redis_url = os.getenv("REDIS_URL", "redis://red-d5pfk575c7fs73bleml0:6379")
         redis_client = redis.Redis.from_url(
             redis_url,
             decode_responses=True,
