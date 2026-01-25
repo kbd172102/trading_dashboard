@@ -110,7 +110,26 @@ def place_order(api_key: str,
 #     )
 
 def buy_order(api_key, jwt, client_code, exchange, tradingsymbol, token, qty):
-    return place_order(api_key=api_key, client_code=client_code, jwt_token= jwt, exchange=exchange, tradingsymbol= tradingsymbol, symboltoken=token, quantity=qty, transaction_type="BUY")
+    return place_order(
+        api_key=api_key,
+        client_code=client_code,
+        jwt_token=jwt,
+        exchange=exchange,
+        tradingsymbol=tradingsymbol,
+        symboltoken=token,
+        quantity=qty,
+        transaction_type="BUY"
+    )
 
-def sell_order(api_key, jwt,client_code, exchange, tradingsymbol, token, qty):
-    return place_order(api_key=api_key,client_code=client_code, jwt_token=jwt, exchange=exchange, tradingsymbol=tradingsymbol, symboltoken=token, quantity=qty, transaction_type="SELL")
+
+def sell_order(api_key, jwt, client_code, exchange, tradingsymbol, token, qty):
+    return place_order(
+        api_key=api_key,
+        client_code=client_code,
+        jwt_token=jwt,
+        exchange=exchange,
+        tradingsymbol=tradingsymbol,
+        symboltoken=token,
+        quantity=qty,
+        transaction_type="SELL"
+    )

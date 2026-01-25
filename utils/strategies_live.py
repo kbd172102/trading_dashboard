@@ -69,69 +69,74 @@ BREAKOUT_BUFFER = 0.0012  # 0.12%
 #
 #     return {"action":"HOLD", "reason":"No valid C3 pattern", "price": float(cl3)}
 
+import pandas as pd
+
+EMA_SHORT = 27
+EMA_LONG = 78
+
+
 def c3_strategy(df: pd.DataFrame):
     """
-    CLIENT EMA CONTINUATION STRATEGY
-    BUY:
-      - EMA27 > EMA78
-      - Close rising (C1 < C2 < C3)
-      - C3 close above EMA27
-    SELL:
-      - EMA27 < EMA78
-      - Close falling (C1 > C2 > C3)
-      - C3 close below EMA27
+    SAFE C3 STRATEGY (NO REPAINT)
+
+    Rules (LONG):
+    - EMA 27 > EMA 78
+    - C1.close < C2.close < C3.close
+    - C3 must be fully CLOSED candle
+
+    NOTE:
+    - df MUST be sorted by timestamp ASC
+    - Strategy evaluates last 3 CLOSED candles
+    - Entry should be done on NEXT candle open
     """
 
-    out = {"action": "HOLD", "reason": "No signal", "price": None}
+    result = {
+        "action": "HOLD",
+        "reason": "No signal",
+        "price": None
+    }
 
     if df is None or len(df) < EMA_LONG + 3:
-        out["reason"] = "Not enough candles"
-        return out
+        result["reason"] = "Not enough candles"
+        return result
 
     df = df.copy().reset_index(drop=True)
 
+    # Ensure numeric values
     for col in ["open", "high", "low", "close"]:
-        df[col] = df[col].apply(to_float)
+        df[col] = pd.to_numeric(df[col], errors="coerce")
 
-    df = df.dropna(subset=["open", "high", "low", "close"])
-    if len(df) < 3:
-        out["reason"] = "Invalid candle data"
-        return out
+    df.dropna(inplace=True)
 
-    # EMAs
+    if len(df) < EMA_LONG + 3:
+        result["reason"] = "Insufficient candles after cleanup"
+        return result
+
+    # EMA calculation
     df["ema_27"] = df["close"].ewm(span=EMA_SHORT, adjust=False).mean()
     df["ema_78"] = df["close"].ewm(span=EMA_LONG, adjust=False).mean()
 
+    # 🔒 LAST 3 *CLOSED* candles
     c1 = df.iloc[-3]
     c2 = df.iloc[-2]
     c3 = df.iloc[-1]
 
-    # -------- BUY CONDITIONS (CLIENT EXPECTATION) --------
-    buy_trend = c3.ema_27 > c3.ema_78
-    buy_structure = c1.close < c2.close < c3.close
-    buy_above_ema = c3.close > c3.ema_27
+    # --- CONDITIONS ---
+    ema_uptrend = c3.ema_27 > c3.ema_78
+    price_pattern = c1.close < c2.close < c3.close
 
-    if buy_trend and buy_structure and buy_above_ema:
+    if ema_uptrend and price_pattern:
         return {
             "action": "BUY",
-            "reason": "EMA27>EMA78 + Higher Closes + Above EMA27",
-            "price": float(c3.close),
+            "reason": "C3 CONFIRMED (EMA27>EMA78 & C1<C2<C3)",
+            "price": float(c3.close),  # reference price
         }
 
-    # -------- SELL CONDITIONS --------
-    sell_trend = c3.ema_27 < c3.ema_78
-    sell_structure = c1.close > c2.close > c3.close
-    sell_below_ema = c3.close < c3.ema_27
-
-    if sell_trend and sell_structure and sell_below_ema:
-        return {
-            "action": "SELL",
-            "reason": "EMA27<EMA78 + Lower Closes + Below EMA27",
-            "price": float(c3.close),
-        }
-
-    out["price"] = float(c3.close)
-    return out
+    return {
+        "action": "HOLD",
+        "reason": f"ema_uptrend={ema_uptrend}, price_pattern={price_pattern}",
+        "price": float(c3.close),
+    }
 
 
 def should_run_strategy(engine, candle_time):

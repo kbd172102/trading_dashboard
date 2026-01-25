@@ -25,7 +25,7 @@ from utils.expiry_utils import is_last_friday_before_expiry, is_one_week_before_
 
 CANDLE_INTERVAL_MINUTES = 15
 
-from utils.redis_cache import init_redis, acquire_candle_lock
+from utils.redis_cache import init_redis, acquire_candle_lock, acquire_trade_lock, release_trade_lock
 
 init_redis()
 
@@ -303,132 +303,284 @@ def get_live_balance(engine):
 # ==========================================================
 # STRATEGY RUNNER (SAFE & FAST)
 # ==========================================================
+# def run_strategy_live(engine, df):
+#     pm = engine.position_manager
+#     last = df.iloc[-1]
+#     ist_time = last["timestamp"].astimezone(IST)
+#
+#     # ---------------- SAFETY: ONE CANDLE = ONE DECISION ----------------
+#     candle_key = f"candle_done:{engine.user_id}:{engine.token}:{ist_time.strftime('%Y-%m-%d:%H:%M')}"
+#     if not acquire_candle_lock(engine.token, ist_time, ttl=3600):
+#         logger.info("Candle already processed, skipping")
+#         return
+#
+#     # ---------------- DAILY TRADE CAP ----------------
+#     trade_count_key = f"trade_count:{engine.user_id}:{ist_time.strftime('%Y-%m-%d')}"
+#     trade_count = int(cache_get(trade_count_key) or 0)
+#     DAILY_TRADE_CAP = 10
+#
+#     # ---------------- FORCE EXIT ON MONTH END ----------------
+#     # Check if it's the last candle of the month
+#     is_month_end = (ist_time + timedelta(days=1)).month != ist_time.month
+#     if is_month_end and pm.has_open_position():
+#         logger.info("Month-end detected, forcing exit.")
+#         pm.force_exit(reason="MONTH_END_EXIT", price=last["close"])
+#         return
+#
+#     # ---------------- CALCULATE SIGNAL ----------------
+#     signal = c3_strategy(df)
+#     action = signal.get("action")
+#     ema_fast = last["ema_27"]
+#     ema_slow = last["ema_78"]
+#
+#     # ---------------- EXIT MANAGEMENT (CANDLE-BASED) ----------------
+#     if pm.has_open_position():
+#         side = pm.position["side"]
+#
+#         # EMA Reversal Exit (C3 Confirmed)
+#         is_uptrend = ema_fast > ema_slow
+#
+#         exit_on_reversal = False
+#         if side == "LONG" and not is_uptrend and action == "SELL":
+#             exit_on_reversal = True
+#         elif side == "SHORT" and is_uptrend and action == "BUY":
+#             exit_on_reversal = True
+#
+#         if exit_on_reversal:
+#             logger.info("C3-confirmed EMA reversal detected. Exiting position.")
+#             pm.force_exit(reason="EMA_REVERSAL_C3", price=last["close"])
+#         return  # Decision made for this candle (exit or hold)
+#
+#     # ---------------- ENTRY MANAGEMENT ----------------
+#     if pm.in_cooldown():
+#         logger.info("In cooldown, no new entry.")
+#         return
+#
+#     if trade_count >= DAILY_TRADE_CAP:
+#         logger.warning("Daily trade cap of %s reached. No new entries.", DAILY_TRADE_CAP)
+#         return
+#
+#     if action == "HOLD":
+#         return
+#
+#     # EMA Trend Confirmation for ENTRY
+#     is_uptrend = ema_fast > ema_slow
+#     if (action == "BUY" and not is_uptrend) or \
+#             (action == "SELL" and is_uptrend):
+#         logger.info("Signal %s ignored due to EMA trend filter.", action)
+#         return
+#
+#     # ---------------- CAPITAL CHECK & ORDER PLACEMENT ----------------
+#     trade_lock_key = f"trade_lock:{engine.user_id}:{engine.token}"
+#     if not acquire_candle_lock(engine.token, trade_lock_key, ttl=120):
+#         logger.info("Trade lock active, skipping entry.")
+#         return
+#
+#     try:
+#         balance = get_live_balance(engine)
+#         available_cash = balance.get("available_cash", 0)
+#         if available_cash <= 1000:  # Reserve
+#             logger.warning("Insufficient cash (<= 1000 reserve).")
+#             return
+#
+#         # Dynamically fetch margin required
+#         margin_per_lot = get_margin_required(
+#             api_key=engine.api_key,
+#             jwt_token=engine.jwt_token,
+#             exchange="NFO",  # Example, adjust as needed
+#             tradingsymbol="BANKNIFTY24JUL49000CE",  # Example, adjust as needed
+#             symboltoken=engine.token,
+#             transaction_type="BUY" if action == "BUY" else "SELL"
+#         )
+#
+#         if margin_per_lot == 0:
+#             logger.error("Could not fetch margin requirement. Aborting trade.")
+#             return
+#
+#         lots = pm.calculate_lots(available_cash - 1000, margin_per_lot)
+#         qty = lots * pm.lot_size
+#
+#         if qty <= 0:
+#             logger.warning("Invalid quantity calculated: %s", qty)
+#             return
+#
+#         side = "LONG" if action == "BUY" else "SHORT"
+#
+#         response = None
+#         if action == "BUY":
+#             response = buy_order(
+#                 api_key=engine.api_key,jwt=engine.jwt_token,client_code=engine.client_code,exchange=engine.exchange,  tradingsymbol=engine.tradingsymbol,token=engine.token,qty=qty
+#             )
+#
+#         elif action == "SELL":
+#             response = sell_order(
+#                 api_key=engine.api_key,jwt=engine.jwt_token,client_code=engine.client_code,exchange=engine.exchange,tradingsymbol=engine.tradingsymbol,token=engine.token,qty=qty
+#             )
+#
+#         if response and response.get("status"):
+#             order_id = response.get("data", {}).get("orderid")
+#             logger.info("ORDER SUCCESS | %s | Qty: %s | OrderID: %s", action, qty, order_id)
+#             pm.open_position(
+#                 side=side,
+#                 price=signal["price"],
+#                 lots=lots,
+#                 quantity=qty
+#             )
+#             # Increment trade count
+#             cache_set(trade_count_key, trade_count + 1, ttl=86400)  # 24 hours
+#         else:
+#             logger.error("Order failed: %s", response)
+#
+#     finally:
+#         pass
+#         # redis_unlock(lock_key)
+
 def run_strategy_live(engine, df):
     pm = engine.position_manager
     last = df.iloc[-1]
     ist_time = last["timestamp"].astimezone(IST)
 
-    # ---------------- SAFETY: ONE CANDLE = ONE DECISION ----------------
-    candle_key = f"candle_done:{engine.user_id}:{engine.token}:{ist_time.strftime('%Y-%m-%d:%H:%M')}"
+    # ==========================================================
+    # 1️⃣ ONE CANDLE = ONE DECISION (CANDLE LOCK)
+    # ==========================================================
     if not acquire_candle_lock(engine.token, ist_time, ttl=3600):
         logger.info("Candle already processed, skipping")
         return
 
-    # ---------------- DAILY TRADE CAP ----------------
-    trade_count_key = f"trade_count:{engine.user_id}:{ist_time.strftime('%Y-%m-%d')}"
-    trade_count = int(cache_get(trade_count_key) or 0)
-    DAILY_TRADE_CAP = 10
-
-    # ---------------- FORCE EXIT ON MONTH END ----------------
-    # Check if it's the last candle of the month
+    # ==========================================================
+    # 2️⃣ FORCE EXIT ON MONTH END
+    # ==========================================================
     is_month_end = (ist_time + timedelta(days=1)).month != ist_time.month
     if is_month_end and pm.has_open_position():
         logger.info("Month-end detected, forcing exit.")
         pm.force_exit(reason="MONTH_END_EXIT", price=last["close"])
         return
 
-    # ---------------- CALCULATE SIGNAL ----------------
+    # ==========================================================
+    # 3️⃣ CALCULATE SIGNAL (USING CLOSED CANDLES ONLY)
+    # ==========================================================
     signal = c3_strategy(df)
-    action = signal.get("action")
+    action = signal["action"]
+
     ema_fast = last["ema_27"]
     ema_slow = last["ema_78"]
+    is_uptrend = ema_fast > ema_slow
 
-    # ---------------- EXIT MANAGEMENT (CANDLE-BASED) ----------------
+    logger.info(
+        "Candle %s | C3 Action: %s | Uptrend: %s",
+        ist_time, action, is_uptrend
+    )
+
+    # ==========================================================
+    # 4️⃣ EXIT MANAGEMENT (ONLY IF POSITION OPEN)
+    # ==========================================================
     if pm.has_open_position():
         side = pm.position["side"]
 
-        # EMA Reversal Exit (C3 Confirmed)
-        is_uptrend = ema_fast > ema_slow
+        # EMA + C3 CONFIRMED REVERSAL
+        if side == "LONG" and action == "SELL" and not is_uptrend:
+            logger.info("EMA + C3 reversal → exit LONG")
+            pm.force_exit(reason="EMA_C3_REVERSAL", price=last["close"])
+            return
 
-        exit_on_reversal = False
-        if side == "LONG" and not is_uptrend and action == "SELL":
-            exit_on_reversal = True
-        elif side == "SHORT" and is_uptrend and action == "BUY":
-            exit_on_reversal = True
+        if side == "SHORT" and action == "BUY" and is_uptrend:
+            logger.info("EMA + C3 reversal → exit SHORT")
+            pm.force_exit(reason="EMA_C3_REVERSAL", price=last["close"])
+            return
 
-        if exit_on_reversal:
-            logger.info("C3-confirmed EMA reversal detected. Exiting position.")
-            pm.force_exit(reason="EMA_REVERSAL_C3", price=last["close"])
-        return  # Decision made for this candle (exit or hold)
+        return  # HOLD POSITION
 
-    # ---------------- ENTRY MANAGEMENT ----------------
+    # ==========================================================
+    # 5️⃣ ENTRY SAFETY CHECKS
+    # ==========================================================
     if pm.in_cooldown():
-        logger.info("In cooldown, no new entry.")
-        return
-
-    if trade_count >= DAILY_TRADE_CAP:
-        logger.warning("Daily trade cap of %s reached. No new entries.", DAILY_TRADE_CAP)
+        logger.info("In cooldown, skipping entry")
         return
 
     if action == "HOLD":
         return
 
-    # EMA Trend Confirmation for ENTRY
-    is_uptrend = ema_fast > ema_slow
+    # EMA TREND FILTER
     if (action == "BUY" and not is_uptrend) or \
-            (action == "SELL" and is_uptrend):
-        logger.info("Signal %s ignored due to EMA trend filter.", action)
+       (action == "SELL" and is_uptrend):
+        logger.info("Signal %s blocked by EMA trend filter", action)
         return
 
-    # ---------------- CAPITAL CHECK & ORDER PLACEMENT ----------------
-    trade_lock_key = f"trade_lock:{engine.user_id}:{engine.token}"
-    if not acquire_candle_lock(engine.token, trade_lock_key, ttl=120):
-        logger.info("Trade lock active, skipping entry.")
+    # ==========================================================
+    # 6️⃣ TRADE LOCK (PREVENT DOUBLE ORDERS)
+    # ==========================================================
+    if not acquire_trade_lock(engine.user_id, engine.token, ttl=120):
+        logger.info("Trade lock active, skipping")
         return
 
     try:
+        # ======================================================
+        # 7️⃣ PLACE ORDER ON **NEXT CANDLE OPEN**
+        # ======================================================
+        next_entry_price = last["open"]   # ← IMPORTANT
+
         balance = get_live_balance(engine)
         available_cash = balance.get("available_cash", 0)
-        if available_cash <= 1000:  # Reserve
-            logger.warning("Insufficient cash (<= 1000 reserve).")
+
+        if available_cash <= 1000:
+            logger.warning("Insufficient balance")
             return
 
-        # Dynamically fetch margin required
         margin_per_lot = get_margin_required(
             api_key=engine.api_key,
             jwt_token=engine.jwt_token,
-            exchange="NFO",  # Example, adjust as needed
-            tradingsymbol="BANKNIFTY24JUL49000CE",  # Example, adjust as needed
+            exchange=engine.exchange,
+            tradingsymbol=engine.tradingsymbol,
             symboltoken=engine.token,
-            transaction_type="BUY" if action == "BUY" else "SELL"
+            transaction_type=action
         )
 
-        if margin_per_lot == 0:
-            logger.error("Could not fetch margin requirement. Aborting trade.")
+        if margin_per_lot <= 0:
+            logger.error("Invalid margin received")
             return
 
         lots = pm.calculate_lots(available_cash - 1000, margin_per_lot)
         qty = lots * pm.lot_size
 
         if qty <= 0:
-            logger.warning("Invalid quantity calculated: %s", qty)
+            logger.warning("Invalid qty calculated")
             return
-
-        side = "LONG" if action == "BUY" else "SHORT"
 
         response = None
         if action == "BUY":
-            response = buy_order(engine.user_id, engine.token, qty)
-        elif action == "SELL":
-            response = sell_order(engine.user_id, engine.token, qty)
+            response = buy_order(
+                api_key=engine.api_key,
+                jwt=engine.jwt_token,
+                client_code=engine.client_code,
+                exchange=engine.exchange,
+                tradingsymbol=engine.tradingsymbol,
+                token=engine.token,
+                qty=qty
+            )
+        else:
+            response = sell_order(
+                api_key=engine.api_key,
+                jwt=engine.jwt_token,
+                client_code=engine.client_code,
+                exchange=engine.exchange,
+                tradingsymbol=engine.tradingsymbol,
+                token=engine.token,
+                qty=qty
+            )
 
         if response and response.get("status"):
-            order_id = response.get("data", {}).get("orderid")
-            logger.info("ORDER SUCCESS | %s | Qty: %s | OrderID: %s", action, qty, order_id)
+            logger.info("ORDER SUCCESS | %s | Qty=%s", action, qty)
             pm.open_position(
-                side=side,
-                price=signal["price"],
+                side="LONG" if action == "BUY" else "SHORT",
+                price=next_entry_price,
                 lots=lots,
                 quantity=qty
             )
-            # Increment trade count
-            cache_set(trade_count_key, trade_count + 1, ttl=86400)  # 24 hours
         else:
             logger.error("Order failed: %s", response)
 
     finally:
-        pass
-        # redis_unlock(lock_key)
+        release_trade_lock(engine.user_id, engine.token)
 
 
 def ensure_valid_session(engine, force=False):

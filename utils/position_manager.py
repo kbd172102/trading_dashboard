@@ -115,9 +115,11 @@ class PositionManager:
         logger.info("[POSITION CLOSE] %s | %s @ %s", side, reason, price)
 
         if side == "LONG":
-            sell_order(self.user, self.token, quantity)
+            print("SELL ORDER")
+            # sell_order(self.user, self.token, quantity)
         elif side == "SHORT":
-            buy_order(self.user, self.token, quantity)
+            print("BUY ORDER")
+            # buy_order(self.user, self.token, qty=quantity, exchange="MCX", tradingsymbol="SILVERM27FEB26FUT", symboltoken=451669)
 
         pnl = get_pnl_from_angelone(self.user)
         self.update_after_trade(pnl)
