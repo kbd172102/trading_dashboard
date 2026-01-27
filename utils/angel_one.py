@@ -189,21 +189,22 @@ def get_angelone_candles(jwt_token, api_key, exchange, symbol_token, interval, f
 
     return df, None
 
+import requests
 
 def get_rms_balance(user):
     """
     Fetch RMS balance (net, available cash, M2M etc.)
     """
-    if not user.api_key:
+    if not user.api_key or not user.jwt_token:
         return None, "API credentials missing"
 
-    access_token = user.api_key.access_token
     api_key = user.api_key.api_key
+    jwt_token = user.jwt_token
 
     url = "https://apiconnect.angelone.in/rest/secure/angelbroking/user/v1/getRMS"
 
     headers = {
-        "Authorization": f"Bearer {access_token}",
+        "Authorization": f"Bearer {jwt_token}",
         "Content-Type": "application/json",
         "Accept": "application/json",
         "X-UserType": "USER",
@@ -215,15 +216,25 @@ def get_rms_balance(user):
     }
 
     try:
-        response = requests.get(url, headers=headers)
-        data = response.json()
+        response = requests.get(url, headers=headers, timeout=10)
 
+        # ❗ Always inspect raw text first
+        try:
+            data = response.json()
+        except ValueError:
+            return None, f"Non-JSON response: {response.text}"
+
+        # ❗ Handle string response
+        if isinstance(data, str):
+            return None, data
+
+        # ❗ Normal success path
         if data.get("status") is True:
-            return data["data"], None
-        else:
-            return None, data.get("message", "Unknown RMS API error")
+            return data.get("data"), None
 
-    except Exception as e:
+        return None, data.get("message", "Unknown RMS API error")
+
+    except requests.RequestException as e:
         return None, str(e)
 
 
@@ -327,34 +338,70 @@ def _headers(api_key, jwt_token):
     }
 
 
+import requests
+import logging
+
+logger = logging.getLogger(__name__)
+
 def get_account_balance(api_key, jwt_token):
     """
-    Returns:
+    Returns a dict ONLY:
     {
         available_cash,
         used_margin,
         net_balance
     }
     """
+
+    url = f"{BASE_URL}/user/v1/getRMS"
+    # headers = _headers(api_key, jwt_token)
+    # headers = {"X-PrivateKey":"GV3q6BeG", "Authorization":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6Iko5MzA5NiIsInJvbGVzIjowLCJ1c2VydHlwZSI6IlVTRVIiLCJ0b2tlbiI6ImV5SmhiR2NpT2lKU1V6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUoxYzJWeVgzUjVjR1VpT2lKamJHbGxiblFpTENKMGIydGxibDkwZVhCbElqb2lkSEpoWkdWZllXTmpaWE56WDNSdmEyVnVJaXdpWjIxZmFXUWlPakV3TWl3aWMyOTFjbU5sSWpvaU15SXNJbVJsZG1salpWOXBaQ0k2SWpFellURXpZamcyTFRobE5HVXRNMlJoTUMwNU5EZGlMVFF5TWpaak1HTTBNMkZtWXlJc0ltdHBaQ0k2SW5SeVlXUmxYMnRsZVY5Mk1pSXNJbTl0Ym1WdFlXNWhaMlZ5YVdRaU9qRXdNaXdpY0hKdlpIVmpkSE1pT25zaVpHVnRZWFFpT25zaWMzUmhkSFZ6SWpvaVlXTjBhWFpsSW4wc0ltMW1JanA3SW5OMFlYUjFjeUk2SW1GamRHbDJaU0o5TENKdVluVk1aVzVrYVc1bklqcDdJbk4wWVhSMWN5STZJbUZqZEdsMlpTSjlmU3dpYVhOeklqb2lkSEpoWkdWZmJHOW5hVzVmYzJWeWRtbGpaU0lzSW5OMVlpSTZJa281TXpBNU5pSXNJbVY0Y0NJNk1UYzJPVFl5T0RBM01pd2libUptSWpveE56WTVOVFF4TkRreUxDSnBZWFFpT2pFM05qazFOREUwT1RJc0ltcDBhU0k2SWpWaU5qWTVNR0V3TFRnNU1UWXRORFU1WVMxaE5qaGlMV1l5TTJNNU1qVmtNREUzTWlJc0lsUnZhMlZ1SWpvaUluMC5QMjlRdDhIZGV3NUJYc1hsLUdlSWdnbVRKXzNZV0Zma2N5TXV4RVFLSktTd3RjdmtDV0pDVUp0WmpNMFJDbHhjbmFxemU1UC1ta1F1Q0Z4Si1oTGVqNDhyMFk5Sjc0QTFIc0hZMGxqel9vOWNJT2RNT3RKNjllY0Y5NDRsZUd6MTY1dnVfM2I1Mkh4V3lEcXNNNE5MWGVqYXEtS0JrRWFwQWo1V1ZxaHVyQ3ciLCJBUEktS0VZIjoiR1YzcTZCZUciLCJYLU9MRC1BUEktS0VZIjp0cnVlLCJpYXQiOjE3Njk1NDE2NzIsImV4cCI6MTc2OTYyNTAwMH0.5d8eqIG1fcuG7MfoKNGjZ-9t6XUmbWX2stVIRD99briYdrNL-_kBEq-j3_7UrkSna8XQkRVfixM3iU3eQUK46Q"}
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": f"Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6Iko5MzA5NiIsInJvbGVzIjowLCJ1c2VydHlwZSI6IlVTRVIiLCJ0b2tlbiI6ImV5SmhiR2NpT2lKU1V6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUoxYzJWeVgzUjVjR1VpT2lKamJHbGxiblFpTENKMGIydGxibDkwZVhCbElqb2lkSEpoWkdWZllXTmpaWE56WDNSdmEyVnVJaXdpWjIxZmFXUWlPakV3TWl3aWMyOTFjbU5sSWpvaU15SXNJbVJsZG1salpWOXBaQ0k2SWpFellURXpZamcyTFRobE5HVXRNMlJoTUMwNU5EZGlMVFF5TWpaak1HTTBNMkZtWXlJc0ltdHBaQ0k2SW5SeVlXUmxYMnRsZVY5Mk1pSXNJbTl0Ym1WdFlXNWhaMlZ5YVdRaU9qRXdNaXdpY0hKdlpIVmpkSE1pT25zaVpHVnRZWFFpT25zaWMzUmhkSFZ6SWpvaVlXTjBhWFpsSW4wc0ltMW1JanA3SW5OMFlYUjFjeUk2SW1GamRHbDJaU0o5TENKdVluVk1aVzVrYVc1bklqcDdJbk4wWVhSMWN5STZJbUZqZEdsMlpTSjlmU3dpYVhOeklqb2lkSEpoWkdWZmJHOW5hVzVmYzJWeWRtbGpaU0lzSW5OMVlpSTZJa281TXpBNU5pSXNJbVY0Y0NJNk1UYzJPVFl5T0RBM01pd2libUptSWpveE56WTVOVFF4TkRreUxDSnBZWFFpT2pFM05qazFOREUwT1RJc0ltcDBhU0k2SWpWaU5qWTVNR0V3TFRnNU1UWXRORFU1WVMxaE5qaGlMV1l5TTJNNU1qVmtNREUzTWlJc0lsUnZhMlZ1SWpvaUluMC5QMjlRdDhIZGV3NUJYc1hsLUdlSWdnbVRKXzNZV0Zma2N5TXV4RVFLSktTd3RjdmtDV0pDVUp0WmpNMFJDbHhjbmFxemU1UC1ta1F1Q0Z4Si1oTGVqNDhyMFk5Sjc0QTFIc0hZMGxqel9vOWNJT2RNT3RKNjllY0Y5NDRsZUd6MTY1dnVfM2I1Mkh4V3lEcXNNNE5MWGVqYXEtS0JrRWFwQWo1V1ZxaHVyQ3ciLCJBUEktS0VZIjoiR1YzcTZCZUciLCJYLU9MRC1BUEktS0VZIjp0cnVlLCJpYXQiOjE3Njk1NDE2NzIsImV4cCI6MTc2OTYyNTAwMH0.5d8eqIG1fcuG7MfoKNGjZ-9t6XUmbWX2stVIRD99briYdrNL-_kBEq-j3_7UrkSna8XQkRVfixM3iU3eQUK46Q",  # JWT token
+        "X-PrivateKey": "GV3q6BeG",  # Your API key
+        "X-UserType": "USER",
+        "X-SourceID": "WEB",
+        "X-ClientPublicIP": "127.0.0.1",
+        "X-ClientLocalIP": "127.0.0.1",
+        "X-MACAddress": "AA-BB-CC-11-22-33",  # Any MAC string
+        # Optional: if you have cookies from login session
+        # "Cookie": "TS0179ac75=your_cookie_value",
+    }
+
     try:
-        url = f"{BASE_URL}/user/v1/getRMS"
-        res = requests.get(url, headers=_headers(api_key, jwt_token), timeout=5)
-        data = res.json()["data"]
+        res = requests.get(url, headers=headers, timeout=5)
+        # logger.info("RMS status=%s body=%r", res.status_code, res.text)
+
+        # Always inspect raw response when debugging
+        try:
+            payload = res.json()
+
+        except ValueError:
+            raise Exception(f"Non-JSON response: {res.text}")
+
+        if not isinstance(payload, dict):
+            raise Exception(f"Unexpected response: {payload}")
+
+        if payload.get("status") is not True:
+            raise Exception(payload.get("message", "RMS API failed"))
+
+        data = payload.get("data", {})
 
         return {
-            "available_cash": float(data.get("availablecash", 0)),
-            "used_margin": float(data.get("utilisedmargin", 0)),
-            "net_balance": float(data.get("net", 0)),
+            "available_cash": float(data.get("availablecash") or 0),
+            "used_margin": float(data.get("utiliseddebits") or 0),
+            "net_balance": float(data.get("net") or 0),
         }
 
     except Exception as e:
         logger.error("Balance fetch failed: %s", e)
         return {
-            "available_cash": 0,
-            "used_margin": 0,
-            "net_balance": 0,
+            "available_cash": 0.0,
+            "used_margin": 0.0,
+            "net_balance": 0.0,
         }
-
 
 def get_open_positions(api_key, jwt_token):
     """
@@ -418,38 +465,41 @@ def login_and_get_tokens(angel_key):
         return None
 
 def get_margin_required(api_key, jwt_token, exchange, tradingsymbol, symboltoken, transaction_type, quantity=1, product_type="INTRADAY", order_type="MARKET"):
-    """
-    Fetch required margin for a single lot from Angel One's margin API.
-    """
     url = "https://apiconnect.angelone.in/rest/secure/angelbroking/margin/v1/batch"
-    
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {jwt_token}",
-        "X-PrivateKey": api_key,
+        "Accept": "application/json",
+        # "Authorization": f"Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6Iko5MzA5NiIsInJvbGVzIjowLCJ1c2VydHlwZSI6IlVTRVIiLCJ0b2tlbiI6ImV5SmhiR2NpT2lKU1V6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUoxYzJWeVgzUjVjR1VpT2lKamJHbGxiblFpTENKMGIydGxibDkwZVhCbElqb2lkSEpoWkdWZllXTmpaWE56WDNSdmEyVnVJaXdpWjIxZmFXUWlPakV3TWl3aWMyOTFjbU5sSWpvaU15SXNJbVJsZG1salpWOXBaQ0k2SWpFellURXpZamcyTFRobE5HVXRNMlJoTUMwNU5EZGlMVFF5TWpaak1HTTBNMkZtWXlJc0ltdHBaQ0k2SW5SeVlXUmxYMnRsZVY5Mk1pSXNJbTl0Ym1WdFlXNWhaMlZ5YVdRaU9qRXdNaXdpY0hKdlpIVmpkSE1pT25zaVpHVnRZWFFpT25zaWMzUmhkSFZ6SWpvaVlXTjBhWFpsSW4wc0ltMW1JanA3SW5OMFlYUjFjeUk2SW1GamRHbDJaU0o5TENKdVluVk1aVzVrYVc1bklqcDdJbk4wWVhSMWN5STZJbUZqZEdsMlpTSjlmU3dpYVhOeklqb2lkSEpoWkdWZmJHOW5hVzVmYzJWeWRtbGpaU0lzSW5OMVlpSTZJa281TXpBNU5pSXNJbVY0Y0NJNk1UYzJPVFl5TlRRM05Td2libUptSWpveE56WTVOVE00T0RrMUxDSnBZWFFpT2pFM05qazFNemc0T1RVc0ltcDBhU0k2SWpreU5tWTVObVZsTFRjNU1HRXROREkwWXkxaFpEQXlMVEExWmpnek9UTm1NelUyTWlJc0lsUnZhMlZ1SWpvaUluMC5DYzlMY3B2dFdYQUZvS1pJa3BwR2FsVUROS2xDNl9FOGdhUEVnamVHUkItVTBCeGotNDZ5Vl9zSEtRYmpVbG1HR1NhTmtXM0FaY0FGanpndjNSTjh4dW5ZRDhRN25kNGU3dnAwUG4zNEF2X0ZjVkN2cnFxTzl2bGhsVE5udWhPQXd4ZFU1NnQ3TjFLeXFTU0FVN2hFSDd2cVZRTnVtRXdoV2JMNndvd042a1EiLCJBUEktS0VZIjoiR1YzcTZCZUciLCJYLU9MRC1BUEktS0VZIjp0cnVlLCJpYXQiOjE3Njk1MzkwNzUsImV4cCI6MTc2OTYyNTAwMH0.dnQV13BpOYyR8IOQZi9yh5OGE2QAKmQ7bO-Lk1yRs1HLVpVgJ-1e8q5f2tro-vhVokV3aFOX0ETPZdUe3zx6dA",
+        "Authorization": f"{jwt_token}",
+        # "X-PrivateKey": "GV3q6BeG",
         "X-UserType": "USER",
+        "X-PrivateKey": api_key,
         "X-SourceID": "WEB",
+        "X-ClientPublicIP": "127.0.0.1",
+        "X-ClientLocalIP": "127.0.0.1",
+        "X-MACAddress": "AA-BB-CC-11-22-33",
     }
 
     payload = {
-            "positions": [
-                {
-                    "exchange": "MCX",
-                    "qty": 1,
-                    "price": 0,
-                    "productType": "INTRADAY",
-                    "orderType": "LIMIT",
-                    "token": "458305",
-                    "tradeType": "BUY"
+                  "positions": [
+                    {
+                      "exchange": "MCX",
+                      "qty": 1,
+                      "price": 0,
+                      "productType": "INTRADAY",
+                      "orderType": "LIMIT",
+                      "token": "451669",
+                      "tradeType": transaction_type
+                    }
+                  ]
                 }
-            ]
-        }
+
 
 
     try:
         response = requests.post(url, headers=headers, json=payload)
         data = response.json()
-        
+
         if data.get("status") and data.get("data"):
             margin_data = data["data"]
             if isinstance(margin_data, list) and len(margin_data) > 0:
@@ -463,3 +513,8 @@ def get_margin_required(api_key, jwt_token, exchange, tradingsymbol, symboltoken
     except Exception as e:
         logger.exception("Margin API request failed: %s", e)
         return 0
+    """
+    Fetch required margin for a single lot from Angel One's margin API.
+    """
+    url = "https://apiconnect.angelone.in/rest/secure/angelbroking/margin/v1/batch"
+

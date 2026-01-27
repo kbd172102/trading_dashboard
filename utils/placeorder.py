@@ -36,7 +36,7 @@ def place_order(api_key: str,
         "X-PrivateKey": api_key,
         "X-UserType": "USER",  # REQUIRED
         "X-SourceID": "WEB",  # REQUIRED
-        "Authorization": f"Bearer {jwt_token}"
+        "Authorization": f"{jwt_token}"
     }
 
     payload = {

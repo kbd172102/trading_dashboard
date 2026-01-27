@@ -71,9 +71,6 @@ BREAKOUT_BUFFER = 0.0012  # 0.12%
 
 import pandas as pd
 
-EMA_SHORT = 27
-EMA_LONG = 78
-
 
 def c3_strategy(df: pd.DataFrame):
     """

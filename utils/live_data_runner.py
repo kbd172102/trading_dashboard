@@ -8,22 +8,24 @@ from datetime import datetime, timedelta
 import pytz
 import pyotp
 import pandas as pd
-
+from django.core.cache import cache
 from logzero import logger
 from django.utils import timezone
 from SmartApi import SmartConnect
 from SmartApi.smartWebSocketV2 import SmartWebSocketV2
+from matplotlib.style.core import available
 
 from backtest_runner.models import AngelOneKey
 from live_trading.models import LiveTick, LiveCandle
+from portal import settings
 from utils.placeorder import buy_order, sell_order
 from utils.angel_one import get_account_balance, login_and_get_tokens, get_margin_required
 from utils.indicator_preprocessor import add_indicators
 from utils.strategies_live import c3_strategy, EMA_LONG
 from utils.position_manager import PositionManager
-from utils.expiry_utils import is_last_friday_before_expiry, is_one_week_before_expiry
+# from utils.expiry_utils import is_last_friday_before_expiry, is_one_week_before_expiry
 
-CANDLE_INTERVAL_MINUTES = 15
+CANDLE_INTERVAL_MINUTES = 1
 
 from utils.redis_cache import init_redis, acquire_candle_lock, acquire_trade_lock, release_trade_lock
 
@@ -55,44 +57,59 @@ class UserEngine:
         self.running = threading.Event()
         self.running.set()
 
-        # FAST IN-MEMORY CACHE
-        # self.tick_queue = queue.Queue(maxsize=5000)
         self.tick_queue_db = queue.Queue(maxsize=5000)
         self.tick_queue_candle = queue.Queue(maxsize=5000)
 
         self.candles = deque(maxlen=200)
-
         self.current_candle = None
         self.last_candle_start = None
 
+        # ===== ANGEL ONE CREDS =====
         self.api_key = None
         self.jwt_token = None
-        self.last_balance_sync = 0
-
         self.feed_token = None
-        self.last_login_time = 0
-        self.jwt_validity_seconds = 23 * 60 * 60  # refresh before expiry
+        self.client_code = None
+        self.exchange = "MCX"
+        self.tradingsymbol = "SILVERM27FEB26FUT"
 
-        self.cached_balance = {}
+        self.last_login_time = 0
+        self.jwt_validity_seconds = 23 * 60 * 60
 
         self.position_manager = PositionManager(user_id, token)
 
-    def start(self):
-        threading.Thread(
-            target=websocket_thread, args=(self,), daemon=True
-        ).start()
+        # ✅ THIS CALL MUST EXIST
+        self._load_user_credentials()
 
-        threading.Thread(
-            target=db_writer_thread, args=(self,), daemon=True
-        ).start()
+    # ==================================================
+    # 🔥 ADD THIS METHOD (YOU MISSED THIS)
+    # ==================================================
+    def _load_user_credentials(self):
+        """
+        Load AngelOneKey and login user
+        """
+        try:
+            angel_key = AngelOneKey.objects.get(user_id=self.user_id)
 
-        threading.Thread(
-            target=candle_and_strategy_thread, args=(self,), daemon=True
-        ).start()
+            self.client_code = angel_key.client_code
 
-    def stop(self):
-        self.running.clear()
+            tokens = login_and_get_tokens(angel_key)
+            if not tokens:
+                raise Exception("Angel login failed")
 
+            self.api_key = tokens["api_key"]
+            self.jwt_token = tokens["jwt_token"]
+            self.feed_token = tokens["feed_token"]
+            self.last_login_time = time.time()
+
+            logger.info(
+                "ENGINE AUTH READY | user=%s | client=%s",
+                self.user_id,
+                self.client_code
+            )
+
+        except Exception as e:
+            logger.exception("Failed to load AngelOne credentials: %s", e)
+            raise
 
 # ==========================================================
 # THREAD 1 — WEBSOCKET
@@ -114,7 +131,7 @@ def websocket_thread(engine):
 
     token_list = [{
         "exchangeType": 5,  # 5 = NSE (INDEX)
-        "tokens": [engine.token]
+        "tokens": [451669]
     }]
 
     def on_open(ws):
@@ -131,7 +148,7 @@ def websocket_thread(engine):
         engine.position_manager.check_exit_on_tick(ltp)
 
         data = {
-            "token": tick.get("token", engine.token),
+            "token": tick.get("token", 451669),
             "ltp": ltp,
             "timestamp": datetime.fromtimestamp(
                 tick["exchange_timestamp"] / 1000, pytz.UTC
@@ -227,7 +244,7 @@ def candle_and_strategy_thread(engine):
         # 🔹 CANDLE CLOSED
         closed = engine.current_candle
 
-        if not acquire_candle_lock(engine.token, closed["start"]):
+        if not acquire_candle_lock(451669, closed["start"]):
             logger.warning("Duplicate candle ignored: %s", closed["start"])
             engine.current_candle = {
                 "start": candle_start,
@@ -243,7 +260,7 @@ def candle_and_strategy_thread(engine):
         try:
             LiveCandle.objects.create(
                 user_id=engine.user_id,
-                token=engine.token,
+                token=451669,
                 interval=f"{CANDLE_INTERVAL_MINUTES}m",
                 start_time=closed["start"],
                 end_time=closed["start"] + timedelta(minutes=CANDLE_INTERVAL_MINUTES),
@@ -272,9 +289,19 @@ def candle_and_strategy_thread(engine):
         df = pd.DataFrame(engine.candles)
         df.rename(columns={"start": "timestamp"}, inplace=True)
 
-        if len(df) >= EMA_LONG + 5:
-            df = add_indicators(df)
-            run_strategy_live(engine, df)
+        # print("dataframe created:", len(df), EMA_LONG+5)
+        # if len(df) >= EMA_LONG + 5:
+        #     df = pd.read_csv(CSV_PATH)
+        #     df = add_indicators(df)
+        #     run_strategy_live(engine, df)
+        #     print("strategy ran")
+        # else:
+
+        # df = pd.read_csv(CSV_PATH)
+        df = add_indicators(df)
+        run_strategy_live(engine, df)
+        logger.info("Strategy executed on candle close")
+
 
         # 🔹 START NEW CANDLE
         engine.current_candle = {
@@ -287,18 +314,34 @@ def candle_and_strategy_thread(engine):
         engine.last_candle_start = candle_start
 
 
+
+from django.core.cache import cache
+import logging
+
 def get_live_balance(engine):
     key = f"balance:{engine.user_id}"
 
-    cached = cache_get(key)
-    if cached:
+    cached = cache.get(key)
+    if cached is not None:
         return cached
 
     balance = get_account_balance(engine.api_key, engine.jwt_token)
-    cache_set(key, balance, ttl=3)
+    balance = {"available_cash": 500000}
+    if not isinstance(balance, dict):
+        logging.error(f"Balance fetch failed: {balance}")
+        return None
 
+    cache.set(key, balance, timeout=3)
     return balance
 
+import os
+import sys
+import django
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "portal.settings")
+django.setup()
+CSV_PATH = os.path.join(settings.BASE_DIR, "utils", "test", "today_data.csv")
 
 # ==========================================================
 # STRATEGY RUNNER (SAFE & FAST)
@@ -309,8 +352,8 @@ def get_live_balance(engine):
 #     ist_time = last["timestamp"].astimezone(IST)
 #
 #     # ---------------- SAFETY: ONE CANDLE = ONE DECISION ----------------
-#     candle_key = f"candle_done:{engine.user_id}:{engine.token}:{ist_time.strftime('%Y-%m-%d:%H:%M')}"
-#     if not acquire_candle_lock(engine.token, ist_time, ttl=3600):
+#     candle_key = f"candle_done:{engine.user_id}:{451669}:{ist_time.strftime('%Y-%m-%d:%H:%M')}"
+#     if not acquire_candle_lock(451669, ist_time, ttl=3600):
 #         logger.info("Candle already processed, skipping")
 #         return
 #
@@ -371,8 +414,8 @@ def get_live_balance(engine):
 #         return
 #
 #     # ---------------- CAPITAL CHECK & ORDER PLACEMENT ----------------
-#     trade_lock_key = f"trade_lock:{engine.user_id}:{engine.token}"
-#     if not acquire_candle_lock(engine.token, trade_lock_key, ttl=120):
+#     trade_lock_key = f"trade_lock:{engine.user_id}:{451669}"
+#     if not acquire_candle_lock(451669, trade_lock_key, ttl=120):
 #         logger.info("Trade lock active, skipping entry.")
 #         return
 #
@@ -389,7 +432,7 @@ def get_live_balance(engine):
 #             jwt_token=engine.jwt_token,
 #             exchange="NFO",  # Example, adjust as needed
 #             tradingsymbol="BANKNIFTY24JUL49000CE",  # Example, adjust as needed
-#             symboltoken=engine.token,
+#             symboltoken=451669,
 #             transaction_type="BUY" if action == "BUY" else "SELL"
 #         )
 #
@@ -409,12 +452,12 @@ def get_live_balance(engine):
 #         response = None
 #         if action == "BUY":
 #             response = buy_order(
-#                 api_key=engine.api_key,jwt=engine.jwt_token,client_code=engine.client_code,exchange=engine.exchange,  tradingsymbol=engine.tradingsymbol,token=engine.token,qty=qty
+#                 api_key=engine.api_key,jwt=engine.jwt_token,client_code=engine.client_code,exchange=engine.exchange,  tradingsymbol=engine.tradingsymbol,token=451669,qty=qty
 #             )
 #
 #         elif action == "SELL":
 #             response = sell_order(
-#                 api_key=engine.api_key,jwt=engine.jwt_token,client_code=engine.client_code,exchange=engine.exchange,tradingsymbol=engine.tradingsymbol,token=engine.token,qty=qty
+#                 api_key=engine.api_key,jwt=engine.jwt_token,client_code=engine.client_code,exchange=engine.exchange,tradingsymbol=engine.tradingsymbol,token=451669,qty=qty
 #             )
 #
 #         if response and response.get("status"):
@@ -436,6 +479,9 @@ def get_live_balance(engine):
 #         # redis_unlock(lock_key)
 
 def run_strategy_live(engine, df):
+    if not engine.api_key or not engine.jwt_token or not engine.client_code:
+        logger.error("Engine credentials missing — cannot trade")
+        return
     pm = engine.position_manager
     last = df.iloc[-1]
     ist_time = last["timestamp"].astimezone(IST)
@@ -443,9 +489,9 @@ def run_strategy_live(engine, df):
     # ==========================================================
     # 1️⃣ ONE CANDLE = ONE DECISION (CANDLE LOCK)
     # ==========================================================
-    if not acquire_candle_lock(engine.token, ist_time, ttl=3600):
-        logger.info("Candle already processed, skipping")
-        return
+    # if not acquire_candle_lock(451669, ist_time, ttl=3600):
+    #     logger.info("Candle already processed, skipping")
+        # return
 
     # ==========================================================
     # 2️⃣ FORCE EXIT ON MONTH END
@@ -460,6 +506,7 @@ def run_strategy_live(engine, df):
     # 3️⃣ CALCULATE SIGNAL (USING CLOSED CANDLES ONLY)
     # ==========================================================
     signal = c3_strategy(df)
+    print("signal generated:", signal)
     action = signal["action"]
 
     ema_fast = last["ema_27"]
@@ -509,7 +556,7 @@ def run_strategy_live(engine, df):
     # ==========================================================
     # 6️⃣ TRADE LOCK (PREVENT DOUBLE ORDERS)
     # ==========================================================
-    if not acquire_trade_lock(engine.user_id, engine.token, ttl=120):
+    if not acquire_trade_lock(engine.user_id, 451669, ttl=120):
         logger.info("Trade lock active, skipping")
         return
 
@@ -520,20 +567,30 @@ def run_strategy_live(engine, df):
         next_entry_price = last["open"]   # ← IMPORTANT
 
         balance = get_live_balance(engine)
+        # balance = 3,00,000
         available_cash = balance.get("available_cash", 0)
 
         if available_cash <= 1000:
             logger.warning("Insufficient balance")
             return
-
+        # print("jwt_token:", engine.jwt_token)
         margin_per_lot = get_margin_required(
             api_key=engine.api_key,
             jwt_token=engine.jwt_token,
-            exchange=engine.exchange,
-            tradingsymbol=engine.tradingsymbol,
-            symboltoken=engine.token,
+            exchange="MCX",
+            tradingsymbol="SILVERM27FEB26FUT",
+            symboltoken=451669,
             transaction_type=action
         )
+
+        # margin_per_lot = get_margin_required(
+        #     api_key=engine.api_key,
+        #     jwt_token=engine.jwt_token,
+        #     exchange='MCX',
+        #     tradingsymbol='SILVERM27FEB26FUT',
+        #     symboltoken=451669,
+        #     transaction_type=action
+        # )
 
         if margin_per_lot <= 0:
             logger.error("Invalid margin received")
@@ -552,19 +609,28 @@ def run_strategy_live(engine, df):
                 api_key=engine.api_key,
                 jwt=engine.jwt_token,
                 client_code=engine.client_code,
-                exchange=engine.exchange,
-                tradingsymbol=engine.tradingsymbol,
-                token=engine.token,
+                exchange="MCX",
+                tradingsymbol="SILVERM27FEB26FUT",
+                token=451669,
                 qty=qty
             )
+            # response = buy_order(
+            #     api_key="GV3q6BeG",
+            #     jwt="eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6Iko5MzA5NiIsInJvbGVzIjowLCJ1c2VydHlwZSI6IlVTRVIiLCJ0b2tlbiI6ImV5SmhiR2NpT2lKU1V6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUoxYzJWeVgzUjVjR1VpT2lKamJHbGxiblFpTENKMGIydGxibDkwZVhCbElqb2lkSEpoWkdWZllXTmpaWE56WDNSdmEyVnVJaXdpWjIxZmFXUWlPakV3TWl3aWMyOTFjbU5sSWpvaU15SXNJbVJsZG1salpWOXBaQ0k2SWpFellURXpZamcyTFRobE5HVXRNMlJoTUMwNU5EZGlMVFF5TWpaak1HTTBNMkZtWXlJc0ltdHBaQ0k2SW5SeVlXUmxYMnRsZVY5Mk1pSXNJbTl0Ym1WdFlXNWhaMlZ5YVdRaU9qRXdNaXdpY0hKdlpIVmpkSE1pT25zaVpHVnRZWFFpT25zaWMzUmhkSFZ6SWpvaVlXTjBhWFpsSW4wc0ltMW1JanA3SW5OMFlYUjFjeUk2SW1GamRHbDJaU0o5TENKdVluVk1aVzVrYVc1bklqcDdJbk4wWVhSMWN5STZJbUZqZEdsMlpTSjlmU3dpYVhOeklqb2lkSEpoWkdWZmJHOW5hVzVmYzJWeWRtbGpaU0lzSW5OMVlpSTZJa281TXpBNU5pSXNJbVY0Y0NJNk1UYzJPVFl5TlRRM05Td2libUptSWpveE56WTVOVE00T0RrMUxDSnBZWFFpT2pFM05qazFNemc0T1RVc0ltcDBhU0k2SWpreU5tWTVObVZsTFRjNU1HRXROREkwWXkxaFpEQXlMVEExWmpnek9UTm1NelUyTWlJc0lsUnZhMlZ1SWpvaUluMC5DYzlMY3B2dFdYQUZvS1pJa3BwR2FsVUROS2xDNl9FOGdhUEVnamVHUkItVTBCeGotNDZ5Vl9zSEtRYmpVbG1HR1NhTmtXM0FaY0FGanpndjNSTjh4dW5ZRDhRN25kNGU3dnAwUG4zNEF2X0ZjVkN2cnFxTzl2bGhsVE5udWhPQXd4ZFU1NnQ3TjFLeXFTU0FVN2hFSDd2cVZRTnVtRXdoV2JMNndvd042a1EiLCJBUEktS0VZIjoiR1YzcTZCZUciLCJYLU9MRC1BUEktS0VZIjp0cnVlLCJpYXQiOjE3Njk1MzkwNzUsImV4cCI6MTc2OTYyNTAwMH0.dnQV13BpOYyR8IOQZi9yh5OGE2QAKmQ7bO-Lk1yRs1HLVpVgJ-1e8q5f2tro-vhVokV3aFOX0ETPZdUe3zx6dA",
+            #     client_code="j93096",
+            #     exchange="MCX",
+            #     tradingsymbol="SILVERM27FEB26FUT",
+            #     token=451669,
+            #     qty=qty
+            # )
         else:
             response = sell_order(
                 api_key=engine.api_key,
                 jwt=engine.jwt_token,
                 client_code=engine.client_code,
-                exchange=engine.exchange,
-                tradingsymbol=engine.tradingsymbol,
-                token=engine.token,
+                exchange="MCX",
+                tradingsymbol="SILVERM27FEB26FUT",
+                token=451669,
                 qty=qty
             )
 
@@ -580,23 +646,17 @@ def run_strategy_live(engine, df):
             logger.error("Order failed: %s", response)
 
     finally:
-        release_trade_lock(engine.user_id, engine.token)
+        release_trade_lock(engine.user_id, 451669)
 
 
 def ensure_valid_session(engine, force=False):
-    """
-    Ensures JWT is always valid.
-    Refreshes proactively before expiry.
-    """
     now = time.time()
-
-    # Refresh 5 minutes before expiry
     REFRESH_BUFFER = 5 * 60
 
     if (
-            not force and
-            engine.jwt_token and
-            (now - engine.last_login_time) < (engine.jwt_validity_seconds - REFRESH_BUFFER)
+        not force and
+        engine.jwt_token and
+        (now - engine.last_login_time) < (engine.jwt_validity_seconds - REFRESH_BUFFER)
     ):
         return True
 
@@ -613,6 +673,7 @@ def ensure_valid_session(engine, force=False):
         engine.api_key = tokens["api_key"]
         engine.jwt_token = tokens["jwt_token"]
         engine.feed_token = tokens["feed_token"]
+        engine.client_code = angel_key.client_code
         engine.last_login_time = time.time()
 
         logger.info("JWT refreshed successfully")
