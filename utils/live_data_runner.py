@@ -88,6 +88,9 @@ class UserEngine:
         # Position manager
         self.position_manager = PositionManager(user_id, token)
 
+        self.candles = []
+        self.is_warmed_up = False
+
     def start(self):
         threading.Thread(
             target=websocket_thread,
@@ -330,13 +333,23 @@ def candle_and_strategy_thread(engine):
         # df = pd.read_csv(CSV_PATH)
         # engine.candles.append(closed)
 
-        if len(engine.candles) < REQUIRED_CANDLES:
-            logger.info("getting candles from db, have %s need %s",)
-            load_initial_candles_from_db(engine, REQUIRED_CANDLES)
+        if not engine.is_warmed_up:
+            if len(engine.candles) < REQUIRED_CANDLES:
+                logger.info(
+                    "Warming up candles: have=%s need=%s",
+                    len(engine.candles),
+                    REQUIRED_CANDLES
+                )
+                load_initial_candles_from_db(engine, REQUIRED_CANDLES)
+                return
+
+            engine.is_warmed_up = True
+            logger.info("Strategy warm-up complete")
 
         df = pd.DataFrame(engine.candles)
         df.rename(columns={"start": "timestamp"}, inplace=True)
         df["timestamp"] = pd.to_datetime(df["timestamp"], utc=True)
+
         df = add_indicators(df)
         run_strategy_live(engine, df)
 
