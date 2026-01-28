@@ -3,6 +3,7 @@
 import pandas as pd
 
 from backtest_runner.models import AngelOneKey
+from utils.angel_one import logger
 from utils.placeorder import buy_order, sell_order
 
 EMA_SHORT = 27
@@ -86,7 +87,7 @@ def c3_strategy(df: pd.DataFrame):
     - Strategy evaluates last 3 CLOSED candles
     - Entry should be done on NEXT candle open
     """
-
+    logger.info("Running C3 strategy...")
     result = {
         "action": "HOLD",
         "reason": "No signal",

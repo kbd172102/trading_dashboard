@@ -385,6 +385,7 @@ CSV_PATH = os.path.join(settings.BASE_DIR, "utils", "test", "today_data.csv")
 # STRATEGY RUNNER (SAFE & FAST)
 # ==========================================================
 def run_strategy_live(engine, df):
+    logger.info("Running strategy live...")
     if not engine.api_key or not engine.jwt_token or not engine.client_code:
         logger.error("Engine credentials missing — cannot trade")
         return
