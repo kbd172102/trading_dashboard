@@ -23,7 +23,7 @@ from utils.angel_one import get_account_balance, login_and_get_tokens, get_margi
 from utils.indicator_preprocessor import add_indicators
 from utils.strategies_live import c3_strategy, EMA_LONG
 from utils.position_manager import PositionManager
-# from utils.expiry_utils import is_last_friday_before_expiry, is_one_week_before_expiry
+from utils.expiry_utils import is_last_friday_before_expiry, is_one_week_before_expiry
 
 CANDLE_INTERVAL_MINUTES = 15
 
@@ -49,36 +49,66 @@ REQUIRED_CANDLES = EMA_LONG + 5
 # ==========================================================
 # USER ENGINE (ONE PER USER)
 # ==========================================================
+import threading
+import queue
+from collections import deque
+
+
 class UserEngine:
     def __init__(self, user_id, token):
         self.user_id = user_id
         self.token = token
 
+        # Engine state
         self.running = threading.Event()
         self.running.set()
 
+        # FAST IN-MEMORY CACHES
+        # self.tick_queue = queue.Queue(maxsize=5000)
         self.tick_queue_db = queue.Queue(maxsize=5000)
         self.tick_queue_candle = queue.Queue(maxsize=5000)
 
+        # Candle data
         self.candles = deque(maxlen=200)
         self.current_candle = None
         self.last_candle_start = None
 
-        # ===== ANGEL ONE CREDS =====
+        # Auth / API state
         self.api_key = None
         self.jwt_token = None
         self.feed_token = None
-        self.client_code = None
-        self.exchange = "MCX"
-        self.tradingsymbol = "SILVERM27FEB26FUT"
 
         self.last_login_time = 0
-        self.jwt_validity_seconds = 23 * 60 * 60
+        self.jwt_validity_seconds = 23 * 60 * 60  # refresh before expiry
 
+        # Account state
+        self.last_balance_sync = 0
+        self.cached_balance = {}
+
+        # Position manager
         self.position_manager = PositionManager(user_id, token)
 
-        # ✅ THIS CALL MUST EXIST
-        self._load_user_credentials()
+    def start(self):
+        threading.Thread(
+            target=websocket_thread,
+            args=(self,),
+            daemon=True
+        ).start()
+
+        threading.Thread(
+            target=db_writer_thread,
+            args=(self,),
+            daemon=True
+        ).start()
+
+        threading.Thread(
+            target=candle_and_strategy_thread,
+            args=(self,),
+            daemon=True
+        ).start()
+
+    def stop(self):
+        self.running.clear()
 
     # ==================================================
     # 🔥 ADD THIS METHOD (YOU MISSED THIS)
@@ -155,7 +185,7 @@ def websocket_thread(engine):
             )
         }
 
-        logger.info("Tick received: %s", data["ltp"])
+        # logger.info("Tick received-2: %s", data["ltp"])
 
         try:
             engine.tick_queue_db.put_nowait(data)
@@ -306,12 +336,11 @@ def candle_and_strategy_thread(engine):
 
         df = pd.DataFrame(engine.candles)
         df.rename(columns={"start": "timestamp"}, inplace=True)
-
+        df["timestamp"] = pd.to_datetime(df["timestamp"], utc=True)
         df = add_indicators(df)
         run_strategy_live(engine, df)
 
         logger.info("Strategy executed on candle close")
-
 
         # 🔹 START NEW CANDLE
         engine.current_candle = {
@@ -322,7 +351,6 @@ def candle_and_strategy_thread(engine):
             "close": tick["ltp"],
         }
         engine.last_candle_start = candle_start
-
 
 
 from django.core.cache import cache
