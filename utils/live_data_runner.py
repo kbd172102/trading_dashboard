@@ -155,7 +155,7 @@ def websocket_thread(engine):
             )
         }
 
-        # logger.info("Tick received: %s", data["ltp"])
+        logger.info("Tick received: %s", data["ltp"])
 
         try:
             engine.tick_queue_db.put_nowait(data)
@@ -298,7 +298,7 @@ def candle_and_strategy_thread(engine):
         # else:
 
         # df = pd.read_csv(CSV_PATH)
-        engine.candles.append(closed)
+        # engine.candles.append(closed)
 
         if len(engine.candles) < REQUIRED_CANDLES:
             logger.info("getting candles from db, have %s need %s",)
