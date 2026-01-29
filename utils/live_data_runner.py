@@ -442,6 +442,7 @@ def run_strategy_live(engine, df):
     # 4️⃣ EXIT MANAGEMENT (ONLY IF POSITION OPEN)
     # ==========================================================
     if pm.has_open_position():
+        logger.info("Position checking")
         side = pm.position["side"]
 
         # EMA + C3 CONFIRMED REVERSAL
@@ -484,6 +485,7 @@ def run_strategy_live(engine, df):
         # ======================================================
         # 7️⃣ PLACE ORDER ON **NEXT CANDLE OPEN**
         # ======================================================
+        logger.info("order placing")
         next_entry_price = last["open"]   # ← IMPORTANT
 
         balance = get_live_balance(engine)
