@@ -25,7 +25,7 @@ from utils.strategies_live import c3_strategy, EMA_LONG
 from utils.position_manager import PositionManager
 from utils.expiry_utils import is_last_friday_before_expiry, is_one_week_before_expiry
 
-CANDLE_INTERVAL_MINUTES = 15
+CANDLE_INTERVAL_MINUTES = 1
 
 from utils.redis_cache import init_redis, acquire_candle_lock, acquire_trade_lock, release_trade_lock
 
@@ -188,7 +188,7 @@ def websocket_thread(engine):
             )
         }
 
-        # logger.info("Tick received-2: %s", data["ltp"])
+        logger.info("Tick received: %s", data["ltp"])
 
         try:
             engine.tick_queue_db.put_nowait(data)
