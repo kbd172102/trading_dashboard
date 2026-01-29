@@ -341,7 +341,7 @@ def candle_and_strategy_thread(engine):
                     REQUIRED_CANDLES
                 )
                 load_initial_candles_from_db(engine, REQUIRED_CANDLES)
-                return
+                continue
 
             engine.is_warmed_up = True
             logger.info("Strategy warm-up complete")
