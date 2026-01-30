@@ -25,7 +25,7 @@ from utils.strategies_live import c3_strategy, EMA_LONG
 from utils.position_manager import PositionManager
 from utils.expiry_utils import is_last_friday_before_expiry, is_one_week_before_expiry
 
-CANDLE_INTERVAL_MINUTES = 15
+CANDLE_INTERVAL_MINUTES = 1
 
 from utils.redis_cache import init_redis, acquire_candle_lock, acquire_trade_lock, release_trade_lock
 
@@ -88,7 +88,7 @@ class UserEngine:
         # Position manager
         self.position_manager = PositionManager(user_id, token)
 
-        self.candles = []
+        # self.candles = []
         self.is_warmed_up = False
 
     def start(self):
@@ -220,7 +220,6 @@ def db_writer_thread(engine):
             tick = engine.tick_queue_db.get(timeout=1)
         except queue.Empty:
             continue
-
         try:
             LiveTick.objects.create(
                 user_id=engine.user_id,
@@ -276,6 +275,7 @@ def candle_and_strategy_thread(engine):
 
         # 🔹 CANDLE CLOSED
         closed = engine.current_candle
+        # print("Closed candle:", closed)
 
         if not acquire_candle_lock(451669, closed["start"]):
             logger.warning("Duplicate candle ignored: %s", closed["start"])
@@ -307,7 +307,7 @@ def candle_and_strategy_thread(engine):
             logger.exception("LiveCandle DB error: %s", e)
 
         # ✅ KEEP IN MEMORY (ORDER PRESERVED)
-        engine.candles.append(closed)
+        # engine.candles.append(closed)
 
         logger.info(
             "[LIVE CANDLE] %s O:%s H:%s L:%s C:%s",
@@ -331,7 +331,7 @@ def candle_and_strategy_thread(engine):
         # else:
 
         # df = pd.read_csv(CSV_PATH)
-        # engine.candles.append(closed)
+        engine.candles.append(closed)
 
         if not engine.is_warmed_up:
             if len(engine.candles) < REQUIRED_CANDLES:
