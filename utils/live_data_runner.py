@@ -275,7 +275,6 @@ def candle_and_strategy_thread(engine):
 
         # 🔹 CANDLE CLOSED
         closed = engine.current_candle
-        # print("Closed candle:", closed)
 
         if not acquire_candle_lock(451669, closed["start"]):
             logger.warning("Duplicate candle ignored: %s", closed["start"])
