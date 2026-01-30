@@ -19,7 +19,7 @@ from backtest_runner.models import AngelOneKey
 from live_trading.models import LiveTick, LiveCandle
 from portal import settings
 from utils.placeorder import buy_order, sell_order
-from utils.angel_one import get_account_balance, login_and_get_tokens, get_margin_required
+from utils.angel_one import get_account_balance, login_and_get_tokens, get_margin_required, get_open_positions
 from utils.indicator_preprocessor import add_indicators
 from utils.strategies_live import c3_strategy, EMA_LONG
 from utils.position_manager import PositionManager
@@ -88,7 +88,6 @@ class UserEngine:
         # Position manager
         self.position_manager = PositionManager(user_id, token)
 
-        self.candles = []
         self.is_warmed_up = False
 
     def start(self):
@@ -187,7 +186,6 @@ def websocket_thread(engine):
                 tick["exchange_timestamp"] / 1000, pytz.UTC
             )
         }
-
         logger.info("Tick received: %s", data["ltp"])
 
         try:
@@ -232,7 +230,6 @@ def db_writer_thread(engine):
         except Exception as e:
             logger.exception("LiveTick DB error: %s", e)
 
-
 # ==========================================================
 # THREAD 3 — CANDLE + STRATEGY (NO DB POLLING)
 # ==========================================================
@@ -245,9 +242,10 @@ def candle_and_strategy_thread(engine):
         try:
             tick = engine.tick_queue_candle.get(timeout=1)
             logger.info("Tick received: %s", tick["ltp"])
+            logger.info("Tick timestamp: %s", tick["timestamp"])
         except queue.Empty:
             continue
-
+        print(engine.jwt_token)
         # ✅ SINGLE SOURCE OF TRUTH — convert here
         ts_ist = to_ist(tick["timestamp"])
 
@@ -333,22 +331,22 @@ def candle_and_strategy_thread(engine):
         # df = pd.read_csv(CSV_PATH)
         # engine.candles.append(closed)
 
-        if not engine.is_warmed_up:
-            if len(engine.candles) < REQUIRED_CANDLES:
-                logger.info(
-                    "Warming up candles: have=%s need=%s",
-                    len(engine.candles),
-                    REQUIRED_CANDLES
-                )
-                load_initial_candles_from_db(engine, REQUIRED_CANDLES)
-                continue
-
-            engine.is_warmed_up = True
-            logger.info("Strategy warm-up complete")
+        # if not engine.is_warmed_up:
+        #     if len(engine.candles) < REQUIRED_CANDLES:
+        #         logger.info(
+        #             "Warming up candles: have=%s need=%s",
+        #             len(engine.candles),
+        #             REQUIRED_CANDLES
+        #         )
+        #         load_initial_candles_from_db(engine, REQUIRED_CANDLES)
+        #         continue
+        #
+        #     engine.is_warmed_up = True
+        #     logger.info("Strategy warm-up complete")
 
         df = pd.DataFrame(engine.candles)
         df.rename(columns={"start": "timestamp"}, inplace=True)
-        df["timestamp"] = pd.to_datetime(df["timestamp"], utc=True)
+        df["timestamp"] = pd.to_datetime(df["timestamp"])
 
         df = add_indicators(df)
         run_strategy_live(engine, df)
@@ -441,22 +439,22 @@ def run_strategy_live(engine, df):
     # ==========================================================
     # 4️⃣ EXIT MANAGEMENT (ONLY IF POSITION OPEN)
     # ==========================================================
-    if pm.has_open_position():
-        logger.info("Position checking")
-        side = pm.position["side"]
-
-        # EMA + C3 CONFIRMED REVERSAL
-        if side == "LONG" and action == "SELL" and not is_uptrend:
-            logger.info("EMA + C3 reversal → exit LONG")
-            pm.force_exit(reason="EMA_C3_REVERSAL", price=last["close"])
-            return
-
-        if side == "SHORT" and action == "BUY" and is_uptrend:
-            logger.info("EMA + C3 reversal → exit SHORT")
-            pm.force_exit(reason="EMA_C3_REVERSAL", price=last["close"])
-            return
-
-        return  # HOLD POSITION
+    # if pm.has_open_position():
+    #     logger.info("Position checking")
+    #     side = pm.position["side"]
+    #
+    #     # EMA + C3 CONFIRMED REVERSAL
+    #     if side == "LONG" and action == "SELL" and not is_uptrend:
+    #         logger.info("EMA + C3 reversal → exit LONG")
+    #         pm.force_exit(reason="EMA_C3_REVERSAL", price=last["close"])
+    #         return
+    #
+    #     if side == "SHORT" and action == "BUY" and is_uptrend:
+    #         logger.info("EMA + C3 reversal → exit SHORT")
+    #         pm.force_exit(reason="EMA_C3_REVERSAL", price=last["close"])
+    #         return
+    #
+    #     return  # HOLD POSITION
 
     # ==========================================================
     # 5️⃣ ENTRY SAFETY CHECKS
@@ -486,7 +484,7 @@ def run_strategy_live(engine, df):
         # 7️⃣ PLACE ORDER ON **NEXT CANDLE OPEN**
         # ======================================================
         logger.info("order placing")
-        next_entry_price = last["open"]   # ← IMPORTANT
+        next_entry_price = last["close"]   # ← IMPORTANT
 
         balance = get_live_balance(engine)
         # balance = 3,00,000
@@ -639,3 +637,15 @@ def ensure_valid_session(engine, force=False):
     except Exception as e:
         logger.exception("JWT refresh failed: %s", e)
         return False
+
+def sync_position_from_broker(engine):
+    pos = get_open_positions(engine.api_key, engine.jwt_token)
+    if pos:
+        engine.position_manager.position = {
+            "side": pos["side"],
+            "entry": pos["price"],
+            "qty": pos["qty"],
+            "lots": pos["qty"] // engine.position_manager.lot_size,
+        }
+    else:
+        engine.position_manager.position = None
