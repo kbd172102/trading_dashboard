@@ -345,7 +345,7 @@ def candle_and_strategy_thread(engine):
 
         df = pd.DataFrame(engine.candles)
         df.rename(columns={"start": "timestamp"}, inplace=True)
-        df["timestamp"] = pd.to_datetime(df["timestamp"])
+        df["timestamp"] = pd.to_datetime(df["timestamp"], utc=True)
 
         df = add_indicators(df)
         run_strategy_live(engine, df)
