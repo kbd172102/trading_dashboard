@@ -330,18 +330,18 @@ def candle_and_strategy_thread(engine):
         # df = pd.read_csv(CSV_PATH)
         # engine.candles.append(closed)
 
-        # if not engine.is_warmed_up:
-        #     if len(engine.candles) < REQUIRED_CANDLES:
-        #         logger.info(
-        #             "Warming up candles: have=%s need=%s",
-        #             len(engine.candles),
-        #             REQUIRED_CANDLES
-        #         )
-        #         load_initial_candles_from_db(engine, REQUIRED_CANDLES)
-        #         continue
-        #
-        #     engine.is_warmed_up = True
-        #     logger.info("Strategy warm-up complete")
+        if not engine.is_warmed_up:
+            if len(engine.candles) < REQUIRED_CANDLES:
+                logger.info(
+                    "Warming up candles: have=%s need=%s",
+                    len(engine.candles),
+                    REQUIRED_CANDLES
+                )
+                load_initial_candles_from_db(engine, REQUIRED_CANDLES)
+                continue
+
+            engine.is_warmed_up = True
+            logger.info("Strategy warm-up complete")
 
         df = pd.DataFrame(engine.candles)
         df.rename(columns={"start": "timestamp"}, inplace=True)
