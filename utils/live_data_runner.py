@@ -186,7 +186,7 @@ def websocket_thread(engine):
                 tick["exchange_timestamp"] / 1000, pytz.UTC
             )
         }
-        logger.info("Tick received: %s", data["ltp"])
+        logger.info(f"Tick received {tick["timestamp"]}: %s", data["ltp"])
 
         try:
             engine.tick_queue_db.put_nowait(data)
