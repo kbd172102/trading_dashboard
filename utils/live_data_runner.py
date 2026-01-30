@@ -19,7 +19,7 @@ from backtest_runner.models import AngelOneKey
 from live_trading.models import LiveTick, LiveCandle
 from portal import settings
 from utils.placeorder import buy_order, sell_order
-from utils.angel_one import get_account_balance, login_and_get_tokens, get_margin_required, get_open_positions
+from utils.angel_one import get_account_balance, login_and_get_tokens, get_margin_required
 from utils.indicator_preprocessor import add_indicators
 from utils.strategies_live import c3_strategy, EMA_LONG
 from utils.position_manager import PositionManager
@@ -88,6 +88,7 @@ class UserEngine:
         # Position manager
         self.position_manager = PositionManager(user_id, token)
 
+        self.candles = []
         self.is_warmed_up = False
 
     def start(self):
@@ -186,7 +187,8 @@ def websocket_thread(engine):
                 tick["exchange_timestamp"] / 1000, pytz.UTC
             )
         }
-        logger.info(f"Tick received {data["timestamp"]}2: %s", data["ltp"])
+
+        logger.info("Tick received: %s", data["ltp"])
 
         try:
             engine.tick_queue_db.put_nowait(data)
@@ -230,6 +232,7 @@ def db_writer_thread(engine):
         except Exception as e:
             logger.exception("LiveTick DB error: %s", e)
 
+
 # ==========================================================
 # THREAD 3 — CANDLE + STRATEGY (NO DB POLLING)
 # ==========================================================
@@ -241,7 +244,7 @@ def candle_and_strategy_thread(engine):
     while engine.running.is_set():
         try:
             tick = engine.tick_queue_candle.get(timeout=1)
-            logger.info(f"Tick received at {tick["timestamp"]}: %s", tick["ltp"])
+            logger.info("Tick received: %s", tick["ltp"])
         except queue.Empty:
             continue
 
@@ -458,9 +461,9 @@ def run_strategy_live(engine, df):
     # ==========================================================
     # 5️⃣ ENTRY SAFETY CHECKS
     # ==========================================================
-    if pm.in_cooldown():
-        logger.info("In cooldown, skipping entry")
-        return
+    # if pm.in_cooldown():
+    #     logger.info("In cooldown, skipping entry")
+    #     return
 
     if action == "HOLD":
         return
@@ -483,7 +486,7 @@ def run_strategy_live(engine, df):
         # 7️⃣ PLACE ORDER ON **NEXT CANDLE OPEN**
         # ======================================================
         logger.info("order placing")
-        next_entry_price = last["close"]   # ← IMPORTANT
+        next_entry_price = last["open"]   # ← IMPORTANT
 
         balance = get_live_balance(engine)
         # balance = 3,00,000
@@ -636,15 +639,3 @@ def ensure_valid_session(engine, force=False):
     except Exception as e:
         logger.exception("JWT refresh failed: %s", e)
         return False
-
-def sync_position_from_broker(engine):
-    pos = get_open_positions(engine.api_key, engine.jwt_token)
-    if pos:
-        engine.position_manager.position = {
-            "side": pos["side"],
-            "entry": pos["price"],
-            "qty": pos["qty"],
-            "lots": pos["qty"] // engine.position_manager.lot_size,
-        }
-    else:
-        engine.position_manager.position = None
