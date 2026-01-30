@@ -242,7 +242,6 @@ def candle_and_strategy_thread(engine):
         try:
             tick = engine.tick_queue_candle.get(timeout=1)
             logger.info(f"Tick received at {tick["timestamp"]}: %s", tick["ltp"])
-            # logger.info("Tick timestamp: %s", tick["timestamp"])
         except queue.Empty:
             continue
 
