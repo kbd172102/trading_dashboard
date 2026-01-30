@@ -241,11 +241,11 @@ def candle_and_strategy_thread(engine):
     while engine.running.is_set():
         try:
             tick = engine.tick_queue_candle.get(timeout=1)
-            logger.info("Tick received: %s", tick["ltp"])
-            logger.info("Tick timestamp: %s", tick["timestamp"])
+            logger.info(f"Tick received at {tick["timestamp"]}: %s", tick["ltp"])
+            # logger.info("Tick timestamp: %s", tick["timestamp"])
         except queue.Empty:
             continue
-        print(engine.jwt_token)
+
         # ✅ SINGLE SOURCE OF TRUTH — convert here
         ts_ist = to_ist(tick["timestamp"])
 
