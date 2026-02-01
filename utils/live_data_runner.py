@@ -306,7 +306,7 @@ def candle_and_strategy_thread(engine):
             logger.exception("LiveCandle DB error: %s", e)
 
         # ✅ KEEP IN MEMORY (ORDER PRESERVED)
-        # engine.candles.append(closed)
+        engine.candles.append(closed)
 
         logger.info(
             "[LIVE CANDLE] %s O:%s H:%s L:%s C:%s",
