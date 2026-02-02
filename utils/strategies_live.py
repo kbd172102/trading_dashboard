@@ -123,6 +123,9 @@ def c3_strategy(df: pd.DataFrame):
     ema_uptrend = c3.ema_27 > c3.ema_78
     price_pattern = c1.close < c2.close < c3.close
 
+    sell_ema = c3.ema_27 < c3.ema_78
+    sell_pattern = c1.close > c2.close > c3.close
+
     if ema_uptrend and price_pattern:
         return {
             "action": "BUY",
@@ -130,9 +133,17 @@ def c3_strategy(df: pd.DataFrame):
             "price": float(c3.close),  # reference price
         }
 
+    if sell_ema and sell_pattern:
+        return {
+            "action": "SELL",
+            "reason": "C3 SELL CONFIRMED (EMA27<EMA78 & C1>C2>C3)",
+            "price": float(c3.close),
+        }
+
     return {
         "action": "HOLD",
-        "reason": f"ema_uptrend={ema_uptrend}, price_pattern={price_pattern}",
+        "reason": (f"ema_uptrend={ema_uptrend}, price_pattern={price_pattern}"
+                   f"sell_ema={sell_ema}, sell_pattern={sell_pattern}" ),
         "price": float(c3.close),
     }
 
