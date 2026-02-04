@@ -113,7 +113,7 @@ def c3_strategy(df: pd.DataFrame):
     # EMA calculation
     df["ema_27"] = df["close"].ewm(span=EMA_SHORT, adjust=False).mean()
     df["ema_78"] = df["close"].ewm(span=EMA_LONG, adjust=False).mean()
-    print("ema_27", df["ema_27"].tail(3), "  && ema_78", df["ema_78"].tail(3))
+    # print("ema_27", df["ema_27"].tail(3), "  && ema_78", df["ema_78"].tail(3))
     # 🔒 LAST 3 *CLOSED* candles
     c1 = df.iloc[-3]
     c2 = df.iloc[-2]
