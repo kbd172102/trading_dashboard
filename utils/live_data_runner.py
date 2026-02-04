@@ -25,7 +25,7 @@ from utils.strategies_live import c3_strategy, EMA_LONG
 from utils.position_manager import PositionManager
 from utils.expiry_utils import is_last_friday_before_expiry, is_one_week_before_expiry
 
-CANDLE_INTERVAL_MINUTES = 15
+CANDLE_INTERVAL_MINUTES = 1
 
 from utils.redis_cache import init_redis, acquire_candle_lock, acquire_trade_lock, release_trade_lock
 
@@ -67,6 +67,7 @@ class UserEngine:
         # self.tick_queue = queue.Queue(maxsize=5000)
         self.tick_queue_db = queue.Queue(maxsize=5000)
         self.tick_queue_candle = queue.Queue(maxsize=5000)
+        self.initial_candles_loaded = False
 
         # Candle data
         self.candles = deque(maxlen=200)
@@ -160,7 +161,7 @@ def websocket_thread(engine):
     )
 
     correlation_id = "live_feed"
-    mode = 1  # 1 = LTP, 2 = Quote, 3 = SnapQuote
+    mode = 3  # 1 = LTP, 2 = Quote, 3 = SnapQuote
 
     token_list = [{
         "exchangeType": 5,  # 5 = NSE (INDEX)
@@ -254,6 +255,7 @@ def candle_and_strategy_thread(engine):
 
         minute = (ts_ist.minute // CANDLE_INTERVAL_MINUTES) * CANDLE_INTERVAL_MINUTES
         candle_start = ts_ist.replace(minute=minute, second=0, microsecond=0)
+        # print("candle_start:", candle_start)
 
         # 🔹 FIRST CANDLE
         if engine.current_candle is None:
@@ -332,9 +334,13 @@ def candle_and_strategy_thread(engine):
         # else:
 
         # df = pd.read_csv(CSV_PATH)
-        engine.candles.append(closed)
+        # engine.candles.append(closed)
 
         if not engine.is_warmed_up:
+            if not engine.initial_candles_loaded:
+                load_initial_candles_from_db(engine, REQUIRED_CANDLES)
+                engine.initial_candles_loaded = True
+
             if len(engine.candles) < REQUIRED_CANDLES:
                 logger.info(
                     "Warming up candles: have=%s need=%s",
@@ -347,6 +353,7 @@ def candle_and_strategy_thread(engine):
             engine.is_warmed_up = True
             logger.info("Strategy warm-up complete")
 
+        # df = pd.read_csv(CSV_PATH)
         df = pd.DataFrame(engine.candles)
         df.rename(columns={"start": "timestamp"}, inplace=True)
         df["timestamp"] = pd.to_datetime(df["timestamp"], utc=True)
