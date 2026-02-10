@@ -8,7 +8,7 @@ from utils.placeorder import buy_order, sell_order
 
 EMA_SHORT = 27
 EMA_LONG  = 78
-BREAKOUT_BUFFER = 0.0012  # 0.12%
+BREAKOUT_BUFFER = 0.0005  # 0.12%
 
 # def c3_strategy(df: pd.DataFrame):
 #     """
@@ -82,6 +82,20 @@ def c3_strategy(df: pd.DataFrame):
     - C1.close < C2.close < C3.close
     - C3 must be fully CLOSED candle
 
+    LONG:
+    - Candle 1 green
+    - Candle 2 green
+    - C2 high > C1 high
+    - Candle 3 close > C2 high * (1 + buffer)
+    - EMA27 > EMA78
+
+    SHORT:
+    - Candle 1 red
+    - Candle 2 red
+    - C2 low < C1 low
+    - Candle 3 close < C2 low * (1 - buffer)
+    - EMA27 < EMA78
+
     NOTE:
     - df MUST be sorted by timestamp ASC
     - Strategy evaluates last 3 CLOSED candles
@@ -119,33 +133,83 @@ def c3_strategy(df: pd.DataFrame):
     c2 = df.iloc[-2]
     c3 = df.iloc[-1]
 
-    # --- CONDITIONS ---
-    ema_uptrend = c3.ema_27 > c3.ema_78
-    price_pattern = c1.close < c2.close < c3.close
+    # Candle colors
+    c1_green = c1.close > c1.open
+    c2_green = c2.close > c2.open
 
-    sell_ema = c3.ema_27 < c3.ema_78
-    sell_pattern = c1.close > c2.close > c3.close
+    c1_red = c1.close < c1.open
+    c2_red = c2.close < c2.open
 
-    if ema_uptrend and price_pattern:
+    # EMA trend
+    ema_long = c3.ema_27 > c3.ema_78
+    ema_short = c3.ema_27 < c3.ema_78
+
+    # ---- LONG CONDITIONS ----
+    long_pattern = (
+            c1_green and
+            c2_green and
+            c2.high > c1.high and
+            c3.close > c2.high * (1 + BREAKOUT_BUFFER)
+    )
+
+    # ---- SHORT CONDITIONS ----
+    short_pattern = (
+            c1_red and
+            c2_red and
+            c2.low < c1.low and
+            c3.close < c2.low * (1 - BREAKOUT_BUFFER)
+    )
+
+    if ema_long and long_pattern:
         return {
             "action": "BUY",
-            "reason": "C3 CONFIRMED (EMA27>EMA78 & C1<C2<C3)",
-            "price": float(c3.close),  # reference price
+            "reason": "C3 LONG BREAKOUT CONFIRMED",
+            "price": float(c3.close)
         }
 
-    if sell_ema and sell_pattern:
+    if ema_short and short_pattern:
         return {
             "action": "SELL",
-            "reason": "C3 SELL CONFIRMED (EMA27<EMA78 & C1>C2>C3)",
-            "price": float(c3.close),
+            "reason": "C3 SHORT BREAKOUT CONFIRMED",
+            "price": float(c3.close)
         }
 
     return {
         "action": "HOLD",
-        "reason": (f"ema_uptrend={ema_uptrend}, price_pattern={price_pattern}"
-                   f"sell_ema={sell_ema}, sell_pattern={sell_pattern}" ),
-        "price": float(c3.close),
+        "reason": (
+            f"ema_long={ema_long}, long_pattern={long_pattern}, "
+            f"ema_short={ema_short}, short_pattern={short_pattern}"
+        ),
+        "price": float(c3.close)
     }
+
+    # # --- CONDITIONS ---
+    # ema_long = c3.ema_27 > c3.ema_78
+    # price_pattern = c1.close < c2.close < c3.close
+    #
+    # sell_ema = c3.ema_27 < c3.ema_78
+    # sell_pattern = c1.close > c2.close > c3.close
+    #
+    # if ema_long and price_pattern:
+    #     return {
+    #         "action": "BUY",
+    #         "reason": "C3 CONFIRMED (EMA27>EMA78 & C1<C2<C3)",
+    #         "price": float(c3.close),  # reference price
+    #     }
+    #
+    # if sell_ema and sell_pattern:
+    #     return {
+    #         "action": "SELL",
+    #         "reason": "C3 SELL CONFIRMED (EMA27<EMA78 & C1>C2>C3)",
+    #         "price": float(c3.close),
+    #     }
+    #
+    # return {
+    #     "action": "HOLD",
+    #     "reason": (f"ema_long={ema_long}, price_pattern={price_pattern}"
+    #                f"sell_ema={sell_ema}, sell_pattern={sell_pattern}" ),
+    #     "price": float(c3.close),
+    # }
 
 
 def should_run_strategy(engine, candle_time):
