@@ -149,67 +149,78 @@ class UserEngine:
 # THREAD 1 — WEBSOCKET
 # ==========================================================
 def websocket_thread(engine):
-    if not ensure_valid_session(engine):
-        logger.error("AngelOne login failed")
-        return
-
-    sws = SmartWebSocketV2(
-        engine.jwt_token,
-        engine.api_key,
-        AngelOneKey.objects.get(user_id=engine.user_id).client_code,
-        engine.feed_token
-    )
-
-    correlation_id = "live_feed"
-    mode = 3  # 1 = LTP, 2 = Quote, 3 = SnapQuote
-
-    token_list = [{
-        "exchangeType": 5,  # 5 = NSE (INDEX)
-        "tokens": [451669]
-    }]
-
-    def on_open(ws):
-        logger.info("WebSocket connected : subscribing")
-        sws.subscribe(correlation_id, mode, token_list)
-
-    def on_data(ws, tick):
-        if "last_traded_price" not in tick:
-            return
-
-        ltp = tick["last_traded_price"] / 100
-
-        # Check for tick-based exits (SL)
-        engine.position_manager.check_exit_on_tick(ltp)
-
-        data = {
-            "token": tick.get("token", 451669),
-            "ltp": ltp,
-            "timestamp": datetime.fromtimestamp(
-                tick["exchange_timestamp"] / 1000, pytz.UTC
-            )
-        }
-
-        logger.info("Tick received: %s", data["ltp"])
+    while engine.running.is_set():
 
         try:
-            engine.tick_queue_db.put_nowait(data)
-            engine.tick_queue_candle.put_nowait(data)
+            logger.warning("Starting WebSocket connection...")
+            if not ensure_valid_session(engine):
+                logger.error("AngelOne login failed")
+                return
 
-        except queue.Full:
-            logger.warning("Tick queue full")
+            sws = SmartWebSocketV2(
+                engine.jwt_token,
+                engine.api_key,
+                AngelOneKey.objects.get(user_id=engine.user_id).client_code,
+                engine.feed_token
+            )
 
-    def on_error(ws, error):
-        logger.error("WebSocket error: %s", error)
+            correlation_id = "live_feed"
+            mode = 3  # 1 = LTP, 2 = Quote, 3 = SnapQuote
 
-    def on_close(ws):
-        logger.warning("WebSocket closed")
+            token_list = [{
+                "exchangeType": 5,  # 5 = NSE (INDEX)
+                "tokens": [451669]
+            }]
 
-    sws.on_open = on_open
-    sws.on_data = on_data
-    sws.on_error = on_error
-    sws.on_close = on_close
+            def on_open(ws):
+                logger.info("WebSocket connected : subscribing")
+                sws.subscribe(correlation_id, mode, token_list)
 
-    sws.connect()
+            def on_data(ws, tick):
+                if "last_traded_price" not in tick:
+                    return
+
+                ltp = tick["last_traded_price"] / 100
+
+                # Check for tick-based exits (SL)
+                engine.position_manager.check_exit_on_tick(ltp)
+
+                data = {
+                    "token": tick.get("token", 451669),
+                    "ltp": ltp,
+                    "timestamp": datetime.fromtimestamp(
+                        tick["exchange_timestamp"] / 1000, pytz.UTC
+                    )
+                }
+
+                logger.info("Tick received: %s", data["ltp"])
+
+                try:
+                    engine.tick_queue_db.put_nowait(data)
+                    engine.tick_queue_candle.put_nowait(data)
+
+                except queue.Full:
+                    logger.warning("Tick queue full")
+
+            def on_error(ws, error):
+                logger.error("WebSocket error: %s", error)
+
+            def on_close(ws):
+                logger.warning("WebSocket closed")
+
+            sws.on_open = on_open
+            sws.on_data = on_data
+            sws.on_error = on_error
+            sws.on_close = on_close
+
+            sws.connect()
+
+        except Exception as e:
+            logger.exception("WebSocket crashed: %s", e)
+
+        # 🔁 If connect exits, wait and retry
+        logger.warning("Reconnecting in 3 seconds...")
+        time.sleep(3)
 
 
 # ==========================================================
