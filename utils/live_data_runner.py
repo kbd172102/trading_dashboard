@@ -153,14 +153,18 @@ def websocket_thread(engine):
 
         try:
             logger.warning("Starting WebSocket connection...")
-            if not ensure_valid_session(engine):
+            if not ensure_valid_session(engine, force=True):
                 logger.error("AngelOne login failed")
                 return
+
+            # engine.client_code = AngelOneKey.objects.get(
+            #     user_id=engine.user_id
+            # ).client_code
 
             sws = SmartWebSocketV2(
                 engine.jwt_token,
                 engine.api_key,
-                AngelOneKey.objects.get(user_id=engine.user_id).client_code,
+                engine.client_code,
                 engine.feed_token
             )
 
