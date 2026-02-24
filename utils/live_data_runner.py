@@ -14,7 +14,7 @@ from django.utils import timezone
 from SmartApi import SmartConnect
 from SmartApi.smartWebSocketV2 import SmartWebSocketV2
 from matplotlib.style.core import available
-
+from django.db import close_old_connections, connection
 from backtest_runner.models import AngelOneKey
 from live_trading.models import LiveTick, LiveCandle
 from portal import settings
@@ -236,6 +236,9 @@ def db_writer_thread(engine):
             tick = engine.tick_queue_db.get(timeout=1)
         except queue.Empty:
             continue
+
+        close_old_connections()
+
         try:
             LiveTick.objects.create(
                 user_id=engine.user_id,
@@ -263,6 +266,7 @@ def candle_and_strategy_thread(engine):
         except queue.Empty:
             continue
 
+        close_old_connections()
         # print(engine.jwt_token)
 
         # ✅ SINGLE SOURCE OF TRUTH — convert here
@@ -601,6 +605,7 @@ def load_initial_candles_from_db(engine, limit):
     Load last `limit` candles from DB into engine.candles
     Runs only once per engine lifecycle
     """
+    close_old_connections()
     if len(engine.candles) >= limit:
         return
 
