@@ -173,7 +173,7 @@ def websocket_thread(engine):
 
             token_list = [{
                 "exchangeType": 5,  # 5 = NSE (INDEX)
-                "tokens": [451669]
+                "tokens": [457533]
             }]
 
             def on_open(ws):
@@ -190,7 +190,7 @@ def websocket_thread(engine):
                 engine.position_manager.check_exit_on_tick(ltp)
 
                 data = {
-                    "token": tick.get("token", 451669),
+                    "token": tick.get("token", 457533),
                     "ltp": ltp,
                     "timestamp": datetime.fromtimestamp(
                         tick["exchange_timestamp"] / 1000, pytz.UTC
@@ -238,7 +238,7 @@ def db_writer_thread(engine):
             continue
 
         close_old_connections()
-
+        print("jwt_token in db thread:", engine.jwt_token)
         try:
             LiveTick.objects.create(
                 user_id=engine.user_id,
@@ -299,7 +299,7 @@ def candle_and_strategy_thread(engine):
         # 🔹 CANDLE CLOSED
         closed = engine.current_candle
         #
-        # if not acquire_candle_lock(451669, closed["start"]):
+        # if not acquire_candle_lock(457533, closed["start"]):
         #     logger.warning("Duplicate candle ignored: %s", closed["start"])
         #     engine.current_candle = {
         #         "start": candle_start,
@@ -315,7 +315,7 @@ def candle_and_strategy_thread(engine):
         try:
             LiveCandle.objects.create(
                 user_id=engine.user_id,
-                token=451669,
+                token=457533,
                 interval=f"{CANDLE_INTERVAL_MINUTES}m",
                 start_time=closed["start"],
                 end_time=closed["start"] + timedelta(minutes=CANDLE_INTERVAL_MINUTES),
@@ -436,7 +436,7 @@ def run_strategy_live(engine, df):
     # ==========================================================
     # 1️⃣ ONE CANDLE = ONE DECISION (CANDLE LOCK)
     # ==========================================================
-    # if not acquire_candle_lock(451669, ist_time, ttl=3600):
+    # if not acquire_candle_lock(457533, ist_time, ttl=3600):
     #     logger.info("Candle already processed, skipping")
         # return
 
@@ -504,7 +504,7 @@ def run_strategy_live(engine, df):
     # ==========================================================
     # 6️⃣ TRADE LOCK (PREVENT DOUBLE ORDERS)
     # ==========================================================
-    if not acquire_trade_lock(engine.user_id, 451669, ttl=120):
+    if not acquire_trade_lock(engine.user_id, 457533, ttl=120):
         logger.info("Trade lock active, skipping")
         return
 
@@ -528,7 +528,7 @@ def run_strategy_live(engine, df):
             jwt_token=engine.jwt_token,
             exchange="MCX",
             tradingsymbol="SILVERM27FEB26FUT",
-            symboltoken=451669,
+            symboltoken=457533,
             transaction_type=action
         )
 
@@ -537,7 +537,7 @@ def run_strategy_live(engine, df):
         #     jwt_token=engine.jwt_token,
         #     exchange='MCX',
         #     tradingsymbol='SILVERM27FEB26FUT',
-        #     symboltoken=451669,
+        #     symboltoken=457533,
         #     transaction_type=action
         # )
 
@@ -560,7 +560,7 @@ def run_strategy_live(engine, df):
                 client_code=engine.client_code,
                 exchange="MCX",
                 tradingsymbol="SILVERM27FEB26FUT",
-                token=451669,
+                token=457533,
                 qty=qty
             )
             # response = buy_order(
@@ -569,7 +569,7 @@ def run_strategy_live(engine, df):
             #     client_code="j93096",
             #     exchange="MCX",
             #     tradingsymbol="SILVERM27FEB26FUT",
-            #     token=451669,
+            #     token=457533,
             #     qty=qty
             # )
         else:
@@ -579,7 +579,7 @@ def run_strategy_live(engine, df):
                 client_code=engine.client_code,
                 exchange="MCX",
                 tradingsymbol="SILVERM27FEB26FUT",
-                token=451669,
+                token=457533,
                 qty=qty
             )
 
@@ -595,7 +595,7 @@ def run_strategy_live(engine, df):
             logger.error("Order failed: %s", response)
 
     finally:
-        release_trade_lock(engine.user_id, 451669)
+        release_trade_lock(engine.user_id, 457533)
 
 # ==========================================================
 # Load initial credentials and ensure valid session
@@ -612,7 +612,7 @@ def load_initial_candles_from_db(engine, limit):
     qs = (
         LiveCandle.objects
         .filter(
-            token=451669,
+            token=457533,
         )
         .order_by("-start_time")[:limit]
     )
