@@ -41,7 +41,7 @@ def place_order(api_key: str,
 
     payload = {
         "exchange": exchange.upper(),               # MCX / NSE / BSE
-        "tradingsymbol": tradingsymbol,             # e.g. SILVERM30APR26FUT
+        "tradingsymbol": tradingsymbol,             # e.g. SILVERM27FEB26FUT
         "symboltoken": symboltoken,                 # e.g. 457533
         "quantity": int(quantity),
         "transactiontype": transaction_type.upper(),    # BUY / SELL
