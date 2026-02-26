@@ -7,7 +7,7 @@ from logzero import logger
 # Using a fixed instrument token as requested.
 # 26009 is the example token for the NIFTY BANK index.
 # Change this value if you intend to trade a different instrument.
-HARDCODED_INSTRUMENT_TOKEN = "451669"
+HARDCODED_INSTRUMENT_TOKEN = "457533"
 
 
 class LiveTradingManager:

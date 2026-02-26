@@ -488,7 +488,7 @@ def get_margin_required(api_key, jwt_token, exchange, tradingsymbol, symboltoken
                       "price": 0,
                       "productType": "INTRADAY",
                       "orderType": "LIMIT",
-                      "token": "451669",
+                      "token": "457533",
                       "tradeType": transaction_type
                     }
                   ]
