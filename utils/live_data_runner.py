@@ -527,7 +527,7 @@ def run_strategy_live(engine, df):
             api_key=engine.api_key,
             jwt_token=engine.jwt_token,
             exchange="MCX",
-            tradingsymbol="SILVERM27FEB26FUT",
+            tradingsymbol="SILVERM30APR26FUT",
             symboltoken=457533,
             transaction_type=action
         )
@@ -536,7 +536,7 @@ def run_strategy_live(engine, df):
         #     api_key=engine.api_key,
         #     jwt_token=engine.jwt_token,
         #     exchange='MCX',
-        #     tradingsymbol='SILVERM27FEB26FUT',
+        #     tradingsymbol='SILVERM30APR26FUT',
         #     symboltoken=457533,
         #     transaction_type=action
         # )
@@ -559,7 +559,7 @@ def run_strategy_live(engine, df):
                 jwt=engine.jwt_token,
                 client_code=engine.client_code,
                 exchange="MCX",
-                tradingsymbol="SILVERM27FEB26FUT",
+                tradingsymbol="SILVERM30APR26FUT",
                 token=457533,
                 qty=qty
             )
@@ -568,7 +568,7 @@ def run_strategy_live(engine, df):
             #     jwt="eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6Iko5MzA5NiIsInJvbGVzIjowLCJ1c2VydHlwZSI6IlVTRVIiLCJ0b2tlbiI6ImV5SmhiR2NpT2lKU1V6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUoxYzJWeVgzUjVjR1VpT2lKamJHbGxiblFpTENKMGIydGxibDkwZVhCbElqb2lkSEpoWkdWZllXTmpaWE56WDNSdmEyVnVJaXdpWjIxZmFXUWlPakV3TWl3aWMyOTFjbU5sSWpvaU15SXNJbVJsZG1salpWOXBaQ0k2SWpFellURXpZamcyTFRobE5HVXRNMlJoTUMwNU5EZGlMVFF5TWpaak1HTTBNMkZtWXlJc0ltdHBaQ0k2SW5SeVlXUmxYMnRsZVY5Mk1pSXNJbTl0Ym1WdFlXNWhaMlZ5YVdRaU9qRXdNaXdpY0hKdlpIVmpkSE1pT25zaVpHVnRZWFFpT25zaWMzUmhkSFZ6SWpvaVlXTjBhWFpsSW4wc0ltMW1JanA3SW5OMFlYUjFjeUk2SW1GamRHbDJaU0o5TENKdVluVk1aVzVrYVc1bklqcDdJbk4wWVhSMWN5STZJbUZqZEdsMlpTSjlmU3dpYVhOeklqb2lkSEpoWkdWZmJHOW5hVzVmYzJWeWRtbGpaU0lzSW5OMVlpSTZJa281TXpBNU5pSXNJbVY0Y0NJNk1UYzJPVFl5TlRRM05Td2libUptSWpveE56WTVOVE00T0RrMUxDSnBZWFFpT2pFM05qazFNemc0T1RVc0ltcDBhU0k2SWpreU5tWTVObVZsTFRjNU1HRXROREkwWXkxaFpEQXlMVEExWmpnek9UTm1NelUyTWlJc0lsUnZhMlZ1SWpvaUluMC5DYzlMY3B2dFdYQUZvS1pJa3BwR2FsVUROS2xDNl9FOGdhUEVnamVHUkItVTBCeGotNDZ5Vl9zSEtRYmpVbG1HR1NhTmtXM0FaY0FGanpndjNSTjh4dW5ZRDhRN25kNGU3dnAwUG4zNEF2X0ZjVkN2cnFxTzl2bGhsVE5udWhPQXd4ZFU1NnQ3TjFLeXFTU0FVN2hFSDd2cVZRTnVtRXdoV2JMNndvd042a1EiLCJBUEktS0VZIjoiR1YzcTZCZUciLCJYLU9MRC1BUEktS0VZIjp0cnVlLCJpYXQiOjE3Njk1MzkwNzUsImV4cCI6MTc2OTYyNTAwMH0.dnQV13BpOYyR8IOQZi9yh5OGE2QAKmQ7bO-Lk1yRs1HLVpVgJ-1e8q5f2tro-vhVokV3aFOX0ETPZdUe3zx6dA",
             #     client_code="j93096",
             #     exchange="MCX",
-            #     tradingsymbol="SILVERM27FEB26FUT",
+            #     tradingsymbol="SILVERM30APR26FUT",
             #     token=457533,
             #     qty=qty
             # )
@@ -578,7 +578,7 @@ def run_strategy_live(engine, df):
                 jwt=engine.jwt_token,
                 client_code=engine.client_code,
                 exchange="MCX",
-                tradingsymbol="SILVERM27FEB26FUT",
+                tradingsymbol="SILVERM30APR26FUT",
                 token=457533,
                 qty=qty
             )

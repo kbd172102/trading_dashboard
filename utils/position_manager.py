@@ -119,7 +119,7 @@ class PositionManager:
             # sell_order(self.user, self.token, quantity)
         elif side == "SHORT":
             print("BUY ORDER")
-            # buy_order(self.user, self.token, qty=quantity, exchange="MCX", tradingsymbol="SILVERM27FEB26FUT", symboltoken=457533)
+            # buy_order(self.user, self.token, qty=quantity, exchange="MCX", tradingsymbol="SILVERM30APR26FUT", symboltoken=457533)
 
         pnl = get_pnl_from_angelone(self.user)
         self.update_after_trade(pnl)
