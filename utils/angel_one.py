@@ -1,12 +1,11 @@
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests, pyotp
 from django.utils import timezone
-from datetime import timedelta
 from SmartApi.smartConnect import SmartConnect
 from logzero import logger
 from django.utils import timezone
-from datetime import timedelta
+import time
 
 
 def ensure_fresh_token(key):
@@ -29,6 +28,14 @@ def ensure_fresh_token(key):
         return key
 
     print("SMARTAPI TOKEN REFRESH FAILED:", resp)
+    return key
+
+def force_refresh_token(key):
+    """Always refreshes — use before WebSocket reconnect."""
+    success, result = refresh_jwt(key)
+    if not success:
+        logger.warning("renewAccessToken failed, falling back to full re-login")
+        return refresh(key)  # full login fallback
     return key
 
 def angel_login(client_code, password, totp_secret, api_key):
@@ -54,7 +61,8 @@ def angel_login(client_code, password, totp_secret, api_key):
         "X-PrivateKey": api_key
     }
 
-    response = requests.post(url, json=payload, headers=headers)
+    # response = requests.post(url, json=payload, headers=headers)
+    response = requests.post(url, json=payload, headers=headers, timeout=15)
     return response.json()
 
 
@@ -66,7 +74,7 @@ def refresh(key):
         return key
 
     # If token was updated less than 1 hour ago → return as is
-    if key.updated_at and key.updated_at > timezone.now() - timedelta(hours=1):
+    if key.updated_at and key.updated_at > timezone.now() - timedelta(hours=5):
         return key
 
     # Token is old → refresh using SmartAPI login method (most stable)
@@ -139,11 +147,9 @@ def safe_json(response):
     except Exception:
         return {"status": False, "message": "Invalid JSON response", "raw": response.text}
 
-import requests
 
 def get_angelone_candles(jwt_token, api_key, exchange, symbol_token, interval, fromdate, todate):
     import pandas as pd
-    import requests, json
 
     url = "https://apiconnect.angelone.in/rest/secure/angelbroking/historical/v1/getCandleData"
     payload = {
@@ -189,7 +195,6 @@ def get_angelone_candles(jwt_token, api_key, exchange, symbol_token, interval, f
 
     return df, None
 
-import requests
 
 def get_rms_balance(user):
     """
@@ -324,8 +329,6 @@ def get_smartapi_client(api_key, client_id, client_secret, totp=None):
 
 # utils/angelone_account.py
 
-import requests
-from logzero import logger
 
 BASE_URL = "https://apiconnect.angelone.in/rest/secure/angelbroking"
 
@@ -336,12 +339,6 @@ def _headers(api_key, jwt_token):
         "Authorization": f"Bearer {jwt_token}",
         "X-PrivateKey": api_key,
     }
-
-
-import requests
-import logging
-
-logger = logging.getLogger(__name__)
 
 def get_account_balance(api_key, jwt_token):
     """
@@ -359,7 +356,7 @@ def get_account_balance(api_key, jwt_token):
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": f"Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6Iko5MzA5NiIsInJvbGVzIjowLCJ1c2VydHlwZSI6IlVTRVIiLCJ0b2tlbiI6ImV5SmhiR2NpT2lKU1V6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUoxYzJWeVgzUjVjR1VpT2lKamJHbGxiblFpTENKMGIydGxibDkwZVhCbElqb2lkSEpoWkdWZllXTmpaWE56WDNSdmEyVnVJaXdpWjIxZmFXUWlPakV3TWl3aWMyOTFjbU5sSWpvaU15SXNJbVJsZG1salpWOXBaQ0k2SWpFellURXpZamcyTFRobE5HVXRNMlJoTUMwNU5EZGlMVFF5TWpaak1HTTBNMkZtWXlJc0ltdHBaQ0k2SW5SeVlXUmxYMnRsZVY5Mk1pSXNJbTl0Ym1WdFlXNWhaMlZ5YVdRaU9qRXdNaXdpY0hKdlpIVmpkSE1pT25zaVpHVnRZWFFpT25zaWMzUmhkSFZ6SWpvaVlXTjBhWFpsSW4wc0ltMW1JanA3SW5OMFlYUjFjeUk2SW1GamRHbDJaU0o5TENKdVluVk1aVzVrYVc1bklqcDdJbk4wWVhSMWN5STZJbUZqZEdsMlpTSjlmU3dpYVhOeklqb2lkSEpoWkdWZmJHOW5hVzVmYzJWeWRtbGpaU0lzSW5OMVlpSTZJa281TXpBNU5pSXNJbVY0Y0NJNk1UYzJPVFl5T0RBM01pd2libUptSWpveE56WTVOVFF4TkRreUxDSnBZWFFpT2pFM05qazFOREUwT1RJc0ltcDBhU0k2SWpWaU5qWTVNR0V3TFRnNU1UWXRORFU1WVMxaE5qaGlMV1l5TTJNNU1qVmtNREUzTWlJc0lsUnZhMlZ1SWpvaUluMC5QMjlRdDhIZGV3NUJYc1hsLUdlSWdnbVRKXzNZV0Zma2N5TXV4RVFLSktTd3RjdmtDV0pDVUp0WmpNMFJDbHhjbmFxemU1UC1ta1F1Q0Z4Si1oTGVqNDhyMFk5Sjc0QTFIc0hZMGxqel9vOWNJT2RNT3RKNjllY0Y5NDRsZUd6MTY1dnVfM2I1Mkh4V3lEcXNNNE5MWGVqYXEtS0JrRWFwQWo1V1ZxaHVyQ3ciLCJBUEktS0VZIjoiR1YzcTZCZUciLCJYLU9MRC1BUEktS0VZIjp0cnVlLCJpYXQiOjE3Njk1NDE2NzIsImV4cCI6MTc2OTYyNTAwMH0.5d8eqIG1fcuG7MfoKNGjZ-9t6XUmbWX2stVIRD99briYdrNL-_kBEq-j3_7UrkSna8XQkRVfixM3iU3eQUK46Q",  # JWT token
+        "Authorization": f"{jwt_token}",  # JWT token
         "X-PrivateKey": "GV3q6BeG",  # Your API key
         "X-UserType": "USER",
         "X-SourceID": "WEB",
@@ -430,40 +427,35 @@ from logzero import logger
 from SmartApi import SmartConnect
 
 
-def login_and_get_tokens(angel_key):
-    """
-    Returns:
-    {
-        api_key,
-        jwt_token,
-        feed_token
-    }
-    """
-    try:
-        obj = SmartConnect(api_key=angel_key.api_key)
-        totp = pyotp.TOTP(angel_key.totp_secret).now()
+def login_and_get_tokens(angel_key, max_attempts=4, delay=15):
+    for attempt in range(1, max_attempts + 1):
+        try:
+            obj = SmartConnect(api_key=angel_key.api_key)
+            totp = pyotp.TOTP(angel_key.totp_secret).now()
 
-        session = obj.generateSession(
-            angel_key.client_code,
-            angel_key.password,
-            totp
-        )
+            session = obj.generateSession(
+                angel_key.client_code,
+                angel_key.password,
+                totp
+            )
 
-        jwt = session["data"]["jwtToken"]
-        feed_token = obj.getfeedToken()
+            jwt = session["data"]["jwtToken"]
+            feed_token = obj.getfeedToken()
 
-        logger.info("AngelOne re-login successful")
+            logger.info("AngelOne login successful on attempt %d", attempt)
+            return {
+                "api_key": angel_key.api_key,
+                "jwt_token": jwt,
+                "feed_token": feed_token
+            }
 
-        return {
-            "api_key": angel_key.api_key,
-            "jwt_token": jwt,
-            "feed_token": feed_token
-        }
+        except Exception as e:
+            logger.warning("Login attempt %d/%d failed: %s", attempt, max_attempts, e)
+            if attempt < max_attempts:
+                time.sleep(delay)
 
-    except Exception as e:
-        logger.error("AngelOne login failed: %s", e)
-        return None
-
+    logger.error("All login attempts failed")
+    return None
 
 def get_margin_required(api_key, jwt_token, exchange, tradingsymbol, symboltoken, transaction_type, quantity=1,
                         product_type="INTRADAY", order_type="MARKET"):

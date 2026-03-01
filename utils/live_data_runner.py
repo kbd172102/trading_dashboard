@@ -92,6 +92,8 @@ class UserEngine:
         # self.candles = []
         self.is_warmed_up = False
 
+        self.reconnect_attempts = 0
+
     def start(self):
         threading.Thread(
             target=websocket_thread,
@@ -145,6 +147,12 @@ class UserEngine:
             logger.exception("Failed to load AngelOne credentials: %s", e)
             raise
 
+def is_market_open():
+    now = datetime.now(IST)
+    market_open = now.replace(hour=9, minute=0, second=0)
+    market_close = now.replace(hour=23, minute=30, second=0)
+    return market_open <= now <= market_close
+
 # ==========================================================
 # THREAD 1 — WEBSOCKET
 # ==========================================================
@@ -156,10 +164,6 @@ def websocket_thread(engine):
             if not ensure_valid_session(engine, force=True):
                 logger.error("AngelOne login failed")
                 return
-
-            # engine.client_code = AngelOneKey.objects.get(
-            #     user_id=engine.user_id
-            # ).client_code
 
             sws = SmartWebSocketV2(
                 engine.jwt_token,
@@ -177,6 +181,7 @@ def websocket_thread(engine):
             }]
 
             def on_open(ws):
+                engine.reconnect_attempts = 0
                 logger.info("WebSocket connected : subscribing")
                 sws.subscribe(correlation_id, mode, token_list)
 
@@ -223,8 +228,10 @@ def websocket_thread(engine):
             logger.exception("WebSocket crashed: %s", e)
 
         # 🔁 If connect exits, wait and retry
-        logger.warning("Reconnecting in 3 seconds...")
-        time.sleep(3)
+        delay = min(5 * (2 ** engine.reconnect_attempts), 120)  # 5s, 10s, 20s... max 2min
+        logger.warning("Reconnecting in %ds (attempt %d)...", delay, engine.reconnect_attempts)
+        time.sleep(delay)
+        engine.reconnect_attempts += 1
 
 
 # ==========================================================
@@ -298,18 +305,6 @@ def candle_and_strategy_thread(engine):
 
         # 🔹 CANDLE CLOSED
         closed = engine.current_candle
-        #
-        # if not acquire_candle_lock(457533, closed["start"]):
-        #     logger.warning("Duplicate candle ignored: %s", closed["start"])
-        #     engine.current_candle = {
-        #         "start": candle_start,
-        #         "open": tick["ltp"],
-        #         "high": tick["ltp"],
-        #         "low": tick["ltp"],
-        #         "close": tick["ltp"]
-        #     }
-        #     engine.last_candle_start = candle_start
-        #     continue
 
         # ✅ SAVE TO DB (IST ONLY)
         try:
@@ -366,7 +361,6 @@ def candle_and_strategy_thread(engine):
                     len(engine.candles),
                     REQUIRED_CANDLES
                 )
-                load_initial_candles_from_db(engine, REQUIRED_CANDLES)
                 continue
 
             engine.is_warmed_up = True
@@ -429,6 +423,11 @@ def run_strategy_live(engine, df):
     if not engine.api_key or not engine.jwt_token or not engine.client_code:
         logger.error("Engine credentials missing — cannot trade")
         return
+
+    # if not is_market_open():
+    #     logger.info("Market closed, skipping strategy")
+    #     return
+
     pm = engine.position_manager
     last = df.iloc[-1]
     ist_time = last["timestamp"].astimezone(IST)
