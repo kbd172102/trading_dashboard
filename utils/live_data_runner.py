@@ -350,19 +350,30 @@ def candle_and_strategy_thread(engine):
         # df = pd.read_csv(CSV_PATH)
         # engine.candles.append(closed)
 
+        # if not engine.is_warmed_up:
+        #     if not engine.initial_candles_loaded:
+        #         load_initial_candles_from_db(engine, REQUIRED_CANDLES)
+        #         engine.initial_candles_loaded = True
+        #
+        #     if len(engine.candles) < REQUIRED_CANDLES:
+        #         logger.info(
+        #             "Warming up candles: have=%s need=%s",
+        #             len(engine.candles),
+        #             REQUIRED_CANDLES
+        #         )
+        #         continue
+        #
+        #     engine.is_warmed_up = True
+        #     logger.info("Strategy warm-up complete")
+
+        if not engine.initial_candles_loaded:
+            load_initial_candles(engine, REQUIRED_CANDLES)  # ← new function
+            engine.initial_candles_loaded = True
+
         if not engine.is_warmed_up:
-            if not engine.initial_candles_loaded:
-                load_initial_candles_from_db(engine, REQUIRED_CANDLES)
-                engine.initial_candles_loaded = True
-
             if len(engine.candles) < REQUIRED_CANDLES:
-                logger.info(
-                    "Warming up candles: have=%s need=%s",
-                    len(engine.candles),
-                    REQUIRED_CANDLES
-                )
-                continue
-
+                logger.info("Warming up: %s/%s candles", len(engine.candles), REQUIRED_CANDLES)
+                continue  # skip strategy, wait for live candles to fill the gap
             engine.is_warmed_up = True
             logger.info("Strategy warm-up complete")
 
@@ -459,9 +470,19 @@ def run_strategy_live(engine, df):
     ema_slow = last["ema_78"]
     is_uptrend = ema_fast > ema_slow
 
+    # logger.info(
+    #     "Candle %s | C3 Action: %s | Uptrend: %s",
+    #     ist_time, action, is_uptrend
+    # )
     logger.info(
-        "Candle %s | C3 Action: %s | Uptrend: %s",
-        ist_time, action, is_uptrend
+        "[SIGNAL] %s | Action=%s | Reason=%s | Price=%s | EMA27=%.2f | EMA78=%.2f | Uptrend=%s",
+        ist_time.strftime("%H:%M"),
+        action,
+        signal.get("reason", ""),
+        signal.get("price"),
+        ema_fast,
+        ema_slow,
+        is_uptrend
     )
 
     # ==========================================================
@@ -599,39 +620,199 @@ def run_strategy_live(engine, df):
 # ==========================================================
 # Load initial credentials and ensure valid session
 # ==========================================================
-def load_initial_candles_from_db(engine, limit):
+# def load_initial_candles_from_db(engine, limit):
+#     """
+#     Load last `limit` candles from DB into engine.candles
+#     Runs only once per engine lifecycle
+#     """
+#     close_old_connections()
+#     if len(engine.candles) >= limit:
+#         return
+#
+#     qs = (
+#         LiveCandle.objects
+#         .filter(
+#             token=457533,
+#         )
+#         .order_by("-start_time")[:limit]
+#     )
+#
+#     candles = list(qs)[::-1]  # chronological order
+#
+#     for c in candles:
+#         engine.candles.append({
+#             "start": c.start_time,
+#             "open": c.open,
+#             "high": c.high,
+#             "low": c.low,
+#             "close": c.close,
+#         })
+#
+#     logger.info(
+#         "Loaded %s historical candles from DB for user %s",
+#         len(candles),
+#         engine.user_id
+#     )
+
+def load_initial_candles(engine, limit):
     """
-    Load last `limit` candles from DB into engine.candles
-    Runs only once per engine lifecycle
+    Load historical candles into engine.candles deque.
+    1. Try DB first (fast)
+    2. If not enough → fetch from Angel One historical API
+    3. Merge + deduplicate by start time
     """
     close_old_connections()
-    if len(engine.candles) >= limit:
+    IST = pytz.timezone("Asia/Kolkata")
+
+    # ── STEP 1: Load from DB ──────────────────────────────
+    try:
+        qs = (
+            LiveCandle.objects
+            .filter(token=457533)
+            .order_by("-start_time")[:limit]
+        )
+        db_candles = list(qs)[::-1]  # chronological
+        logger.info("DB has %s candles for warmup (need %s)", len(db_candles), limit)
+    except Exception as e:
+        logger.error("DB candle load failed: %s", e)
+        db_candles = []
+
+    if len(db_candles) >= limit:
+        engine.candles.clear()
+        for c in db_candles[-limit:]:
+            engine.candles.append({
+                "start": c.start_time,
+                "open":  float(c.open),
+                "high":  float(c.high),
+                "low":   float(c.low),
+                "close": float(c.close),
+            })
+        logger.info(
+            "Warmup complete from DB | loaded=%s | first=%s | last=%s",
+            len(engine.candles),
+            engine.candles[0]["start"],
+            engine.candles[-1]["start"],
+        )
         return
 
-    qs = (
-        LiveCandle.objects
-        .filter(
-            token=457533,
-        )
-        .order_by("-start_time")[:limit]
+    # ── STEP 2: DB not enough → fetch from Angel One ─────
+    logger.warning(
+        "DB only has %s candles (need %s) — fetching from Angel One API...",
+        len(db_candles), limit
     )
 
-    candles = list(qs)[::-1]  # chronological order
+    if not engine.jwt_token or not engine.api_key:
+        logger.error("Cannot fetch historical — jwt_token or api_key missing on engine")
+        _fill_engine_from_list(engine, db_candles)
+        return
 
-    for c in candles:
+    try:
+        from utils.angel_one import get_angelone_candles
+
+        now      = datetime.now(IST)
+        fromdate = (now - timedelta(days=15)).strftime("%Y-%m-%d %H:%M")
+        todate   = now.strftime("%Y-%m-%d %H:%M")
+
+        logger.info("Fetching historical | from=%s to=%s", fromdate, todate)
+
+        df, err = get_angelone_candles(
+            jwt_token=engine.jwt_token.replace("Bearer ", "").strip(),
+            api_key=engine.api_key,
+            exchange="MCX",
+            symbol_token="457533",
+            interval="FIFTEEN_MINUTE",
+            fromdate=fromdate,
+            todate=todate,
+        )
+
+        if err or df is None or df.empty:
+            logger.error("Angel One historical API failed: %s", err)
+            _fill_engine_from_list(engine, db_candles)
+            return
+
+        logger.info("Angel One returned %s candles", len(df))
+
+        # ── STEP 3: Convert API rows to dicts ────────────
+        api_candles = []
+        for _, row in df.iterrows():
+            ts = row["datetime"]
+            if ts.tzinfo is None:
+                ts = IST.localize(ts)
+            else:
+                ts = ts.astimezone(IST)
+            api_candles.append({
+                "start": ts,
+                "open":  float(row["open"]),
+                "high":  float(row["high"]),
+                "low":   float(row["low"]),
+                "close": float(row["close"]),
+            })
+
+        # ── STEP 4: Merge API + DB, deduplicate ──────────
+        # API candles as base
+        merged = {c["start"]: c for c in api_candles}
+
+        # DB candles override API (already verified/saved)
+        for c in db_candles:
+            ts = c.start_time
+            if ts.tzinfo is None:
+                ts = IST.localize(ts)
+            else:
+                ts = ts.astimezone(IST)
+            merged[ts] = {
+                "start": ts,
+                "open":  float(c.open),
+                "high":  float(c.high),
+                "low":   float(c.low),
+                "close": float(c.close),
+            }
+
+        sorted_candles = sorted(merged.values(), key=lambda x: x["start"])
+        final_candles  = sorted_candles[-limit:]
+
+        engine.candles.clear()
+        for c in final_candles:
+            engine.candles.append(c)
+
+        logger.info(
+            "Warmup complete (API+DB merge) | loaded=%s | first=%s | last=%s",
+            len(engine.candles),
+            engine.candles[0]["start"],
+            engine.candles[-1]["start"],
+        )
+
+    except Exception as e:
+        logger.exception("Historical candle fetch crashed: %s", e)
+        _fill_engine_from_list(engine, db_candles)
+
+
+def _fill_engine_from_list(engine, db_candles):
+    """Fallback — load whatever DB candles exist, warn if incomplete."""
+    IST = pytz.timezone("Asia/Kolkata")
+    engine.candles.clear()
+    for c in db_candles:
+        ts = c.start_time
+        if ts.tzinfo is None:
+            ts = IST.localize(ts)
+        else:
+            ts = ts.astimezone(IST)
         engine.candles.append({
-            "start": c.start_time,
-            "open": c.open,
-            "high": c.high,
-            "low": c.low,
-            "close": c.close,
+            "start": ts,
+            "open":  float(c.open),
+            "high":  float(c.high),
+            "low":   float(c.low),
+            "close": float(c.close),
         })
 
-    logger.info(
-        "Loaded %s historical candles from DB for user %s",
-        len(candles),
-        engine.user_id
-    )
+    if len(engine.candles) < 83:
+        logger.warning(
+            "Warmup INCOMPLETE — only %s/83 candles. "
+            "Strategy will skip until %s more live candles build up.",
+            len(engine.candles),
+            83 - len(engine.candles)
+        )
+    else:
+        logger.info("Warmup from DB fallback | loaded=%s", len(engine.candles))
 
 def ensure_valid_session(engine, force=False):
     now = time.time()

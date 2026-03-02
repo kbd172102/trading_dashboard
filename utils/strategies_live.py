@@ -132,7 +132,15 @@ def c3_strategy(df: pd.DataFrame):
     c1 = df.iloc[-3]
     c2 = df.iloc[-2]
     c3 = df.iloc[-1]
-
+    logger.info(
+        "[C3 CANDLES] "
+        "C1: O=%.0f H=%.0f L=%.0f C=%.0f (%s) | "
+        "C2: O=%.0f H=%.0f L=%.0f C=%.0f (%s) | "
+        "C3: O=%.0f H=%.0f L=%.0f C=%.0f",
+        c1.open, c1.high, c1.low, c1.close, "GREEN" if c1.close > c1.open else "RED",
+        c2.open, c2.high, c2.low, c2.close, "GREEN" if c2.close > c2.open else "RED",
+        c3.open, c3.high, c3.low, c3.close,
+    )
     # Candle colors
     c1_green = c1.close > c1.open
     c2_green = c2.close > c2.open
