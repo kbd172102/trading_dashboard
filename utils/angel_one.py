@@ -167,7 +167,7 @@ def get_angelone_candles(jwt_token, api_key, exchange, symbol_token, interval, f
         "X-ClientLocalIP": "127.0.0.1",
         "X-ClientPublicIP": "127.0.0.1",
         "X-MACAddress": "AA:BB:CC:DD:EE:FF",
-        "Authorization": f"Bearer {jwt_token}",
+        "Authorization": f"Bearer {jwt_token.replace('Bearer ', '').strip()}",
         "Content-Type": "application/json",
         "Accept": "application/json",
     }
@@ -209,7 +209,7 @@ def get_rms_balance(user):
     url = "https://apiconnect.angelone.in/rest/secure/angelbroking/user/v1/getRMS"
 
     headers = {
-        "Authorization": f"Bearer {jwt_token}",
+        "Authorization": f"Bearer {jwt_token.replace('Bearer ', '').strip()}",
         "Content-Type": "application/json",
         "Accept": "application/json",
         "X-UserType": "USER",
@@ -336,7 +336,7 @@ BASE_URL = "https://apiconnect.angelone.in/rest/secure/angelbroking"
 def _headers(api_key, jwt_token):
     return {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {jwt_token}",
+        "Authorization": f"Bearer {jwt_token.replace('Bearer ', '').strip()}",
         "X-PrivateKey": api_key,
     }
 
@@ -356,7 +356,7 @@ def get_account_balance(api_key, jwt_token):
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": f"{jwt_token}",  # JWT token
+        "Authorization": f"Bearer {jwt_token.replace('Bearer ', '').strip()}",  # JWT token
         "X-PrivateKey": "GV3q6BeG",  # Your API key
         "X-UserType": "USER",
         "X-SourceID": "WEB",
@@ -463,11 +463,11 @@ def get_margin_required(api_key, jwt_token, exchange, tradingsymbol, symboltoken
     Fetch required margin for a single lot from Angel One's margin API.
     """
     url = "https://apiconnect.angelone.in/rest/secure/angelbroking/margin/v1/batch"
-
+    clean_jwt = jwt_token.replace("Bearer ", "").strip()
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": f"{jwt_token}",
+        "Authorization": f"Bearer {clean_jwt}",
         "X-PrivateKey": api_key,
         "X-UserType": "USER",
         "X-SourceID": "WEB",

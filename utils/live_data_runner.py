@@ -274,6 +274,7 @@ def candle_and_strategy_thread(engine):
             continue
 
         close_old_connections()
+
         # print(engine.jwt_token)
 
         # ✅ SINGLE SOURCE OF TRUTH — convert here
