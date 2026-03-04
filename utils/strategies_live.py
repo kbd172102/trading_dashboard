@@ -167,6 +167,7 @@ def c3_strategy(df: pd.DataFrame):
             c2.low < c1.low and
             c3.close < c2.low * (1 - BREAKOUT_BUFFER)
     )
+    logger.info(f"c1_red :{c1_red}, c2_red: {c2_red}, c2.low: {c2.low}, c1.low:{c1.low}, c3.close:{c3.close}, c2.low:{c2.low} ")
 
     if ema_long and long_pattern:
         return {
