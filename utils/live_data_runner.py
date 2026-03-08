@@ -25,6 +25,7 @@ from utils.strategies_live import c3_strategy, EMA_LONG
 from utils.position_manager import PositionManager
 from utils.expiry_utils import is_last_friday_before_expiry, is_one_week_before_expiry
 
+
 CANDLE_INTERVAL_MINUTES = 15
 
 from utils.redis_cache import init_redis, acquire_candle_lock, acquire_trade_lock, release_trade_lock
@@ -307,6 +308,16 @@ def candle_and_strategy_thread(engine):
         # 🔹 CANDLE CLOSED
         closed = engine.current_candle
 
+        engine.current_candle = {
+            "start": candle_start,
+            "open": tick["ltp"],
+            "high": tick["ltp"],
+            "low": tick["ltp"],
+            "close": tick["ltp"],
+        }
+        engine.last_candle_start = candle_start
+        next_open = tick["ltp"]
+
         # ✅ SAVE TO DB (IST ONLY)
         try:
             LiveCandle.objects.create(
@@ -384,19 +395,19 @@ def candle_and_strategy_thread(engine):
         df["timestamp"] = pd.to_datetime(df["timestamp"], utc=True)
 
         df = add_indicators(df)
-        run_strategy_live(engine, df)
+        run_strategy_live(engine, df, next_open=next_open)
 
         logger.info("Strategy executed on candle close")
 
-        # 🔹 START NEW CANDLE
-        engine.current_candle = {
-            "start": candle_start,
-            "open": tick["ltp"],
-            "high": tick["ltp"],
-            "low": tick["ltp"],
-            "close": tick["ltp"],
-        }
-        engine.last_candle_start = candle_start
+        # # 🔹 START NEW CANDLE
+        # engine.current_candle = {
+        #     "start": candle_start,
+        #     "open": tick["ltp"],
+        #     "high": tick["ltp"],
+        #     "low": tick["ltp"],
+        #     "close": tick["ltp"],
+        # }
+        # engine.last_candle_start = candle_start
 
 
 from django.core.cache import cache
@@ -430,7 +441,7 @@ CSV_PATH = os.path.join(settings.BASE_DIR, "utils", "test", "today_data.csv")
 # ==========================================================
 # STRATEGY RUNNER (SAFE & FAST)
 # ==========================================================
-def run_strategy_live(engine, df):
+def run_strategy_live(engine, df, next_open=None):
     logger.info("Running strategy live...")
     if not engine.api_key or not engine.jwt_token or not engine.client_code:
         logger.error("Engine credentials missing — cannot trade")
@@ -534,7 +545,8 @@ def run_strategy_live(engine, df):
         # 7️⃣ PLACE ORDER ON **NEXT CANDLE OPEN**
         # ======================================================
         logger.info("order placing")
-        next_entry_price = last["open"]   # ← IMPORTANT
+        # next_entry_price = last["open"]   # ← IMPORTANT
+        next_entry_price = next_open if next_open is not None else last["close"]
 
         balance = get_live_balance(engine)
         # balance = 3,00,000

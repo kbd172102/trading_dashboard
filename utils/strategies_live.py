@@ -144,30 +144,46 @@ def c3_strategy(df: pd.DataFrame):
     # Candle colors
     c1_green = c1.close > c1.open
     c2_green = c2.close > c2.open
+    c3_green = c3.close > c3.open
 
     c1_red = c1.close < c1.open
     c2_red = c2.close < c2.open
+    c3_red = c3.close < c3.open
 
     # EMA trend
     ema_long = c3.ema_27 > c3.ema_78
     ema_short = c3.ema_27 < c3.ema_78
 
     # ---- LONG CONDITIONS ----
+    # long_pattern = (
+    #         c1_green and
+    #         c2_green and
+    #         c2.high > c1.high and
+    #         c3.close > c2.high * (1 + BREAKOUT_BUFFER)
+    # )
     long_pattern = (
             c1_green and
             c2_green and
-            c2.high > c1.high and
-            c3.close > c2.high * (1 + BREAKOUT_BUFFER)
+            c3_green and
+            c2.high > c1.high
     )
-
+    logger.info(f"c1_green :{c1_green}, c2_g: {c2_green}, c2.high> c1.h: {c2.high > c1.high}, c3.close>c2.h:{c3.close > c2.high} ")
+    # print("long_pattern", long_pattern, "  || ema_long", ema_long)
     # ---- SHORT CONDITIONS ----
+    # short_pattern = (
+    #         c1_red and
+    #         c2_red and
+    #         c2.low < c1.low and
+    #         c3.close < c2.low * (1 - BREAKOUT_BUFFER)
+    # )
     short_pattern = (
             c1_red and
             c2_red and
-            c2.low < c1.low and
-            c3.close < c2.low * (1 - BREAKOUT_BUFFER)
+            c3_red and
+            c2.low < c1.low
     )
     logger.info(f"c1_red :{c1_red}, c2_red: {c2_red}, c2.low: {c2.low}, c1.low:{c1.low}, c3.close:{c3.close}, c2.low:{c2.low} ")
+    # print("short_pattern", short_pattern, "  || ema_short", ema_short)
 
     if ema_long and long_pattern:
         return {
